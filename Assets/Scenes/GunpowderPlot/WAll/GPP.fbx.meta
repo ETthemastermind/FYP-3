@@ -1,0 +1,149 @@
+fileFormatVersion: 2
+guid: c487bda8888f24449a508f62ab5bba7d
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: geo1
+    100002: //RootNode
+    100004: Jacket:Body
+    100006: Jacket:Tops
+    100008: Parliment:Body
+    100010: Parliment:Bottoms
+    100012: Parliment:Eyelashes
+    100014: Parliment:Eyes
+    100016: Parliment:Hair
+    100018: Parliment:Shoes
+    100020: Parliment:Tops
+    400000: geo1
+    400002: //RootNode
+    400004: Jacket:Body
+    400006: Jacket:Tops
+    400008: Parliment:Body
+    400010: Parliment:Bottoms
+    400012: Parliment:Eyelashes
+    400014: Parliment:Eyes
+    400016: Parliment:Hair
+    400018: Parliment:Shoes
+    400020: Parliment:Tops
+    2100000: MAT_Mask_GuyFawkesMask2
+    2100002: Body
+    2100004: Tops
+    2100006: lambert1
+    2100008: Bottoms
+    2100010: Hair
+    2300000: geo1
+    2300002: Jacket:Body
+    2300004: Jacket:Tops
+    2300006: Parliment:Body
+    2300008: Parliment:Bottoms
+    2300010: Parliment:Eyelashes
+    2300012: Parliment:Eyes
+    2300014: Parliment:Hair
+    2300016: Parliment:Shoes
+    2300018: Parliment:Tops
+    3300000: geo1
+    3300002: Jacket:Body
+    3300004: Jacket:Tops
+    3300006: Parliment:Body
+    3300008: Parliment:Bottoms
+    3300010: Parliment:Eyelashes
+    3300012: Parliment:Eyes
+    3300014: Parliment:Hair
+    3300016: Parliment:Shoes
+    3300018: Parliment:Tops
+    4300000: geo1
+    4300002: Parliment:Eyes
+    4300004: Parliment:Body
+    4300006: Jacket:Tops
+    4300008: Jacket:Body
+    4300010: Parliment:Bottoms
+    4300012: Parliment:Hair
+    4300014: Parliment:Eyelashes
+    4300016: Parliment:Shoes
+    4300018: Parliment:Tops
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

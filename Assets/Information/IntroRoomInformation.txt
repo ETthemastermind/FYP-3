@@ -1,0 +1,23 @@
+#Diorama Display 1
+#Open Stand 1
+#Slider Object
+#Pedestal Object. What. Why.
+This is a classic english football.
+Football is the most popular sport in the world, with 250 million across 200 countries
+According to FootballDatabase.com, Liverpool FC, Manchester City and Bayern Munchen are the top 3 teams in the world, as of the 26th of January 2020.
+Modern football takes its origins from a decision in 1863 for rugby football and association football to go their separate ways. That was when the rules of the game began to be formalised, though there are reports of games of football being played as early as 1581 in schools in England.
+Example Info 1
+Example Info 2
+#Portrait Object Who When What                   https://www.britannica.com/biography/James-I-king-of-England-and-Scotland
+This is Luis Garcia, a Spanish born Liverpool player from 2004 to 2007.
+He has played for teams such as Liverpool, Barcelona, Atletico Madrid and many others, as well as nationally for Spain and Catalonia
+His prefered position is "Winger" or "Attacking Midfield".
+In his senior carrer, he appeared in a total of 462 games and scored 106 goals,excluding his time playing nationally and his youth carrer.
+#Diorama Display
+Football Diorama 1
+Football Diorama 2
+Football Diorama 3
+Football Diorama 4
+
+
+https://www.football-stadiums.co.uk/articles/the-history-of-football/

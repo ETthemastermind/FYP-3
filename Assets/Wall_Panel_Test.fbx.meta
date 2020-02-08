@@ -1,0 +1,169 @@
+fileFormatVersion: 2
+guid: b9c02a47c31eeb24ea7c2a171ab0fd3a
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: WallPanel
+    100004: WallPanel1
+    100006: WallPanel10
+    100008: WallPanel11
+    100010: WallPanel12
+    100012: WallPanel13
+    100014: WallPanel14
+    100016: WallPanel2
+    100018: WallPanel3
+    100020: WallPanel4
+    100022: WallPanel5
+    100024: WallPanel6
+    100026: WallPanel7
+    100028: WallPanel8
+    100030: WallPanel9
+    400000: //RootNode
+    400002: WallPanel
+    400004: WallPanel1
+    400006: WallPanel10
+    400008: WallPanel11
+    400010: WallPanel12
+    400012: WallPanel13
+    400014: WallPanel14
+    400016: WallPanel2
+    400018: WallPanel3
+    400020: WallPanel4
+    400022: WallPanel5
+    400024: WallPanel6
+    400026: WallPanel7
+    400028: WallPanel8
+    400030: WallPanel9
+    2100000: lambert2
+    2300000: WallPanel
+    2300002: WallPanel1
+    2300004: WallPanel10
+    2300006: WallPanel11
+    2300008: WallPanel12
+    2300010: WallPanel13
+    2300012: WallPanel14
+    2300014: WallPanel2
+    2300016: WallPanel3
+    2300018: WallPanel4
+    2300020: WallPanel5
+    2300022: WallPanel6
+    2300024: WallPanel7
+    2300026: WallPanel8
+    2300028: WallPanel9
+    3300000: WallPanel
+    3300002: WallPanel1
+    3300004: WallPanel10
+    3300006: WallPanel11
+    3300008: WallPanel12
+    3300010: WallPanel13
+    3300012: WallPanel14
+    3300014: WallPanel2
+    3300016: WallPanel3
+    3300018: WallPanel4
+    3300020: WallPanel5
+    3300022: WallPanel6
+    3300024: WallPanel7
+    3300026: WallPanel8
+    3300028: WallPanel9
+    4300000: WallPanel
+    4300002: WallPanel1
+    4300004: WallPanel2
+    4300006: WallPanel3
+    4300008: WallPanel4
+    4300010: WallPanel5
+    4300012: WallPanel6
+    4300014: WallPanel7
+    4300016: WallPanel8
+    4300018: WallPanel9
+    4300020: WallPanel10
+    4300022: WallPanel11
+    4300024: WallPanel12
+    4300026: WallPanel13
+    4300028: WallPanel14
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

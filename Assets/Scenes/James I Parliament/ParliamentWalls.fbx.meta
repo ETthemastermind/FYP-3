@@ -1,0 +1,317 @@
+fileFormatVersion: 2
+guid: 5ef0a0fb2c2b59746bee3d81e767fb42
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Wall_Panel_Short
+    100004: Wall_Panel_Short1
+    100006: Wall_Panel_Test
+    100008: Wall_Panel_Test1
+    100010: WallPanel10
+    100012: WallPanel10 1
+    100014: WallPanel11
+    100016: WallPanel11 1
+    100018: WallPanel12
+    100020: WallPanel12 1
+    100022: WallPanel13
+    100024: WallPanel13 1
+    100026: WallPanel14
+    100028: WallPanel14 1
+    100030: WallPanel15
+    100032: WallPanel15 1
+    100034: WallPanel16
+    100036: WallPanel16 1
+    100038: WallPanel17
+    100040: WallPanel17 1
+    100042: WallPanel18
+    100044: WallPanel18 1
+    100046: WallPanel19
+    100048: WallPanel19 1
+    100050: WallPanel20
+    100052: WallPanel20 1
+    100054: WallPanel21
+    100056: WallPanel21 1
+    100058: WallPanel22
+    100060: WallPanel22 1
+    100062: WallPanel23
+    100064: WallPanel23 1
+    100066: WallPanel24
+    100068: WallPanel24 1
+    100070: WallPanel3
+    100072: WallPanel3 1
+    100074: WallPanel5
+    100076: WallPanel5 1
+    100078: WallPanel6
+    100080: WallPanel6 1
+    100082: WallPanel7
+    100084: WallPanel7 1
+    100086: WallPanel8
+    100088: WallPanel8 1
+    100090: WallPanel9
+    100092: WallPanel9 1
+    400000: //RootNode
+    400002: Wall_Panel_Short
+    400004: Wall_Panel_Short1
+    400006: Wall_Panel_Test
+    400008: Wall_Panel_Test1
+    400010: WallPanel10
+    400012: WallPanel10 1
+    400014: WallPanel11
+    400016: WallPanel11 1
+    400018: WallPanel12
+    400020: WallPanel12 1
+    400022: WallPanel13
+    400024: WallPanel13 1
+    400026: WallPanel14
+    400028: WallPanel14 1
+    400030: WallPanel15
+    400032: WallPanel15 1
+    400034: WallPanel16
+    400036: WallPanel16 1
+    400038: WallPanel17
+    400040: WallPanel17 1
+    400042: WallPanel18
+    400044: WallPanel18 1
+    400046: WallPanel19
+    400048: WallPanel19 1
+    400050: WallPanel20
+    400052: WallPanel20 1
+    400054: WallPanel21
+    400056: WallPanel21 1
+    400058: WallPanel22
+    400060: WallPanel22 1
+    400062: WallPanel23
+    400064: WallPanel23 1
+    400066: WallPanel24
+    400068: WallPanel24 1
+    400070: WallPanel3
+    400072: WallPanel3 1
+    400074: WallPanel5
+    400076: WallPanel5 1
+    400078: WallPanel6
+    400080: WallPanel6 1
+    400082: WallPanel7
+    400084: WallPanel7 1
+    400086: WallPanel8
+    400088: WallPanel8 1
+    400090: WallPanel9
+    400092: WallPanel9 1
+    2100000: lambert2
+    2300000: WallPanel10
+    2300002: WallPanel10 1
+    2300004: WallPanel11
+    2300006: WallPanel11 1
+    2300008: WallPanel12
+    2300010: WallPanel12 1
+    2300012: WallPanel13
+    2300014: WallPanel13 1
+    2300016: WallPanel14
+    2300018: WallPanel14 1
+    2300020: WallPanel15
+    2300022: WallPanel15 1
+    2300024: WallPanel16
+    2300026: WallPanel16 1
+    2300028: WallPanel17
+    2300030: WallPanel17 1
+    2300032: WallPanel18
+    2300034: WallPanel18 1
+    2300036: WallPanel19
+    2300038: WallPanel19 1
+    2300040: WallPanel20
+    2300042: WallPanel20 1
+    2300044: WallPanel21
+    2300046: WallPanel21 1
+    2300048: WallPanel22
+    2300050: WallPanel22 1
+    2300052: WallPanel23
+    2300054: WallPanel23 1
+    2300056: WallPanel24
+    2300058: WallPanel24 1
+    2300060: WallPanel3
+    2300062: WallPanel3 1
+    2300064: WallPanel5
+    2300066: WallPanel5 1
+    2300068: WallPanel6
+    2300070: WallPanel6 1
+    2300072: WallPanel7
+    2300074: WallPanel7 1
+    2300076: WallPanel8
+    2300078: WallPanel8 1
+    2300080: WallPanel9
+    2300082: WallPanel9 1
+    3300000: WallPanel10
+    3300002: WallPanel10 1
+    3300004: WallPanel11
+    3300006: WallPanel11 1
+    3300008: WallPanel12
+    3300010: WallPanel12 1
+    3300012: WallPanel13
+    3300014: WallPanel13 1
+    3300016: WallPanel14
+    3300018: WallPanel14 1
+    3300020: WallPanel15
+    3300022: WallPanel15 1
+    3300024: WallPanel16
+    3300026: WallPanel16 1
+    3300028: WallPanel17
+    3300030: WallPanel17 1
+    3300032: WallPanel18
+    3300034: WallPanel18 1
+    3300036: WallPanel19
+    3300038: WallPanel19 1
+    3300040: WallPanel20
+    3300042: WallPanel20 1
+    3300044: WallPanel21
+    3300046: WallPanel21 1
+    3300048: WallPanel22
+    3300050: WallPanel22 1
+    3300052: WallPanel23
+    3300054: WallPanel23 1
+    3300056: WallPanel24
+    3300058: WallPanel24 1
+    3300060: WallPanel3
+    3300062: WallPanel3 1
+    3300064: WallPanel5
+    3300066: WallPanel5 1
+    3300068: WallPanel6
+    3300070: WallPanel6 1
+    3300072: WallPanel7
+    3300074: WallPanel7 1
+    3300076: WallPanel8
+    3300078: WallPanel8 1
+    3300080: WallPanel9
+    3300082: WallPanel9 1
+    4300000: WallPanel3
+    4300002: WallPanel5
+    4300004: WallPanel6
+    4300006: WallPanel7
+    4300008: WallPanel8
+    4300010: WallPanel9
+    4300012: WallPanel10
+    4300014: WallPanel11
+    4300016: WallPanel12
+    4300018: WallPanel13
+    4300020: WallPanel14
+    4300022: WallPanel15
+    4300024: WallPanel16
+    4300026: WallPanel18
+    4300028: WallPanel19
+    4300030: WallPanel20
+    4300032: WallPanel21
+    4300034: WallPanel22
+    4300036: WallPanel23
+    4300038: WallPanel24
+    4300040: WallPanel17
+    4300042: WallPanel18
+    4300044: WallPanel19
+    4300046: WallPanel20
+    4300048: WallPanel21
+    4300050: WallPanel22
+    4300052: WallPanel23
+    4300054: WallPanel24
+    4300056: WallPanel17
+    4300058: WallPanel3
+    4300060: WallPanel5
+    4300062: WallPanel6
+    4300064: WallPanel7
+    4300066: WallPanel8
+    4300068: WallPanel9
+    4300070: WallPanel10
+    4300072: WallPanel11
+    4300074: WallPanel12
+    4300076: WallPanel13
+    4300078: WallPanel14
+    4300080: WallPanel15
+    4300082: WallPanel16
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert2
+    second: {fileID: 2100000, guid: 92a07ac92beb6b94680fd159ce510fc2, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

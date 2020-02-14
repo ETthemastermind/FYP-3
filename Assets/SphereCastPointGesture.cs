@@ -16,7 +16,7 @@ public class SphereCastPointGesture : MonoBehaviour
     private float CurrentHitDistance;
 
     public GameObject KeywordObject;
-
+    public bool KeywordSelected = false;
 
     public LineRenderer LR;
     // Start is called before the first frame update
@@ -41,16 +41,27 @@ public class SphereCastPointGesture : MonoBehaviour
                 LR.SetPosition(1, ObjectHit.point);
                 if (CurrentHitObject.gameObject.tag == "Keyword")
                 {
+                    if (KeywordObject != null)
+                    {
+                        KeywordObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.white;
+
+                    }
+                    
                     KeywordObject = CurrentHitObject.transform.gameObject;
                     KeywordObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.red;
+                }
+
+                else
+                {
+                    
                 }
             }
             else
             {
                 CurrentHitDistance = maxDistance;
                 CurrentHitObject = null;
-                KeywordObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.white;
-                KeywordObject = null;
+                
+                
             }
 
         }
@@ -68,6 +79,7 @@ public class SphereCastPointGesture : MonoBehaviour
         Debug.Log("Player stopped pointing");
         _IsPointing = false;
         LR.enabled = false;
+        KeywordObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.red;
     }
 
     private void OnDrawGizmosSelected()

@@ -37,7 +37,7 @@ public class PointingGesture : MonoBehaviour
             Debug.DrawRay(FingerTip.transform.position, FingerTip.transform.forward * 50f, Color.green); //debug for the ray
 
             LR.SetPosition(0, FingerTip.transform.position);
-            LR.SetPosition(1, FingerTip.transform.forward * 100f);
+            LR.SetPosition(1, FingerTip.transform.forward * 50f);
 
             RaycastHit ObjectHit;
 

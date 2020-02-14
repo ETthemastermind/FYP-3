@@ -13,6 +13,8 @@ public class PortraitSpeechRec : MonoBehaviour
     public GameObject KeywordAskedAbout;
     public AudioClip RequestedInfo;
 
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,13 +22,27 @@ public class PortraitSpeechRec : MonoBehaviour
         keywordRecogniser = new KeywordRecognizer(actions.Keys.ToArray()); //activates the speech rec
         keywordRecogniser.OnPhraseRecognized += RecognisedSpeech;
         keywordRecogniser.Start();
+
+        PlayerController = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
-        KeywordAskedAbout = PointingGesture.gameObject.GetComponent<PointingGesture>().KeywordObject.gameObject;
-        RequestedInfo = KeywordAskedAbout.GetComponent<AudioInfo>().Information;
+        if (PointingGesture.GetComponent<SphereCastPointGesture>().KeywordObject.gameObject != null)
+        {
+
+            KeywordAskedAbout = PointingGesture.GetComponent<SphereCastPointGesture>().KeywordObject.gameObject;
+            RequestedInfo = KeywordAskedAbout.GetComponent<AudioInfo>().Information;
+        }
+        else
+        {
+            KeywordAskedAbout = null;
+            RequestedInfo = null;
+        }
+
+        //KeywordAskedAbout = PointingGesture.gameObject.GetComponent<PointingGesture>().KeywordObject.gameObject;
+        //RequestedInfo = KeywordAskedAbout.GetComponent<AudioInfo>().Information;
 
 
 
@@ -34,7 +50,11 @@ public class PortraitSpeechRec : MonoBehaviour
 
     public void TellAbout()
     {
-        PlayerController.GetComponent<AudioSource>().PlayOneShot(RequestedInfo);
+        if (RequestedInfo != null)
+        {
+            PlayerController.GetComponent<AudioSource>().PlayOneShot(RequestedInfo);
+        }
+        
     }
 
     private void RecognisedSpeech(PhraseRecognizedEventArgs speech)

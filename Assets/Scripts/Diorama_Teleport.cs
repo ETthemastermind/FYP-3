@@ -34,6 +34,10 @@ public class Diorama_Teleport : MonoBehaviour
         PressA = GameObject.FindGameObjectWithTag("Diorama_PressA");
         InfoGUI = GameObject.FindGameObjectWithTag("InfoGUI");
         DisplayedInformation = GameObject.FindGameObjectWithTag("Text_Info").GetComponent<Text>();
+        Keyword1 = GameObject.FindGameObjectWithTag("DD_KW_1");
+        Keyword2 = GameObject.FindGameObjectWithTag("DD_KW_2");
+        Keyword3 = GameObject.FindGameObjectWithTag("DD_KW_3");
+        Keyword4 = GameObject.FindGameObjectWithTag("DD_KW_4");
     }
     void Start()
     {

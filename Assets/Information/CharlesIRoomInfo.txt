@@ -13,4 +13,63 @@ Mary 1
 Mary 2
 Mary 3
 Mary 4
-#======================================================== 
+#=======================#  Charles II Young #=================================  https://en.wikipedia.org/wiki/Charles_II_of_England#/media/File:William_Dobson_-_Charles_II,_1630_-_1685._King_of_Scots_1649_-_1685._King_of_England_and_Ireland_1660_-_1685_(When_Prince_of_Wales,_with_a_page)_-_Google_Art_Project.jpg
+Charles II young 1
+Charles II young 2
+Charles II young 3
+Charles II young 4 
+#========================# James II Young=============================================== https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Charles_I_and_James_II.png/1920px-Charles_I_and_James_II.png
+James II young 1
+James II young 2
+James II young 3
+James II young 4
+#============================# Royalist Banner #==============================================================
+Royalist Banner 1 
+Royalist Banner 2
+Royalist Banner 3
+Royalist Banner 4
+#==================# Flintlock #====================================================
+Flintlock 1
+Flintlock 2
+Flintlock 3
+Flintlock 4
+#===========# C1 Execution #============================================
+Execution 1
+Exectuion 2
+Execution 3
+Execution 4
+#============# Ship Tax #===================================================
+Ship tax 1
+Ship Tax 2
+Ship Tax 3
+Ship Tax 4
+#==============# Personal Rule #===========================================
+Personal Rule 1
+Personal Rule 2
+Personal Rule 3
+Personal Rule 4
+#============# Buckingham Death #==========================================
+Buckingham Death 1
+Buckingham Death 2
+Buckingham Death 3
+Buckingham Death 4
+#===========# Parliaments Pre PR #=========================================
+Parliaments Pre PR 1
+Parliaments Pre PR 2
+Parliaments Pre PR 3
+Parliaments Pre PR 4
+#===========# Parliaments Post PR #=========================================
+Parliaments Post PR 1
+Parliaments Post PR 2
+Parliaments Post PR 3
+Parliaments Post PR 4
+#===============#Triennial Act #==============================================
+Triennial Act 1
+Triennial Act 2
+Triennial Act 3
+Triennial Act 4
+#======================# 19 Propositions #==========================================
+19 Propositions 1
+19 Propositions 2
+19 Propositions 3
+19 Propositions 4

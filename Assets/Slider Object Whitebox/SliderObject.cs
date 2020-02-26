@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SliderObject : MonoBehaviour
 {
@@ -29,6 +30,8 @@ public class SliderObject : MonoBehaviour
 
     public bool Initialised = false;
 
+    public GameObject ProgressSlider;
+
 
 
     // Start is called before the first frame update
@@ -41,12 +44,14 @@ public class SliderObject : MonoBehaviour
     {
         SliderGUI.SetActive(false);
         //Instantiate(DisplayBoards[0], gameObject.transform.position, gameObject.transform.rotation * DisplayRotOffset);
-        
+        //Debug.Log(DisplayBoards.Length);
+        ProgressSlider.GetComponent<Slider>().maxValue = DisplayBoards.Length - 1;
     }
 
     // Update is called once per frame
     void Update()
     {
+        ;
         if (Initialised == false)
         {
             for (int i = 1; i != DisplayBoards.Length; i++)
@@ -66,6 +71,7 @@ public class SliderObject : MonoBehaviour
         {
             SliderGUI.SetActive(false);
             ActiveArtefact = false;
+
 
 
         }
@@ -116,7 +122,9 @@ public class SliderObject : MonoBehaviour
 
         }
         DisplayBoards[CurrentDisplayBoard].SetActive(true);
+        ProgressSlider.GetComponent<Slider>().value = CurrentDisplayBoard;
         //Display.GetComponent<Renderer>().material = materials[CurrentMat];
+        
     }
 
 
@@ -133,7 +141,7 @@ public class SliderObject : MonoBehaviour
         }
 
         DisplayBoards[CurrentDisplayBoard].SetActive(true);
-
+        ProgressSlider.GetComponent<Slider>().value = CurrentDisplayBoard;
         //Display.GetComponent<Renderer>().material = materials[CurrentMat];
 
 

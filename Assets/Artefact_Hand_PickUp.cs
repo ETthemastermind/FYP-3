@@ -29,6 +29,7 @@ public class Artefact_Hand_PickUp : MonoBehaviour
 
     public void GrippingObject()
     {
+        Debug.Log("Hand Open");
         ObjectsInRadius = Physics.OverlapSphere(Palm.gameObject.transform.position, radius);
         for (int i = 0; i != ObjectsInRadius.Length; i++)
         {
@@ -54,12 +55,15 @@ public class Artefact_Hand_PickUp : MonoBehaviour
 
     public void UngrippingObject()
     {
-
         
+        ArtefactObject.transform.parent = null;
+        ArtefactObject = null;
+        ObjectsInRadius = new Collider[0];
 
 
-        
-        
+
+
+
 
 
     }

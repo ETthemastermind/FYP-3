@@ -28,13 +28,15 @@ public class ChangeDisplay : MonoBehaviour
             if (RightCycle == true)
             {
                 Debug.Log("Cycle Right");
-                Display.SendMessage("IncrementDisplay");
+                //Display.SendMessage("IncrementDisplay");
+                Display.GetComponent<SliderObject>().IncrementDisplay();
             }
 
             else if (LeftCycle == true)
             {
                 Debug.Log("Cycle Left");
-                Display.SendMessage("DecrementDisplay");
+                //Display.SendMessage("DecrementDisplay");
+                Display.GetComponent<SliderObject>().DecrementDisplay();
             }
            
         }

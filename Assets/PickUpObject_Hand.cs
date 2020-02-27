@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PickUpObject_Hand : MonoBehaviour
 {
-    public GameObject DebugCube;
+    //public GameObject DebugCube;
     public GameObject PickUpController;
 
     public Rigidbody RB;
@@ -25,7 +25,7 @@ public class PickUpObject_Hand : MonoBehaviour
     {
         if (other.gameObject.tag == "Right Hand" || other.gameObject.tag == "Left Hand") //if a hand is in the object's trigger area
         {
-            DebugCube.GetComponent<Renderer>().material.color = Color.red; //visual debug
+            //DebugCube.GetComponent<Renderer>().material.color = Color.red; //visual debug
             PickUpController.GetComponent<Artefact_Hand_PickUp>().ObjectToPickUp = gameObject;
 
 
@@ -38,7 +38,7 @@ public class PickUpObject_Hand : MonoBehaviour
     {
         if (other.gameObject.tag == "Right Hand" || other.gameObject.tag == "Left Hand") //if a hand has left the objects trigger area
         {
-            DebugCube.GetComponent<Renderer>().material.color = Color.white; //visual debug
+            //DebugCube.GetComponent<Renderer>().material.color = Color.white; //visual debug
             PickUpController.GetComponent<Artefact_Hand_PickUp>().ObjectToPickUp = null;
             
         }

@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Windows.Speech;
+using System.Linq;
 
 public class DioramaEnterGesture : MonoBehaviour
 {
-    public GameObject RightPalm;
+    public GameObject RightPalm;  
     public GameObject LeftPalm;
     public LineRenderer LR;
     public float PalmDistance;
@@ -23,40 +25,48 @@ public class DioramaEnterGesture : MonoBehaviour
     public GameObject SOSRObject;
     public int LevelToLoad;
 
-    public GameObject DebugSphere;
+    //public GameObject DebugSphere;
 
     public Animator animator;
+
+    private KeywordRecognizer keywordRecogniser; //sets up speech rec
+    public Dictionary<string, System.Action> actions = new Dictionary<string, System.Action>(); //dictionairy of keywords
     // Start is called before the first frame update
     void Start()
     {
-        LR = gameObject.GetComponent<LineRenderer>();
+        LR = gameObject.GetComponent<LineRenderer>(); //gets the line renderer component
+
+        actions.Add("Enter", OnFadeComplete);
+        keywordRecogniser = new KeywordRecognizer(actions.Keys.ToArray()); //activates the speech rec
+        keywordRecogniser.OnPhraseRecognized += RecognisedSpeech;
+        keywordRecogniser.Start();
     }
 
     // Update is called once per frame
     void Update()
     {
-        PalmDistance = Vector3.Distance(RightPalm.transform.position, LeftPalm.transform.position);
-        SOSRObject = SOSR.GetComponent<SmallObject_SpeechRec>().Artefact;
-        if (SOSRObject.transform.parent.gameObject.tag == "DioramaDisplay")
+        PalmDistance = Vector3.Distance(RightPalm.transform.position, LeftPalm.transform.position); // Finds the distance between left and right palm
+        SOSRObject = SOSR.GetComponent<SmallObject_SpeechRec>().Artefact; //already tracking if VR player is in rings, might as well reference instead of making it track again. SOSR = Small Object Speech Rec.
+        if (SOSRObject.transform.parent.gameObject.tag == "DioramaDisplay") // if the SOSR's parent object has the diorama display tag
         {
-            LevelToLoad = SOSRObject.GetComponent<Diorama_Teleport>().TargetSceneIndex;
-            if (GestureActive == true)
+            LevelToLoad = SOSRObject.GetComponent<Diorama_Teleport>().TargetSceneIndex; //get the scene index from SOSRobject
+            if (GestureActive == true) // if diorma hand gesture is true
             {
-                LR.enabled = true;
-                LR.SetPosition(0, RightPalm.transform.position);
+                LR.enabled = true; //turn on line renderer 
+                LR.SetPosition(0, RightPalm.transform.position); //set positions 1 and 2 of the line renderer to the palms.
                 LR.SetPosition(1, LeftPalm.transform.position);
                 
                 if (PalmDistance >= 0 && PalmDistance <= (MaxHandDistance / 3))
                 {
-                    Debug.Log("Max Distance Reached");
-                    LR.material = Red;
+                    
+                    LR.material = Red; //When hands get put together, should be red. acts as a sort of loading bar.
                     ElapsedTime = 0f;
                     //DebugSphere.GetComponent<Renderer>().material.color = Color.white;
 
                 }
                 else if (PalmDistance >= (MaxHandDistance / 3) && (PalmDistance <= (MaxHandDistance / 3) * 2))
                 {
-                    Debug.Log("Max Distance Reached");
+                    
                     LR.material = Orange;
                     ElapsedTime = 0f;
                     //DebugSphere.GetComponent<Renderer>().material.color = Color.white;
@@ -67,7 +77,7 @@ public class DioramaEnterGesture : MonoBehaviour
                     Debug.Log("Max Distance Reached");
                     LR.material = Green;
 
-                    if (ElapsedTime <= Timer)
+                    if (ElapsedTime <= Timer) //hold the green position for a few seconds
                     {
                         ElapsedTime += Time.deltaTime;
 
@@ -87,7 +97,7 @@ public class DioramaEnterGesture : MonoBehaviour
                 }
             }
 
-            else if (GestureActive == false)
+            else if (GestureActive == false) //turns off the line renderer when gesture is inactive
             {
                 LR.enabled = false;
 
@@ -99,10 +109,10 @@ public class DioramaEnterGesture : MonoBehaviour
         
     }
 
-    public void DioramaGestureActive()
+    public void DioramaGestureActive() //using detectors on the gesture controller, this activates when both hands are facing forwards with open palms 
     {
 
-        if (PalmDistance <= 0.5f)
+        if (PalmDistance <= 0.5f) //if the the user's hands are close together, activates this bool to enable the rest of the script to work 
         {
             GestureActive = true;
 
@@ -114,7 +124,7 @@ public class DioramaEnterGesture : MonoBehaviour
     public void DioramaGestureInactive()
     {
         GestureActive = false;
-        DebugSphere.GetComponent<Renderer>().material.color = Color.white;
+        //DebugSphere.GetComponent<Renderer>().material.color = Color.white;
 
     }
 
@@ -128,6 +138,13 @@ public class DioramaEnterGesture : MonoBehaviour
     {
         SceneManager.LoadScene(LevelToLoad);
         LevelToLoad = 0;
+    }
+
+    private void RecognisedSpeech(PhraseRecognizedEventArgs speech)
+    {
+        Debug.Log(speech.text);
+        actions[speech.text].Invoke();
+
     }
 
 }

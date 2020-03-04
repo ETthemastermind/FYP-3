@@ -40,7 +40,7 @@ public class Artefact_Hand_PickUp : MonoBehaviour
     
     public void GrippingObject()
     {
-        DebugCube.GetComponent<Renderer>().material.color = Color.green; //visual debug
+        //DebugCube.GetComponent<Renderer>().material.color = Color.green; //visual debug
 
         if (ObjectToPickUp != null)
         {
@@ -79,7 +79,7 @@ public class Artefact_Hand_PickUp : MonoBehaviour
 
     public void UngrippingObject()
     {
-        DebugCube.GetComponent<Renderer>().material.color = Color.blue; //visual debug
+        //DebugCube.GetComponent<Renderer>().material.color = Color.blue; //visual debug
         if (ObjectToPickUp != null)
         {
             

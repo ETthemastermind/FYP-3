@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DioramaEnterGesture : MonoBehaviour
 {
@@ -20,8 +21,11 @@ public class DioramaEnterGesture : MonoBehaviour
     public GameObject SOSR;
 
     public GameObject SOSRObject;
+    public int LevelToLoad;
 
     public GameObject DebugSphere;
+
+    public Animator animator;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +39,7 @@ public class DioramaEnterGesture : MonoBehaviour
         SOSRObject = SOSR.GetComponent<SmallObject_SpeechRec>().Artefact;
         if (SOSRObject.transform.parent.gameObject.tag == "DioramaDisplay")
         {
+            LevelToLoad = SOSRObject.GetComponent<Diorama_Teleport>().TargetSceneIndex;
             if (GestureActive == true)
             {
                 LR.enabled = true;
@@ -46,7 +51,7 @@ public class DioramaEnterGesture : MonoBehaviour
                     Debug.Log("Max Distance Reached");
                     LR.material = Red;
                     ElapsedTime = 0f;
-                    DebugSphere.GetComponent<Renderer>().material.color = Color.white;
+                    //DebugSphere.GetComponent<Renderer>().material.color = Color.white;
 
                 }
                 else if (PalmDistance >= (MaxHandDistance / 3) && (PalmDistance <= (MaxHandDistance / 3) * 2))
@@ -54,7 +59,7 @@ public class DioramaEnterGesture : MonoBehaviour
                     Debug.Log("Max Distance Reached");
                     LR.material = Orange;
                     ElapsedTime = 0f;
-                    DebugSphere.GetComponent<Renderer>().material.color = Color.white;
+                    //DebugSphere.GetComponent<Renderer>().material.color = Color.white;
 
                 }
                 else if (PalmDistance >= MaxHandDistance)
@@ -69,8 +74,8 @@ public class DioramaEnterGesture : MonoBehaviour
                     }
                     else if (ElapsedTime >= Timer)
                     {
-                        DebugSphere.GetComponent<Renderer>().material.color = Color.red;
-
+                        //DebugSphere.GetComponent<Renderer>().material.color = Color.red;
+                        FadeToLevel(2);
                     }
 
 
@@ -113,7 +118,16 @@ public class DioramaEnterGesture : MonoBehaviour
 
     }
 
-   
+    public void FadeToLevel(int LevelIndex)
+    {
+        //animator.SetTrigger("FadeOut");
+        OnFadeComplete();
+    }
 
+    public void OnFadeComplete()
+    {
+        SceneManager.LoadScene(LevelToLoad);
+        LevelToLoad = 0;
+    }
 
 }

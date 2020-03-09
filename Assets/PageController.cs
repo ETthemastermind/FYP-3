@@ -14,6 +14,8 @@ public class PageController : MonoBehaviour
     public int RightPageNum = 2;
     public TMP_Text RightPageText;
 
+    public int ActivePage = 0;
+
 
     private KeywordRecognizer keywordRecogniser; //sets up speech rec
     public Dictionary<string, System.Action> actions = new Dictionary<string, System.Action>(); //dictionairy of keywords
@@ -47,34 +49,96 @@ public class PageController : MonoBehaviour
 
     public void IncrementPage()
     {
-        LeftPageNum += 2;
-        RightPageNum += 2;
+        Pages[ActivePage].SetActive(false);
+        ActivePage += 1;
+        if (ActivePage > Pages.Length - 1)
+        {
+            ActivePage = Pages.Length - 1;
 
-        LeftPageText.text = LeftPageNum.ToString();
-        RightPageText.text = RightPageNum.ToString();
+        }
+        else
+        {
+        }
 
+        Pages[ActivePage].SetActive(true);
+        /*
+        ActivePage += 1;
+        if (ActivePage != Pages.Length)
+        {
+            LeftPageNum += 2;
+            RightPageNum += 2;
+
+            LeftPageText.text = LeftPageNum.ToString();
+            RightPageText.text = RightPageNum.ToString();
+            //Pages[ActivePage - 1].SetActive(false);
+            
+            if (ActivePage == Pages.Length)
+            {
+                Debug.Log("Page Limit Reached");
+
+            }
+            else
+            {
+                
+                Pages[ActivePage].SetActive(true);
+            }
+
+        }*/
+        
+       
 
     }
 
     public void DecrementPage()
     {
-        LeftPageNum -= 2;
-        RightPageNum -= 2;
-
-        if (LeftPageNum < 1)
+        Pages[ActivePage].SetActive(false);
+        ActivePage -= 1;
+        if (ActivePage < 0)
         {
-            LeftPageNum = 1;
+            ActivePage = 0;
+            
+        }
+        Pages[ActivePage].SetActive(true);
+      
+        /*
+        if (ActivePage == 0)
+        {
+            LeftPageNum -= 2;
+            RightPageNum -= 2;
+
+            if (LeftPageNum < 1)
+            {
+                LeftPageNum = 1;
+
+
+            }
+
+            if (RightPageNum < 2)
+            {
+                RightPageNum = 2;
+
+            }
+
+
+            if (ActivePage == 0)
+            {
+
+            }
+
+            else
+            {
+                LeftPageText.text = LeftPageNum.ToString();
+                RightPageText.text = RightPageNum.ToString();
+
+                Pages[ActivePage].SetActive(false);
+                ActivePage -= 1;
+                Pages[ActivePage].SetActive(true);
+
+            }
 
         }
-
-        if (RightPageNum < 2)
-        {
-            RightPageNum = 2;
-
-        }
-
-        LeftPageText.text = LeftPageNum.ToString();
-        RightPageText.text = RightPageNum.ToString();
+        
+        */
 
     }
 }

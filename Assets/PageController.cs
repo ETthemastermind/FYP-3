@@ -29,6 +29,15 @@ public class PageController : MonoBehaviour
 
         actions.Add("Next Page", IncrementPage);
         actions.Add("Last Page", DecrementPage);
+
+        actions.Add("Go to Commands Page", GoToCommands);
+        actions.Add("Go to Portrait Page", GoToPortrait);
+        actions.Add("Go to Artefact Page", GoToArtefact);
+        actions.Add("Go to Slider Page", GoToSlider);
+        actions.Add("Go to Diorama Page", GoToDiorama);
+
+
+
         keywordRecogniser = new KeywordRecognizer(actions.Keys.ToArray()); //activates the speech rec
         keywordRecogniser.OnPhraseRecognized += RecognisedSpeech;
         keywordRecogniser.Start();
@@ -58,34 +67,15 @@ public class PageController : MonoBehaviour
         }
         else
         {
-        }
-
-        Pages[ActivePage].SetActive(true);
-        /*
-        ActivePage += 1;
-        if (ActivePage != Pages.Length)
-        {
             LeftPageNum += 2;
             RightPageNum += 2;
 
             LeftPageText.text = LeftPageNum.ToString();
             RightPageText.text = RightPageNum.ToString();
-            //Pages[ActivePage - 1].SetActive(false);
-            
-            if (ActivePage == Pages.Length)
-            {
-                Debug.Log("Page Limit Reached");
+        }
 
-            }
-            else
-            {
-                
-                Pages[ActivePage].SetActive(true);
-            }
+        Pages[ActivePage].SetActive(true);
 
-        }*/
-        
-       
 
     }
 
@@ -96,49 +86,102 @@ public class PageController : MonoBehaviour
         if (ActivePage < 0)
         {
             ActivePage = 0;
-            
+
         }
-        Pages[ActivePage].SetActive(true);
-      
-        /*
-        if (ActivePage == 0)
+
+        else
         {
             LeftPageNum -= 2;
             RightPageNum -= 2;
 
-            if (LeftPageNum < 1)
+            LeftPageText.text = LeftPageNum.ToString();
+            RightPageText.text = RightPageNum.ToString();
+
+        }
+        Pages[ActivePage].SetActive(true);
+
+        
+
+    }
+
+    public void GoToCommands()
+    {
+        Pages[ActivePage].SetActive(false);
+        for (int i = 0; i != Pages.Length; i++)
+        {
+            if (Pages[i].gameObject.name == "Command Pages")
             {
-                LeftPageNum = 1;
-
-
-            }
-
-            if (RightPageNum < 2)
-            {
-                RightPageNum = 2;
-
-            }
-
-
-            if (ActivePage == 0)
-            {
-
-            }
-
-            else
-            {
-                LeftPageText.text = LeftPageNum.ToString();
-                RightPageText.text = RightPageNum.ToString();
-
-                Pages[ActivePage].SetActive(false);
-                ActivePage -= 1;
-                Pages[ActivePage].SetActive(true);
+                Pages[i].SetActive(true);
+                ActivePage = i;
 
             }
 
         }
-        
-        */
+    }
+
+    public void GoToPortrait()
+    {
+        Pages[ActivePage].SetActive(false);
+        for (int i = 0; i != Pages.Length; i++)
+        {
+            if (Pages[i].gameObject.name == "Portrait Gestures")
+            {
+                Pages[i].SetActive(true);
+                ActivePage = i;
+
+            }
+
+        }
 
     }
+
+    public void GoToArtefact()
+    {
+        Pages[ActivePage].SetActive(false);
+        for (int i = 0; i != Pages.Length; i++)
+        {
+            if (Pages[i].gameObject.name == "Artefact Display")
+            {
+                Pages[i].SetActive(true);
+                ActivePage = i;
+
+            }
+
+        }
+
+    }
+
+    public void GoToSlider()
+    {
+        Pages[ActivePage].SetActive(false);
+        for (int i = 0; i != Pages.Length; i++)
+        {
+            if (Pages[i].gameObject.name == "Sliding Display")
+            {
+                Pages[i].SetActive(true);
+                ActivePage = i;
+
+            }
+
+        }
+
+    }
+
+    public void GoToDiorama()
+    {
+        Pages[ActivePage].SetActive(false);
+        for (int i = 0; i != Pages.Length; i++)
+        {
+            if (Pages[i].gameObject.name == "Diorama Gestures")
+            {
+                Pages[i].SetActive(true);
+                ActivePage = i;
+
+            }
+
+        }
+
+
+    }
+
 }

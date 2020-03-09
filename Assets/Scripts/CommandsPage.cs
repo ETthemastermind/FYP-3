@@ -5,7 +5,8 @@ using TMPro;
 
 public class CommandsPage : MonoBehaviour
 {
-    public TMP_Text ArtefactName;
+    public TMP_Text ArtefactName_CMD;
+    public TMP_Text ArtefactName_INFO;
     public TMP_Text CommandOne;
     public TMP_Text CommandTwo;
     public TMP_Text CommandThree;
@@ -13,6 +14,9 @@ public class CommandsPage : MonoBehaviour
 
     public GameObject SpeechController;
     public string[] FoundInfo;
+
+    public string _ActiveCommand;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -31,15 +35,18 @@ public class CommandsPage : MonoBehaviour
             FoundInfo[3] = SpeechController.GetComponent<SmallObject_SpeechRec>().Keywords[2];
             FoundInfo[4] = SpeechController.GetComponent<SmallObject_SpeechRec>().Keywords[3];
 
-            ArtefactName.text = FoundInfo[0];
+            ArtefactName_CMD.text = FoundInfo[0];
+            ArtefactName_INFO.text = FoundInfo[0];
             CommandOne.text = FoundInfo[1];
             CommandTwo.text = FoundInfo[2];
             CommandThree.text = FoundInfo[3];
             CommandFour.text = FoundInfo[4];
         }
-        
+        else if (SpeechController.GetComponent<SmallObject_SpeechRec>().Artefact = null) { }
 
 
-        
+
+
+
     }
 }

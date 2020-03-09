@@ -6,10 +6,14 @@ public class AreaEntered : MonoBehaviour
 {
 
     public bool PlayerInTrigger = false;
+    public ParticleSystem PS;
+    public float DefaultGM;
+    public float GM;
     // Start is called before the first frame update
     void Start()
     {
-        
+        PS = gameObject.GetComponent<ParticleSystem>();
+        DefaultGM = PS.gravityModifier;
     }
 
     // Update is called once per frame
@@ -23,6 +27,12 @@ public class AreaEntered : MonoBehaviour
         if (other.tag == "Player")
         {
             PlayerInTrigger = true;
+
+            PS.gravityModifier = GM;
+
+            var Shape = PS.shape;
+
+            Shape.arcMode = ParticleSystemShapeMultiModeValue.Random;
         }
     }
 
@@ -31,6 +41,10 @@ public class AreaEntered : MonoBehaviour
         if (other.tag == "Player")
         {
             PlayerInTrigger = false;
+
+            PS.gravityModifier = DefaultGM;
+            var Shape = PS.shape;
+            Shape.arcMode = ParticleSystemShapeMultiModeValue.Loop;
         }
     }
 }

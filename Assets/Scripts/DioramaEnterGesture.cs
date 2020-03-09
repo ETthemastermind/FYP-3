@@ -7,6 +7,10 @@ using System.Linq;
 
 public class DioramaEnterGesture : MonoBehaviour
 {
+    public GameObject DioramaDisplay;
+    public GameObject DioramaStand;
+    public bool InArea;
+
     public GameObject RightPalm;  
     public GameObject LeftPalm;
     public LineRenderer LR;
@@ -46,19 +50,21 @@ public class DioramaEnterGesture : MonoBehaviour
     void Update()
     {
         PalmDistance = Vector3.Distance(RightPalm.transform.position, LeftPalm.transform.position); // Finds the distance between left and right palm
-        SOSRObject = SOSR.GetComponent<SmallObject_SpeechRec>().Artefact; //already tracking if VR player is in rings, might as well reference instead of making it track again. SOSR = Small Object Speech Rec.
-        if (SOSRObject.transform.parent.gameObject.tag == "DioramaDisplay") // if the SOSR's parent object has the diorama display tag
+        
+
+
+        if (InArea == true)
         {
-            LevelToLoad = SOSRObject.GetComponent<Diorama_Teleport>().TargetSceneIndex; //get the scene index from SOSRobject
+
             if (GestureActive == true) // if diorma hand gesture is true
             {
                 LR.enabled = true; //turn on line renderer 
                 LR.SetPosition(0, RightPalm.transform.position); //set positions 1 and 2 of the line renderer to the palms.
                 LR.SetPosition(1, LeftPalm.transform.position);
-                
+
                 if (PalmDistance >= 0 && PalmDistance <= (MaxHandDistance / 3))
                 {
-                    
+
                     LR.material = Red; //When hands get put together, should be red. acts as a sort of loading bar.
                     ElapsedTime = 0f;
                     //DebugSphere.GetComponent<Renderer>().material.color = Color.white;
@@ -66,7 +72,7 @@ public class DioramaEnterGesture : MonoBehaviour
                 }
                 else if (PalmDistance >= (MaxHandDistance / 3) && (PalmDistance <= (MaxHandDistance / 3) * 2))
                 {
-                    
+
                     LR.material = Orange;
                     ElapsedTime = 0f;
                     //DebugSphere.GetComponent<Renderer>().material.color = Color.white;
@@ -88,21 +94,16 @@ public class DioramaEnterGesture : MonoBehaviour
                         FadeToLevel(2);
                     }
 
-
-                    
-
-
-                    
-
                 }
-            }
 
-            else if (GestureActive == false) //turns off the line renderer when gesture is inactive
+            }
+            else { }
+
+            if (GestureActive == false) //turns off the line renderer when gesture is inactive
             {
                 LR.enabled = false;
 
             }
-
 
         }
        
@@ -137,7 +138,7 @@ public class DioramaEnterGesture : MonoBehaviour
     public void OnFadeComplete()
     {
         SceneManager.LoadScene(LevelToLoad);
-        LevelToLoad = 0;
+        //LevelToLoad = 0;
     }
 
     private void RecognisedSpeech(PhraseRecognizedEventArgs speech)
@@ -145,6 +146,39 @@ public class DioramaEnterGesture : MonoBehaviour
         Debug.Log(speech.text);
         actions[speech.text].Invoke();
 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Twat");
+        InArea = true;
+        if (other.gameObject.tag == "InteractRing" && other.gameObject.transform.parent.tag == "DioramaDisplay")
+        {
+            DioramaDisplay = other.gameObject.transform.parent.gameObject;
+            for (int i = 0; i < DioramaDisplay.transform.childCount; i++)
+            {
+                if (DioramaDisplay.transform.GetChild(i).gameObject.tag == "Artefact")
+                {
+                    DioramaStand = DioramaDisplay.transform.GetChild(i).gameObject;
+                    LevelToLoad = DioramaStand.GetComponent<Diorama_Teleport>().TargetSceneIndex; //get the scene index from the display stand
+
+                }
+
+            }
+        }
+
+        else
+        {
+
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        InArea = false;
+        DioramaDisplay = null;
+        DioramaStand = null;
+        LevelToLoad = 0;
     }
 
 }

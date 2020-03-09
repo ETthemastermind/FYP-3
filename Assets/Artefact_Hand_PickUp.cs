@@ -49,6 +49,7 @@ public class Artefact_Hand_PickUp : MonoBehaviour
             ArtefactObject_Home = ObjectToPickUp.gameObject.transform.parent.gameObject;
             ObjectToPickUp.transform.parent = Palm.transform;
             ObjectHolding_Text.GetComponent<TextMeshProUGUI>().text = ObjectToPickUp.gameObject.name;
+            ObjectToPickUp.GetComponent<PickUpObject_Hand>().HaloGlow.SetActive(false);
 
 
         }

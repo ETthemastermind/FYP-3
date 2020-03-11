@@ -21,6 +21,6 @@ public class ForeignPolicyAssign : MonoBehaviour
 
     private void OnEnable()
     {
-        gameObject.GetComponent<Text>().text = InformationDump.GetComponent<InformationDump>().textLines[ChosenLine];
+        //gameObject.GetComponent<Text>().text = InformationDump.GetComponent<InformationDump>().textLines[ChosenLine];
     }
 }

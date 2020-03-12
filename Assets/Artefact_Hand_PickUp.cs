@@ -15,7 +15,7 @@ public class Artefact_Hand_PickUp : MonoBehaviour
     public GameObject ArtefactObject_Home;
     public GameObject Palm;
 
-    public GameObject ObjectHolding_Text;
+    //public GameObject ObjectHolding_Text;
     /*
 
     public Collider[] ObjectsInRadius;
@@ -48,7 +48,7 @@ public class Artefact_Hand_PickUp : MonoBehaviour
             ArtefactObject_StartOrientation = ObjectToPickUp.transform.localEulerAngles;
             ArtefactObject_Home = ObjectToPickUp.gameObject.transform.parent.gameObject;
             ObjectToPickUp.transform.parent = Palm.transform;
-            ObjectHolding_Text.GetComponent<TextMeshProUGUI>().text = ObjectToPickUp.gameObject.name;
+            //ObjectHolding_Text.GetComponent<TextMeshProUGUI>().text = ObjectToPickUp.gameObject.name;
             ObjectToPickUp.GetComponent<PickUpObject_Hand>().HaloGlow.SetActive(false);
 
 
@@ -89,7 +89,7 @@ public class Artefact_Hand_PickUp : MonoBehaviour
             ObjectToPickUp.transform.localEulerAngles = ArtefactObject_StartOrientation;
             
             //ObjectHolding_Text.GetComponent<Text>().text = null;
-            ObjectHolding_Text.GetComponent<TextMeshProUGUI>().text = null;
+            //ObjectHolding_Text.GetComponent<TextMeshProUGUI>().text = null;
             
 
 

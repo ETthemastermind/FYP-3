@@ -17,6 +17,8 @@ ModelImporter:
     3300002: Pencil
     4300000: floor_grid
     4300002: Pencil
+    6400000: floor_grid
+    6400002: Pencil
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -60,7 +62,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1.5
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     useSRGBMaterialColor: 1
     importVisibility: 1
     importBlendShapes: 1

@@ -24,9 +24,9 @@ public class DioramaEnterGesture : MonoBehaviour
 
     public bool GestureActive = false;
 
-    public GameObject SOSR;
+    //public GameObject SOSR;
 
-    public GameObject SOSRObject;
+    //public GameObject SOSRObject;
     public int LevelToLoad;
 
     //public GameObject DebugSphere;
@@ -40,10 +40,12 @@ public class DioramaEnterGesture : MonoBehaviour
     {
         LR = gameObject.GetComponent<LineRenderer>(); //gets the line renderer component
 
+        /*
         actions.Add("Enter", OnFadeComplete);
         keywordRecogniser = new KeywordRecognizer(actions.Keys.ToArray()); //activates the speech rec
         keywordRecogniser.OnPhraseRecognized += RecognisedSpeech;
         keywordRecogniser.Start();
+        */
     }
 
     // Update is called once per frame
@@ -150,7 +152,7 @@ public class DioramaEnterGesture : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Twat");
+        
         InArea = true;
         if (other.gameObject.tag == "InteractRing" && other.gameObject.transform.parent.tag == "DioramaDisplay")
         {

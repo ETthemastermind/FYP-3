@@ -55,7 +55,7 @@ public class Swiping : MonoBehaviour
 
                 }
 
-                else if (DotProduct > 0f)
+                else
                 {
                     gameObject.GetComponent<Renderer>().material.color = Color.blue;
                     PageController.GetComponent<PageController>().DecrementPage();

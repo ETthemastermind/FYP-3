@@ -25,9 +25,7 @@ public class SpawnGuideBook : MonoBehaviour
     {
         if (ActiveGesture == true)
         {
-            GuideBook.transform.position = Palm.transform.position + Position_Offset ;
-            GuideBook.transform.rotation = Palm.transform.rotation;
-            GuideBook.transform.Rotate(RotationOffset);
+            
 
             
         }
@@ -52,7 +50,7 @@ public class SpawnGuideBook : MonoBehaviour
     {
         ActiveGesture = false;
         Debug.Log("Inactive Gesture: Spawn Guidebook");
-        GuideBook.transform.position = new Vector3(0, 0, 0);
+       
         
 
     }

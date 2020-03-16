@@ -18,23 +18,14 @@ public class SpawnGuideBook : MonoBehaviour
     void Start()
     {
         
+        GuideBook.transform.parent = Palm.transform;
+        GuideBook.transform.localPosition = new Vector3(0.2f, -0.05f, 0f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (ActiveGesture == true)
-        {
-            
-
-            
-        }
-
-        if (ActiveGesture == false)
-        {
-            
-
-        }
+       
         
     }
 
@@ -42,6 +33,8 @@ public class SpawnGuideBook : MonoBehaviour
     {
         ActiveGesture = true;
         Debug.Log("Active Gesture: Spawn Guidebook");
+        GuideBook.SetActive(true);
+        
 
 
     }
@@ -50,8 +43,10 @@ public class SpawnGuideBook : MonoBehaviour
     {
         ActiveGesture = false;
         Debug.Log("Inactive Gesture: Spawn Guidebook");
-       
+        GuideBook.SetActive(false);
         
+
+
 
     }
 

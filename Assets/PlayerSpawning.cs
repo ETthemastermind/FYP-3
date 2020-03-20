@@ -1,69 +1,94 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 using UnityEngine.SceneManagement;
-
 
 public class PlayerSpawning : MonoBehaviour
 {
-    public Vector3 PlayerReturnPoint;
-    public bool playerSpawnedOnPoint = false;
-    public GameObject PlayerSpawnpoint;
-    public GameObject Player;
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 0)
+        int sceneIndex = SceneManager.GetActiveScene().buildIndex;
+        if (SavedPositionManager.savedPositions.ContainsKey(sceneIndex))
         {
-            Player = GameObject.FindGameObjectWithTag("Player");
-            PlayerSpawnpoint = GameObject.FindGameObjectWithTag("PlayerSpawn");
-            if (playerSpawnedOnPoint == false)
-            {
-                playerSpawnedOnPoint = true;
-            }
-            else
-            {
-                Player.transform.position = PlayerReturnPoint;
-            }
+            transform.position = SavedPositionManager.savedPositions[sceneIndex];
+        }
+    }
 
+    private void OnDestroy()
+    {
+        int sceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SavedPositionManager.savedPositions[sceneIndex] = transform.position;
+    }
+    /*
+    //public static GameObject PlayerReturnPoint;
+    public static bool FirstSpawnInstance = true;
+    public GameObject FirstSpawnPoint;
+    public GameObject Player;
+
+
+    private void Awake()
+    {
+        Player = GameObject.FindGameObjectWithTag("Player");
+        if (FirstSpawnInstance == true)
+        {
+            FirstSpawnInstance = false;
+            
+        }
+
+        else if (FirstSpawnInstance == false)
+        {
+            FirstSpawnPoint.SetActive(false);
+            Player.transform.position =(LoadLevel.PlayerReturnPoint);
+        }
+    }
+    public void NewSpawnPoint()
+    {
+        
+
+    }
+
+    
+    public GameObject PlayerSpawnPoint;
+    static public Vector3 SavedPosition;
+    static public bool FirstSpawnInstance = true;
+    public GameObject Player;
+  
+    // Start is called before the first frame update
+
+    
+    void Awake()
+    {
+        Player = GameObject.FindGameObjectWithTag("Player");
+        if (FirstSpawnInstance == true)
+        {
+
+            FirstSpawnInstance = false;
+
+        }
+        else if (FirstSpawnInstance == false)
+        {
+            PlayerSpawnPoint.transform.position = SavedPosition;
 
         }
         
-        
-        
-        
-        /*
-        int NumOfSpawners = GameObject.FindGameObjectsWithTag("PlayerSpawn").Length;
-        GameObject[] Spawners = GameObject.FindGameObjectsWithTag("PlayerSpawn");
-        DontDestroyOnLoad(gameObject);
-        /*
-        if (NumOfSpawners != 1)
-        {
-            Destroy(this.gameObject);
-
-        }
-
-        else
-        {
-            DontDestroyOnLoad(gameObject);
-
-        }
-        */
-
-
-
-
-
     }
 
     // Update is called once per frame
     void Update()
     {
        
+       
     }
 
-    public void SpawnMove()
+    public void SavePosition()
     {
+        PlayerSpawnPoint.transform.position = Player.transform.position;
+        SavedPosition = PlayerSpawnPoint.transform.position;
         
     }
+
+    */
+
+
 }

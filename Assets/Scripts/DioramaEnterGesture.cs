@@ -11,7 +11,7 @@ public class DioramaEnterGesture : MonoBehaviour
 {
     public GameObject DioramaDisplay;
     public GameObject DioramaStand;
-    public bool InArea;
+    public bool InArea = false;
 
     public GameObject RightPalm;  
     public GameObject LeftPalm;
@@ -158,9 +158,10 @@ public class DioramaEnterGesture : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         
-        InArea = true;
         if (other.gameObject.tag == "InteractRing" && other.gameObject.transform.parent.tag == "DioramaDisplay")
         {
+
+            InArea = true;
             DioramaDisplay = other.gameObject.transform.parent.gameObject;
             for (int i = 0; i < DioramaDisplay.transform.childCount; i++)
             {

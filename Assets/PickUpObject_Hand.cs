@@ -42,7 +42,7 @@ public class PickUpObject_Hand : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Right Hand" || other.gameObject.tag == "Left Hand") //if a hand is in the object's trigger area
+        if (other.gameObject.tag == "Right Hand") //if a hand is in the object's trigger area
         {
             //DebugCube.GetComponent<Renderer>().material.color = Color.red; //visual debug
             PickUpController.GetComponent<Artefact_Hand_PickUp>().ObjectToPickUp = gameObject;

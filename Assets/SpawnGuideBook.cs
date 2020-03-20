@@ -9,7 +9,7 @@ public class SpawnGuideBook : MonoBehaviour
     public GameObject Palm;
     public GameObject PlayerController;
 
-    private bool ActiveGesture;
+    private bool ActiveGesture = false;
     public Vector3 Position_Offset;
     public Vector3 RotationOffset;
 
@@ -20,6 +20,7 @@ public class SpawnGuideBook : MonoBehaviour
         
         GuideBook.transform.parent = Palm.transform;
         GuideBook.transform.localPosition = new Vector3(0.2f, -0.05f, 0f);
+        GuideBook.SetActive(false);
     }
 
     // Update is called once per frame

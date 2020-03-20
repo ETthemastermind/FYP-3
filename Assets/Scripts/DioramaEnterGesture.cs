@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Windows.Speech;
 using System.Linq;
+using Valve.VR;
+
 
 public class DioramaEnterGesture : MonoBehaviour
 {
@@ -28,6 +30,7 @@ public class DioramaEnterGesture : MonoBehaviour
 
     //public GameObject SOSRObject;
     public int LevelToLoad;
+    public string LevelName;
 
     //public GameObject DebugSphere;
 
@@ -80,7 +83,7 @@ public class DioramaEnterGesture : MonoBehaviour
                     //DebugSphere.GetComponent<Renderer>().material.color = Color.white;
 
                 }
-                else if (PalmDistance >= MaxHandDistance)
+                else if (PalmDistance >= (MaxHandDistance / 3) * 2)
                 {
                     Debug.Log("Max Distance Reached");
                     LR.material = Green;
@@ -93,7 +96,9 @@ public class DioramaEnterGesture : MonoBehaviour
                     else if (ElapsedTime >= Timer)
                     {
                         //DebugSphere.GetComponent<Renderer>().material.color = Color.red;
-                        FadeToLevel(2);
+                        //FadeToLevel(2);
+                        DioramaStand.GetComponent<LoadLevel>().OpenScene();
+                        
                     }
 
                 }
@@ -130,7 +135,7 @@ public class DioramaEnterGesture : MonoBehaviour
         //DebugSphere.GetComponent<Renderer>().material.color = Color.white;
 
     }
-
+    /*
     public void FadeToLevel(int LevelIndex)
     {
         //animator.SetTrigger("FadeOut");
@@ -142,7 +147,7 @@ public class DioramaEnterGesture : MonoBehaviour
         SceneManager.LoadScene(LevelToLoad);
         //LevelToLoad = 0;
     }
-
+    */
     private void RecognisedSpeech(PhraseRecognizedEventArgs speech)
     {
         Debug.Log(speech.text);
@@ -150,7 +155,7 @@ public class DioramaEnterGesture : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         
         InArea = true;
@@ -163,6 +168,7 @@ public class DioramaEnterGesture : MonoBehaviour
                 {
                     DioramaStand = DioramaDisplay.transform.GetChild(i).gameObject;
                     LevelToLoad = DioramaStand.GetComponent<Diorama_Teleport>().TargetSceneIndex; //get the scene index from the display stand
+                    
 
                 }
 

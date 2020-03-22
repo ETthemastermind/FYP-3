@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR;
 
 public class TeleportCursor : MonoBehaviour
 {
@@ -43,5 +44,20 @@ public class TeleportCursor : MonoBehaviour
       
 
         
+    }
+
+    public void TeleportFadeIn()
+    {
+        SteamVR_Fade.Start(Color.black, 0.2f);
+        Debug.Log("Fade In");
+        
+
+    }
+
+    public void TeleportFadeOut()
+    {
+        SteamVR_Fade.Start(Color.clear, 0.2f);
+        Debug.Log("Fade Out");
+
     }
 }

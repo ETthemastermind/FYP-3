@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Valve.VR;
 
 public class Artefact_Hand_PickUp : MonoBehaviour //
 {
@@ -14,6 +15,10 @@ public class Artefact_Hand_PickUp : MonoBehaviour //
     public Vector3 ArtefactObject_StartOrientation; //reference for the rotation the artefact starts at
     public GameObject ArtefactObject_Home; //refeernce for the home display of the object
     public GameObject Palm; // reference the leap motion palm, right hand
+
+    public GameObject Vr_RightHand;
+    public bool VR_HoldingObject;
+    public bool Gripping;
 
     //public GameObject ObjectHolding_Text;
     /*
@@ -29,15 +34,46 @@ public class Artefact_Hand_PickUp : MonoBehaviour //
     // Start is called before the first frame update
     void Start()
     {
-        
+        Vr_RightHand = GameObject.FindGameObjectWithTag("VR_RightHand");
     }
-
+    //SteamVR_Actions._default.GrabGrip.GetState(SteamVR_Input_Sources.RightHand) == true && SteamVR_Actions._default.GrabPinch.GetState(SteamVR_Input_Sources.RightHand) == true && SteamVR_Actions._default.A_Button.GetState(SteamVR_Input_Sources.RightHand) == true
     // Update is called once per frame
     void Update()
     {
+        if (SteamVR_Actions._default.GrabGrip.GetState(SteamVR_Input_Sources.RightHand) == true && SteamVR_Actions._default.GrabPinch.GetState(SteamVR_Input_Sources.RightHand) == true && SteamVR_Actions._default.A_Button.GetState(SteamVR_Input_Sources.RightHand) == true)
+        {
+            Gripping = true;
+        }
+
+        else
+        {
+            Gripping = false;
+
+        }
+
+        if (Gripping == true && VR_HoldingObject == false)
+        {
+            ArtefactObject_StartLocation = ObjectToPickUp.transform.position; //get its start location
+            ArtefactObject_StartOrientation = ObjectToPickUp.transform.localEulerAngles; //get its start rotation
+            ArtefactObject_Home = ObjectToPickUp.gameObject.transform.parent.gameObject;// get its home display
+            ObjectToPickUp.transform.parent = Vr_RightHand.transform; //parent the object to pick up to the player's palm
+            ObjectToPickUp.GetComponent<PickUpObject_Hand>().HaloGlow.SetActive(false);
+
+            VR_HoldingObject = true;
+
+        }
+
+        if (Gripping == false && VR_HoldingObject == true)
+        {
+            ObjectToPickUp.transform.parent = ArtefactObject_Home.transform;
+            ObjectToPickUp.transform.position = ArtefactObject_StartLocation;
+            ObjectToPickUp.transform.localEulerAngles = ArtefactObject_StartOrientation;
+            VR_HoldingObject = false;
+        }
+
         
     }
-    
+
     public void GrippingObject() //function to pick up the object
     {
         //DebugCube.GetComponent<Renderer>().material.color = Color.green; //visual debug

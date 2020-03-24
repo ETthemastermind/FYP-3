@@ -42,7 +42,7 @@ public class PickUpObject_Hand : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Right Hand") //if a hand is in the object's trigger area
+        if (other.gameObject.tag == "Right Hand" || other.gameObject.tag == "VR_RightHand") //if a hand is in the object's trigger area
         {
             //DebugCube.GetComponent<Renderer>().material.color = Color.red; //visual debug
             PickUpController.GetComponent<Artefact_Hand_PickUp>().ObjectToPickUp = gameObject; //assigns the pickup object of the pickup controller to this object
@@ -56,7 +56,7 @@ public class PickUpObject_Hand : MonoBehaviour
 
     public void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Right Hand") //if a hand has left the objects trigger area
+        if (other.gameObject.tag == "Right Hand" || other.gameObject.tag == "VR_RightHand") //if a hand has left the objects trigger area
         {
             //DebugCube.GetComponent<Renderer>().material.color = Color.white; //visual debug
             PickUpController.GetComponent<Artefact_Hand_PickUp>().ObjectToPickUp = null; //clears the object to pick up

@@ -5,15 +5,15 @@ using TMPro;
 
 public class CommandsPage : MonoBehaviour
 {
-    public TMP_Text ArtefactName_CMD;
+    public TMP_Text ArtefactName_CMD;   //reference to the UI components on the guide book
     public TMP_Text ArtefactName_INFO;
     public TMP_Text CommandOne;
     public TMP_Text CommandTwo;
     public TMP_Text CommandThree;
     public TMP_Text CommandFour;
 
-    public GameObject SpeechController;
-    public string[] FoundInfo;
+    public GameObject SpeechController; //reference to the speech controller object on the player
+    public string[] FoundInfo; //string array of the found information to present on the pages
 
     public string _ActiveCommand;
     
@@ -29,13 +29,13 @@ public class CommandsPage : MonoBehaviour
     {
         if (SpeechController.GetComponent<SmallObject_SpeechRec>().Artefact != null)
         {
-            FoundInfo[0] = SpeechController.GetComponent<SmallObject_SpeechRec>().Artefact.gameObject.name;
+            FoundInfo[0] = SpeechController.GetComponent<SmallObject_SpeechRec>().Artefact.gameObject.name; //finds all the relevant info from the speech controller
             FoundInfo[1] = SpeechController.GetComponent<SmallObject_SpeechRec>().Keywords[0];
             FoundInfo[2] = SpeechController.GetComponent<SmallObject_SpeechRec>().Keywords[1];
             FoundInfo[3] = SpeechController.GetComponent<SmallObject_SpeechRec>().Keywords[2];
             FoundInfo[4] = SpeechController.GetComponent<SmallObject_SpeechRec>().Keywords[3];
 
-            ArtefactName_CMD.text = FoundInfo[0];
+            ArtefactName_CMD.text = FoundInfo[0]; //assigns the found information
             ArtefactName_INFO.text = FoundInfo[0];
             CommandOne.text = FoundInfo[1];
             CommandTwo.text = FoundInfo[2];

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AudioInfo : MonoBehaviour
 {
-    public AudioClip Information;
+    public AudioClip Information; //reference to store relevant audio clip for the portrait keywords
     // Start is called before the first frame update
     void Start()
     {

@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class ChangeDisplay : MonoBehaviour
 {
-    public bool RightCycle = false;
-    public bool LeftCycle = false;
+    public bool RightCycle = false; //boolean to cycle the display right
+    public bool LeftCycle = false; //boolean to cycle the display left
 
-    public GameObject Display;
+    public GameObject Display; //reference to the slider display
     
     // Start is called before the first frame update
     void Start()
@@ -23,20 +23,20 @@ public class ChangeDisplay : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Left Hand" || other.gameObject.tag == "Right Hand")
+        if (other.gameObject.tag == "Left Hand" || other.gameObject.tag == "Right Hand") //if the player's hand collides with the slider buttons
         {
-            if (RightCycle == true)
+            if (RightCycle == true) //if the player has pressed the right cycle button
             {
                 Debug.Log("Cycle Right");
                 //Display.SendMessage("IncrementDisplay");
-                Display.GetComponent<SliderObject>().IncrementDisplay();
+                Display.GetComponent<SliderObject>().IncrementDisplay(); //runs the increment function on the slider display
             }
 
-            else if (LeftCycle == true)
+            else if (LeftCycle == true) //if the player has pressed the left cycle button
             {
                 Debug.Log("Cycle Left");
                 //Display.SendMessage("DecrementDisplay");
-                Display.GetComponent<SliderObject>().DecrementDisplay();
+                Display.GetComponent<SliderObject>().DecrementDisplay(); //runs the decrement function on the slider display
             }
            
         }

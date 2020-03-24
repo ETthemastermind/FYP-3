@@ -5,29 +5,29 @@ using UnityEngine.UI;
 
 public class PickUpObject_GP : MonoBehaviour
 {
-    public GameObject TriggerArea;
-    public bool PlayerInArea = false;
+    public GameObject TriggerArea; //reference for the trigger area / artefact ring of the pedestal
+    public bool PlayerInArea = false; //bool to check if the player is in the area
 
-    public GameObject Inspect_Pos;
-    public GameObject Artifact_Home;
-    private Vector3 Artifact_Start;
-    private Vector3 Artifact_Orient;
-    public Vector3 Artifact_Size;
-    public Vector3 CurrentSize;
-    public Vector3 MinSize;
+    public GameObject Inspect_Pos; //reference for the gameobject where picked up objects go, GO child of the FPS GP_Player
+    public GameObject Artifact_Home; //reference for the home pedestal of the artefact
+    private Vector3 Artifact_Start; //reference for the start location of the artefact
+    private Vector3 Artifact_Orient; //referecnce for the start rotation of the artefact
+    public Vector3 Artifact_Size; //reference for the default size of the artefact
+    public Vector3 CurrentSize; // reference for the current size of the artefact
+    public Vector3 MinSize;  //refernces for the min and max size the object can become
     public Vector3 MaxSize;
-    private float LeftTrigger;
+    private float LeftTrigger; //reference for the float values when gamepad buttons are pressed
     private float RightTrigger;
     private float Dpad_Vertical;
     private float Dpad_Horizontal;
 
-    private float MoveSpeed = 100f;
+    private float MoveSpeed = 100f; //reference for a movement speed
 
 
-    private bool Artifact_Holding = false;
+    private bool Artifact_Holding = false; //bool for if an artefact is being held
 
 
-    public GameObject PressA;
+    public GameObject PressA; // references for GUI game objects
     public GameObject PressB;
     public GameObject InfoBackDrop;
     public Text DisplayedInformation;
@@ -38,7 +38,7 @@ public class PickUpObject_GP : MonoBehaviour
     public Text Keyword4;
 
 
-    private bool Dpad_Active_H = false;
+    private bool Dpad_Active_H = false; //bool for if the Dpad is being used
     private bool Dpad_Active_V = false;
 
     public bool ActiveScript = false;
@@ -48,7 +48,7 @@ public class PickUpObject_GP : MonoBehaviour
 
     private void Awake()
     {
-        PressA = GameObject.FindGameObjectWithTag("Display_PressA");
+        PressA = GameObject.FindGameObjectWithTag("Display_PressA"); //finds GUI elements
         PressB = GameObject.FindGameObjectWithTag("Display_PressB");
         InfoBackDrop = GameObject.FindGameObjectWithTag("InfoGUI");
         DisplayedInformation = GameObject.FindGameObjectWithTag("Text_Info").GetComponent<Text>();
@@ -60,18 +60,18 @@ public class PickUpObject_GP : MonoBehaviour
     }
     void Start()
     {
-        Artifact_Start = gameObject.transform.position;
+        Artifact_Start = gameObject.transform.position; //stores the default location, rotation and size of the object
         Artifact_Orient = gameObject.transform.rotation.eulerAngles;
         Artifact_Size = gameObject.transform.lossyScale;
 
         
 
 
-        Inspect_Pos = GameObject.FindGameObjectWithTag("Inspect_Pos");
-        Artifact_Home = gameObject.transform.parent.gameObject;
-        TriggerArea = Artifact_Home.gameObject.transform.Find("Glowing Ring").gameObject;
+        Inspect_Pos = GameObject.FindGameObjectWithTag("Inspect_Pos");  //finds the inspect postion from the player 
+        Artifact_Home = gameObject.transform.parent.gameObject; //finds the home pedestal of the artefact
+        TriggerArea = Artifact_Home.gameObject.transform.Find("Glowing Ring").gameObject; //finds the trigger area of the object
 
-        PressB.SetActive(false);
+        PressB.SetActive(false); //turns the gui off
         PressA.SetActive(false);
     }
 

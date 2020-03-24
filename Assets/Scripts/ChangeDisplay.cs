@@ -23,7 +23,7 @@ public class ChangeDisplay : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Left Hand" || other.gameObject.tag == "Right Hand") //if the player's hand collides with the slider buttons
+        if (other.gameObject.tag == "Left Hand" || other.gameObject.tag == "Right Hand" || other.gameObject.tag == "VR_RightHand" || other.gameObject.tag == "VR_LeftHand") //if the player's hand collides with the slider buttons
         {
             if (RightCycle == true) //if the player has pressed the right cycle button
             {

@@ -7,6 +7,7 @@ public class SpawnGuideBook : MonoBehaviour
 
     public GameObject GuideBook;
     public GameObject Palm;
+    public GameObject VR_LeftHand;
     public GameObject PlayerController;
 
     private bool ActiveGesture = false;
@@ -26,8 +27,18 @@ public class SpawnGuideBook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
-        
+        if (VR_LeftHand.transform.rotation.z > 0.5f && VR_LeftHand.transform.rotation.z < 0.8f)
+        {
+            Active();
+
+        }
+
+        else
+        {
+            Inactive();
+
+        }
+
     }
 
     public void Active()

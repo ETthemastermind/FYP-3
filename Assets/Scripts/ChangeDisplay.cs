@@ -8,17 +8,19 @@ public class ChangeDisplay : MonoBehaviour
     public bool LeftCycle = false; //boolean to cycle the display left
 
     public GameObject Display; //reference to the slider display
+
+    public GameObject VR_RightHand;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        VR_RightHand = GameObject.FindGameObjectWithTag("VR_RightHand");
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        Debug.Log(VR_RightHand.transform.rotation);
     }
 
     public void OnTriggerEnter(Collider other)

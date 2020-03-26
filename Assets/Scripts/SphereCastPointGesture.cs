@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Valve.VR;
 
 public class SphereCastPointGesture : MonoBehaviour
 {
@@ -65,6 +66,9 @@ public class SphereCastPointGesture : MonoBehaviour
             }
 
         }
+
+
+
     }
 
     public void IsPointing()

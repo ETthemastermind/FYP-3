@@ -40,6 +40,7 @@ public class SphereCastPointGesture : MonoBehaviour
                 CurrentHitObject = ObjectHit.transform.gameObject;
                 CurrentHitDistance = ObjectHit.distance;
                 LR.SetPosition(1, ObjectHit.point);
+                Debug.Log(ObjectHit);
                 if (CurrentHitObject.gameObject.tag == "Keyword")
                 {
                     if (KeywordObject != null)
@@ -66,7 +67,17 @@ public class SphereCastPointGesture : MonoBehaviour
             }
 
         }
+        if (SteamVR_Actions._default.GrabGrip.GetState(SteamVR_Input_Sources.RightHand) == true && SteamVR_Actions._default.A_Button.GetState(SteamVR_Input_Sources.RightHand) == true && SteamVR_Actions._default.GrabPinch.GetState(SteamVR_Input_Sources.RightHand) == false)
+        {
+            _IsPointing = true;
+            LR.enabled = true;
+        }
 
+        else
+        {
+            _IsPointing = false;
+            LR.enabled = false;
+        }
 
 
     }

@@ -20,7 +20,8 @@ public class ChangeDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(VR_RightHand.transform.rotation);
+        
+
     }
 
     public void OnTriggerEnter(Collider other)

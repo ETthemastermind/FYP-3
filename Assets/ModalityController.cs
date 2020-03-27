@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActiveModality : MonoBehaviour //easy way to pick which version
+public class ModalityController : MonoBehaviour
 {
     public bool GamepadModality = false; //standard mode
     public bool SpeechRecVirtualRealityLeapMotionModality = false; // Speech rec, Vr, Leap
     public bool SpeechRecVirtualRealityModality = false; // Speech rec, Vr, Leap
-    
+
+    public bool Test;
+
     public GameObject Gamepad_Player; //Gamepad player
     public GameObject SpeechRecVirtualRealityLeapMotion_Player; // Player with speech rec, vr and leap 
     public GameObject SpeechRecVirtualReality_Player; // Player with speech rec, vr
@@ -42,6 +44,6 @@ public class ActiveModality : MonoBehaviour //easy way to pick which version
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

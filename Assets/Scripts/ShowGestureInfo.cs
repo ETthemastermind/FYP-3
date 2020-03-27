@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ShowGestureInfo : MonoBehaviour
 {
+    /*
     public GameObject InteractRing;
     public GameObject HandGesture;
     public GameObject SpeechGesture;
@@ -13,6 +14,7 @@ public class ShowGestureInfo : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         ModalityController = GameObject.FindGameObjectWithTag("ModalityController");
         if (ModalityController.GetComponent<ActiveModality>().EnhancedModality == true)
         {
@@ -38,4 +40,6 @@ public class ShowGestureInfo : MonoBehaviour
             SpeechGesture.SetActive(false);
         }
     }
+
+    */
 }

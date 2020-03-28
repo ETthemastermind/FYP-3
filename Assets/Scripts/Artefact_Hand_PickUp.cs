@@ -20,6 +20,10 @@ public class Artefact_Hand_PickUp : MonoBehaviour //
     public bool VR_HoldingObject;
     public bool Gripping;
 
+    public GameObject Player;
+    public AudioSource AS;
+    public AudioClip PickUp_Noise;
+
     //public GameObject ObjectHolding_Text;
     /*
 
@@ -35,6 +39,8 @@ public class Artefact_Hand_PickUp : MonoBehaviour //
     void Start()
     {
         Vr_RightHand = GameObject.FindGameObjectWithTag("VR_RightHand");
+        Player = GameObject.FindGameObjectWithTag("Player");
+        AS = Player.GetComponent<AudioSource>();
     }
     //SteamVR_Actions._default.GrabGrip.GetState(SteamVR_Input_Sources.RightHand) == true && SteamVR_Actions._default.GrabPinch.GetState(SteamVR_Input_Sources.RightHand) == true && SteamVR_Actions._default.A_Button.GetState(SteamVR_Input_Sources.RightHand) == true
     // Update is called once per frame
@@ -61,6 +67,8 @@ public class Artefact_Hand_PickUp : MonoBehaviour //
 
             VR_HoldingObject = true;
 
+            AS.PlayOneShot(PickUp_Noise);
+
         }
 
         if (Gripping == false && VR_HoldingObject == true)
@@ -69,6 +77,7 @@ public class Artefact_Hand_PickUp : MonoBehaviour //
             ObjectToPickUp.transform.position = ArtefactObject_StartLocation;
             ObjectToPickUp.transform.localEulerAngles = ArtefactObject_StartOrientation;
             VR_HoldingObject = false;
+            AS.PlayOneShot(PickUp_Noise);
         }
 
         
@@ -86,6 +95,7 @@ public class Artefact_Hand_PickUp : MonoBehaviour //
             ObjectToPickUp.transform.parent = Palm.transform; //parent the object to pick up to the player's palm
             //ObjectHolding_Text.GetComponent<TextMeshProUGUI>().text = ObjectToPickUp.gameObject.name;
             ObjectToPickUp.GetComponent<PickUpObject_Hand>().HaloGlow.SetActive(false);
+            AS.PlayOneShot(PickUp_Noise);
 
 
         }
@@ -123,10 +133,11 @@ public class Artefact_Hand_PickUp : MonoBehaviour //
             ObjectToPickUp.transform.parent = ArtefactObject_Home.transform;
             ObjectToPickUp.transform.position = ArtefactObject_StartLocation;
             ObjectToPickUp.transform.localEulerAngles = ArtefactObject_StartOrientation;
-            
+            AS.PlayOneShot(PickUp_Noise);
+
             //ObjectHolding_Text.GetComponent<Text>().text = null;
             //ObjectHolding_Text.GetComponent<TextMeshProUGUI>().text = null;
-            
+
 
 
         }

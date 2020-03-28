@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR;
+using UnityEngine.Windows.Speech;
+using System.Linq;
 
 public class TeleportCursor : MonoBehaviour
 {
@@ -25,27 +27,45 @@ public class TeleportCursor : MonoBehaviour
 
     public bool MoveForwards;
     public bool MoveBackwards;
+
+    private KeywordRecognizer keywordRecogniser; //sets up speech rec
+    public Dictionary<string, System.Action> actions = new Dictionary<string, System.Action>(); //dictionairy of keywords
     // Start is called before the first frame update
     void Start()
     {
-        
+        actions.Add("Forwards", MoveCursorForward);
+        actions.Add("Backwards", MoveCursorBackwards);
+        keywordRecogniser = new KeywordRecognizer(actions.Keys.ToArray()); //activates the speech rec
+        keywordRecogniser.OnPhraseRecognized += RecognisedSpeech;
+        keywordRecogniser.Start();
+
+    }
+    private void RecognisedSpeech(PhraseRecognizedEventArgs speech)
+    {
+        Debug.Log(speech.text);
+        actions[speech.text].Invoke();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*
+        
         if (MoveForwards == true)
         {
-            TeleportTestCursor.transform.Translate(Vector3.forward * Speed * Time.deltaTime);
+            //TeleportTestCursor.transform.Translate(Vector3.forward * Speed * Time.deltaTime);
+            TeleportTestCursor.transform.position += TeleportTestCursor.transform.forward * 1f;
+            MoveForwards = false;
         }
 
         else if (MoveBackwards == true)
         {
-            TeleportTestCursor.transform.Translate(Vector3.back * Speed * Time.deltaTime);
+            //TeleportTestCursor.transform.Translate(Vector3.back * Speed * Time.deltaTime);
+            TeleportTestCursor.transform.position -= TeleportTestCursor.transform.forward * 1f;
+            MoveBackwards = false;
 
         }
-        */
+        
         if (_IsPointing == true)
         {
 
@@ -161,6 +181,18 @@ public class TeleportCursor : MonoBehaviour
     public void TempMoveBackwards_Off()
     {
         MoveBackwards = false;
+
+    }
+
+    public void MoveCursorForward()
+    {
+        TeleportTestCursor.transform.position += TeleportTestCursor.transform.forward * 1f;
+
+    }
+
+    public void MoveCursorBackwards()
+    {
+        TeleportTestCursor.transform.position -= TeleportTestCursor.transform.forward * 1f;
 
     }
 }

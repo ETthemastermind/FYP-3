@@ -8,7 +8,8 @@ public class SliderObjectSpeech : MonoBehaviour
 {
     public bool ActiveSlider = false;
     public GameObject SliderObject;
-    public GameObject RightCycle_Object;
+    //public GameObject RightCycle_Object;
+    
     private KeywordRecognizer keywordRecogniser; //sets up speech rec
     public Dictionary<string, System.Action> actions = new Dictionary<string, System.Action>(); //dictionairy of keywords
 
@@ -19,7 +20,7 @@ public class SliderObjectSpeech : MonoBehaviour
         actions.Add("Cycle Right", CycleRight);
         actions.Add("Cycle Left", CycleLeft);
 
-
+        
         keywordRecogniser = new KeywordRecognizer(actions.Keys.ToArray()); //activates the speech rec
         keywordRecogniser.OnPhraseRecognized += RecognisedSpeech;
         keywordRecogniser.Start();

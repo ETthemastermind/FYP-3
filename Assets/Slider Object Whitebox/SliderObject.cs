@@ -33,6 +33,10 @@ public class SliderObject : MonoBehaviour
     public GameObject ProgressSlider;
 
 
+    public GameObject Player;
+    public AudioSource AS;
+    public AudioClip ButtonPress;
+
 
     // Start is called before the first frame update
 
@@ -46,6 +50,8 @@ public class SliderObject : MonoBehaviour
         //Instantiate(DisplayBoards[0], gameObject.transform.position, gameObject.transform.rotation * DisplayRotOffset);
         //Debug.Log(DisplayBoards.Length);
         ProgressSlider.GetComponent<Slider>().maxValue = DisplayBoards.Length - 1;
+        Player = GameObject.FindGameObjectWithTag("Player");
+        AS = Player.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -119,12 +125,14 @@ public class SliderObject : MonoBehaviour
         if (CurrentDisplayBoard == DisplayBoards.Length)
         {
             CurrentDisplayBoard = 0;
+            
 
         }
         DisplayBoards[CurrentDisplayBoard].SetActive(true);
         ProgressSlider.GetComponent<Slider>().value = CurrentDisplayBoard;
         //Display.GetComponent<Renderer>().material = materials[CurrentMat];
-        
+        AS.PlayOneShot(ButtonPress);
+
     }
 
 
@@ -143,7 +151,7 @@ public class SliderObject : MonoBehaviour
         DisplayBoards[CurrentDisplayBoard].SetActive(true);
         ProgressSlider.GetComponent<Slider>().value = CurrentDisplayBoard;
         //Display.GetComponent<Renderer>().material = materials[CurrentMat];
-
+        AS.PlayOneShot(ButtonPress);
 
     }
 

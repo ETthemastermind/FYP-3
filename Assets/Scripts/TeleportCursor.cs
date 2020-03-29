@@ -33,8 +33,13 @@ public class TeleportCursor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        actions.Add("Forwards", MoveCursorForward);
-        actions.Add("Backwards", MoveCursorBackwards);
+        actions.Add(" Move Cursor Forwards", MoveCursorForward);
+        actions.Add(" Move Cursor Forwards A Little", MoveCursorForward2);
+        actions.Add(" Move Cursor Forwards A Lot", MoveCursorForward3);
+
+        actions.Add(" Move Cursor Backwards", MoveCursorBackwards);
+        actions.Add(" Move Cursor Backwards A Little", MoveCursorBackwards2);
+        actions.Add(" Move Cursor Backwards A Lot", MoveCursorBackwards3);
         keywordRecogniser = new KeywordRecognizer(actions.Keys.ToArray()); //activates the speech rec
         keywordRecogniser.OnPhraseRecognized += RecognisedSpeech;
         keywordRecogniser.Start();
@@ -189,10 +194,31 @@ public class TeleportCursor : MonoBehaviour
         TeleportTestCursor.transform.position += TeleportTestCursor.transform.forward * 1f;
 
     }
+    public void MoveCursorForward2()
+    {
+        TeleportTestCursor.transform.position += TeleportTestCursor.transform.forward * 0.5f;
+
+    }
+
+    public void MoveCursorForward3()
+    {
+        TeleportTestCursor.transform.position += TeleportTestCursor.transform.forward * 1.5f;
+
+    }
 
     public void MoveCursorBackwards()
     {
         TeleportTestCursor.transform.position -= TeleportTestCursor.transform.forward * 1f;
+
+    }
+    public void MoveCursorBackwards2()
+    {
+        TeleportTestCursor.transform.position -= TeleportTestCursor.transform.forward * 0.5f;
+
+    }
+    public void MoveCursorBackwards3()
+    {
+        TeleportTestCursor.transform.position -= TeleportTestCursor.transform.forward * 1.5f;
 
     }
 }

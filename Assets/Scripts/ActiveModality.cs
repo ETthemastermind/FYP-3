@@ -61,7 +61,7 @@ public class ActiveModality : MonoBehaviour //easy way to pick which version
         GamepadModality = true;
         SpeechRecVirtualRealityModality = false;
         SpeechRecVirtualRealityLeapMotionModality = false;
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
 
     }
     public void VR_SR_On()
@@ -69,7 +69,7 @@ public class ActiveModality : MonoBehaviour //easy way to pick which version
         GamepadModality = false;
         SpeechRecVirtualRealityModality = true;
         SpeechRecVirtualRealityLeapMotionModality = false;
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
 
 
     }
@@ -78,7 +78,7 @@ public class ActiveModality : MonoBehaviour //easy way to pick which version
         GamepadModality = false;
         SpeechRecVirtualRealityModality = false;
         SpeechRecVirtualRealityLeapMotionModality = true;
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
 
     }
 }

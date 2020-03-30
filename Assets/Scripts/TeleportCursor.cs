@@ -11,6 +11,7 @@ public class TeleportCursor : MonoBehaviour
     public GameObject Cursor2;
 
     public Vector3 Cursor2_Location;
+    public Vector3 Cursor2_LocationStart;
     public bool MoveForward;
     public bool MoveBackward;
     public float Speed = 5f;
@@ -28,21 +29,29 @@ public class TeleportCursor : MonoBehaviour
     public bool MoveForwards;
     public bool MoveBackwards;
 
+
+    public float CurrentDistance;
+    public bool CursorCanMoveForwards = true;
+    public bool CursorCanMoveBackwards = true;
+
     private KeywordRecognizer keywordRecogniser; //sets up speech rec
     public Dictionary<string, System.Action> actions = new Dictionary<string, System.Action>(); //dictionairy of keywords
     // Start is called before the first frame update
     void Start()
     {
-        actions.Add(" Move Cursor Forwards", MoveCursorForward);
-        actions.Add(" Move Cursor Forwards A Little", MoveCursorForward2);
-        actions.Add(" Move Cursor Forwards A Lot", MoveCursorForward3);
+        actions.Add("Move Cursor Forwards", MoveCursorForward);
+        actions.Add("Move Cursor Forwards A Little", MoveCursorForward2);
+        actions.Add("Move Cursor Forwards A Lot", MoveCursorForward3);
 
-        actions.Add(" Move Cursor Backwards", MoveCursorBackwards);
-        actions.Add(" Move Cursor Backwards A Little", MoveCursorBackwards2);
-        actions.Add(" Move Cursor Backwards A Lot", MoveCursorBackwards3);
+        actions.Add("Move Cursor Backwards", MoveCursorBackwards);
+        actions.Add("Move Cursor Backwards A Little", MoveCursorBackwards2);
+        actions.Add("Move Cursor Backwards A Lot", MoveCursorBackwards3);
+        actions.Add("Reset Cursor", ResetCursor);
         keywordRecogniser = new KeywordRecognizer(actions.Keys.ToArray()); //activates the speech rec
         keywordRecogniser.OnPhraseRecognized += RecognisedSpeech;
         keywordRecogniser.Start();
+
+        Cursor2_LocationStart = TeleportTestCursor.transform.position;
 
     }
     private void RecognisedSpeech(PhraseRecognizedEventArgs speech)
@@ -54,8 +63,57 @@ public class TeleportCursor : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        
+    {   //---------------------------------------limits how far the cursor can move--------------------------------------------///
+        CurrentDistance = Vector3.Distance(transform.position, TeleportTestCursor.transform.position);
+        if (CurrentDistance > 1.5f)
+        {
+            CursorCanMoveBackwards = true;
+
+        }
+
+        else
+        {
+            CursorCanMoveBackwards = false;
+            TeleportTestCursor.transform.position += TeleportTestCursor.transform.forward * 0.5f;
+
+        }
+
+
+
+
+
+        if (CurrentDistance < 6.5f)
+        {
+            CursorCanMoveForwards = true;
+
+        }
+
+        else
+        {
+            CursorCanMoveForwards = false;
+            TeleportTestCursor.transform.position -= TeleportTestCursor.transform.forward * 0.5f;
+        }
+
+        //---------------------------------------------Stops the cursor going through walls ----------------------------------------------------//
+
+        if (TeleportTestCursor.GetComponent<InWall>().CursorInWall == true)
+        {
+            TeleportTestCursor.transform.position -= TeleportTestCursor.transform.forward * 0.5f;
+
+        }
+
+
+
+
+
+
+
+
+
+
+//--------------------------------------------------------------------------------------------------------------------------------------//
+
+
         if (MoveForwards == true)
         {
             //TeleportTestCursor.transform.Translate(Vector3.forward * Speed * Time.deltaTime);
@@ -191,34 +249,65 @@ public class TeleportCursor : MonoBehaviour
 
     public void MoveCursorForward()
     {
-        TeleportTestCursor.transform.position += TeleportTestCursor.transform.forward * 1f;
+        if (CursorCanMoveForwards == true)
+        {
+            TeleportTestCursor.transform.position += TeleportTestCursor.transform.forward * 1f;
+        }
+        
 
     }
     public void MoveCursorForward2()
     {
-        TeleportTestCursor.transform.position += TeleportTestCursor.transform.forward * 0.5f;
+        if (CursorCanMoveForwards == true)
+        {
+            TeleportTestCursor.transform.position += TeleportTestCursor.transform.forward * 0.5f;
+        }
+        
 
     }
 
     public void MoveCursorForward3()
     {
-        TeleportTestCursor.transform.position += TeleportTestCursor.transform.forward * 1.5f;
+        if (CursorCanMoveForwards == true)
+        {
+            TeleportTestCursor.transform.position += TeleportTestCursor.transform.forward * 1.5f;
+        }
+        
 
     }
 
     public void MoveCursorBackwards()
     {
-        TeleportTestCursor.transform.position -= TeleportTestCursor.transform.forward * 1f;
+        if (CursorCanMoveBackwards == true)
+        {
+            TeleportTestCursor.transform.position -= TeleportTestCursor.transform.forward * 1f;
+        }
+        
 
     }
     public void MoveCursorBackwards2()
     {
-        TeleportTestCursor.transform.position -= TeleportTestCursor.transform.forward * 0.5f;
+        if (CursorCanMoveBackwards == true)
+        {
+            TeleportTestCursor.transform.position -= TeleportTestCursor.transform.forward * 0.5f;
+        }
+        
 
     }
     public void MoveCursorBackwards3()
     {
-        TeleportTestCursor.transform.position -= TeleportTestCursor.transform.forward * 1.5f;
+        if (CursorCanMoveBackwards == true)
+        {
+            TeleportTestCursor.transform.position -= TeleportTestCursor.transform.forward * 1.5f;
+        }
+        
 
     }
+
+    public void ResetCursor()
+    {
+        TeleportTestCursor.transform.position = Cursor2_LocationStart;
+    }
+
+
 }

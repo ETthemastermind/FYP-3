@@ -5,20 +5,44 @@ ModelImporter:
   fileIDToRecycleName:
     100000: //RootNode
     100002: Floor_Teleport
+    100004: Floor2
+    100006: polySurface3
+    100008: polySurface4
+    100010: Roof2
     400000: //RootNode
     400002: Floor_Teleport
+    400004: Floor2
+    400006: polySurface3
+    400008: polySurface4
+    400010: Roof2
     2100000: Roof
     2100002: Floor
     2100004: Walls
     2300000: //RootNode
     2300002: Floor_Teleport
+    2300004: Floor2
+    2300006: polySurface3
+    2300008: polySurface4
+    2300010: Roof2
     3300000: //RootNode
     3300002: Floor_Teleport
+    3300004: Floor2
+    3300006: polySurface3
+    3300008: polySurface4
+    3300010: Roof2
     4300000: Ground4
     4300002: Ground5
     4300004: Floor_Teleport
+    4300006: Roof2
+    4300008: Floor2
+    4300010: polySurface3
+    4300012: polySurface4
     6400000: //RootNode
     6400002: Floor_Teleport
+    6400004: Floor2
+    6400006: polySurface3
+    6400008: polySurface4
+    6400010: Roof2
   externalObjects:
   - first:
       type: UnityEngine:Material

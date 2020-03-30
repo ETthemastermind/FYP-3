@@ -14,17 +14,27 @@ public class SphereCastPointGesture : MonoBehaviour
     public LayerMask layerMask;
 
     public GameObject CurrentHitObject;
+    public GameObject LastHitObject;
     private float CurrentHitDistance;
 
     public GameObject KeywordObject;
     public bool KeywordSelected = false;
 
     public LineRenderer LR;
+
+    public GameObject Player;
+    public AudioSource AS;
+    public AudioClip SelectSound;
+
+    
     // Start is called before the first frame update
     void Start()
     {
         LR = gameObject.GetComponent<LineRenderer>();
         LR.enabled = false;
+
+        Player = GameObject.FindGameObjectWithTag("Player");
+        AS = Player.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -51,6 +61,14 @@ public class SphereCastPointGesture : MonoBehaviour
                     
                     KeywordObject = CurrentHitObject.transform.gameObject;
                     KeywordObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.red;
+                    
+
+                    if (CurrentHitObject != LastHitObject)
+                    {
+                        AS.PlayOneShot(SelectSound);
+                    }
+
+                    LastHitObject = CurrentHitObject;
                 }
 
                 else

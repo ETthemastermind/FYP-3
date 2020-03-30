@@ -9,7 +9,13 @@ public class DioramaEnter_OH : MonoBehaviour
     public GameObject VR_RightHand_Palm;
     public GameObject VR_LeftHand;
     public GameObject VR_LeftHand_Palm;
+
+    public GameObject Player;
+    public AudioSource AS;
+    public AudioClip TeleportSoundEffect;
+    public bool AudioPlayed = false;
     
+
     public LineRenderer LR;
 
     public bool RightHandInPos;
@@ -24,7 +30,7 @@ public class DioramaEnter_OH : MonoBehaviour
 
     public float Timer;
     public float ElapsedTime;
-
+    /*
     public GameObject RX;
     public GameObject RY;
     public GameObject RZ;
@@ -33,7 +39,7 @@ public class DioramaEnter_OH : MonoBehaviour
     public GameObject LY;
     public GameObject LZ;
     public GameObject LW;
-
+    */
 
     public GameObject DioramaDisplay;
     public GameObject DioramaStand;
@@ -44,10 +50,13 @@ public class DioramaEnter_OH : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        VR_LeftHand = GameObject.FindGameObjectWithTag("VR_LeftHand");
-        VR_RightHand = GameObject.FindGameObjectWithTag("VR_RightHand");
+        //VR_LeftHand = GameObject.FindGameObjectWithTag("VR_LeftHand");
+        //VR_RightHand = GameObject.FindGameObjectWithTag("VR_RightHand");
         
         LR = gameObject.GetComponent<LineRenderer>();
+
+        Player = GameObject.FindGameObjectWithTag("Player");
+        AS = Player.GetComponent<AudioSource>();
    
         
         
@@ -61,7 +70,7 @@ public class DioramaEnter_OH : MonoBehaviour
 
         PalmDistance = Vector3.Distance(VR_RightHand_Palm.transform.position, VR_LeftHand_Palm.transform.position);
 
-
+        /*
         RX.GetComponent<Text>().text = ("X" + VR_RightHand.transform.rotation.x.ToString());
         RY.GetComponent<Text>().text = ("Y" + VR_RightHand.transform.rotation.y.ToString());
         RZ.GetComponent<Text>().text = ("Z" + VR_RightHand.transform.rotation.z.ToString());
@@ -72,6 +81,7 @@ public class DioramaEnter_OH : MonoBehaviour
         LZ.GetComponent<Text>().text = ("Z" + VR_LeftHand.transform.rotation.z.ToString());
         LW.GetComponent<Text>().text = ("W" + VR_LeftHand.transform.rotation.w.ToString());
         //Debug.Log(VR_RightHand.transform.rotation.y);
+        */
 
         // Check to see if the right hand is in position----------------------------------------------------------
         if (VR_RightHand.transform.rotation.x < 0.5f && VR_RightHand.transform.rotation.x > -0.5f)
@@ -102,7 +112,7 @@ public class DioramaEnter_OH : MonoBehaviour
         //---------------------------------------------------------------------------------------------------------//
         //---------------------------if both hands are in position activate the teleport ------------------------------//
 
-        if (LeftHandInPos == true && RightHandInPos == true && InArea == true)
+        if (InArea == true)
         {
             LR.enabled = true;
             LR.SetPosition(0, VR_LeftHand_Palm.transform.position);
@@ -139,6 +149,12 @@ public class DioramaEnter_OH : MonoBehaviour
                 {
                     //DebugSphere.GetComponent<Renderer>().material.color = Color.red;
                     //FadeToLevel(2);
+                    if (AudioPlayed == false)
+                    {
+                        AS.PlayOneShot(TeleportSoundEffect);
+                        AudioPlayed = true;
+                    }
+                    
                     DioramaStand.GetComponent<LoadLevel>().OpenScene();
 
                 }

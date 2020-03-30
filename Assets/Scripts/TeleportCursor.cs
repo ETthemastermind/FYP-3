@@ -196,7 +196,7 @@ public class TeleportCursor : MonoBehaviour
 
     public void ThumbsUp()
     {
-        Cursor2.GetComponent<Renderer>().material.color = Color.green;
+        //Cursor2.GetComponent<Renderer>().material.color = Color.green;
         TeleportPointGesture.GetComponent<TeleportPointGesture>().Teleport = true;
     }
 

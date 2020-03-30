@@ -26,6 +26,8 @@ public class SphereCastPointGesture : MonoBehaviour
     public AudioSource AS;
     public AudioClip SelectSound;
 
+    public bool LeapHandsActive = false;
+
     
     // Start is called before the first frame update
     void Start()
@@ -49,10 +51,11 @@ public class SphereCastPointGesture : MonoBehaviour
             {
                 CurrentHitObject = ObjectHit.transform.gameObject;
                 CurrentHitDistance = ObjectHit.distance;
-                LR.SetPosition(1, ObjectHit.point);
+                
                 Debug.Log(ObjectHit);
                 if (CurrentHitObject.gameObject.tag == "Keyword")
                 {
+                    LR.SetPosition(1, ObjectHit.point);
                     if (KeywordObject != null)
                     {
                         KeywordObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.white;
@@ -73,7 +76,7 @@ public class SphereCastPointGesture : MonoBehaviour
 
                 else
                 {
-                    
+                    LR.SetPosition(1, FingerTip.transform.position);
                 }
             }
             else
@@ -85,18 +88,19 @@ public class SphereCastPointGesture : MonoBehaviour
             }
 
         }
-        if (SteamVR_Actions._default.GrabGrip.GetState(SteamVR_Input_Sources.RightHand) == true && SteamVR_Actions._default.A_Button.GetState(SteamVR_Input_Sources.RightHand) == true && SteamVR_Actions._default.GrabPinch.GetState(SteamVR_Input_Sources.RightHand) == false)
+        
+        if (SteamVR_Actions._default.GrabGrip.GetState(SteamVR_Input_Sources.RightHand) == true && SteamVR_Actions._default.A_Button.GetState(SteamVR_Input_Sources.RightHand) == true && SteamVR_Actions._default.GrabPinch.GetState(SteamVR_Input_Sources.RightHand) == false && LeapHandsActive == false)
         {
             _IsPointing = true;
             LR.enabled = true;
         }
 
-        else
+        else if (LeapHandsActive == false)
         {
             _IsPointing = false;
             LR.enabled = false;
         }
-
+        
 
     }
 

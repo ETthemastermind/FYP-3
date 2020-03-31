@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class VRHand_Raycast : MonoBehaviour
 {
+    public bool 
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +19,21 @@ public class VRHand_Raycast : MonoBehaviour
         {
             if (ObjectHit.transform.tag == "DirectionPlane")
             {
-                Debug.Log(ObjectHit.transform.gameObject.name);
+                if (ObjectHit.transform.gameObject.name == "ForwardPlane")
+                {
+
+
+                }
+                else if (ObjectHit.transform.gameObject.name == "ForwardPlane")
+                {
+
+
+                }
+                else
+                {
+
+
+                }
             }
 
         }

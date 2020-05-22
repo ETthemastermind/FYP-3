@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class SliderObject : MonoBehaviour
 {
 
-    public GameObject Display;
+    //public GameObject Display;
 
 
     public GameObject[] DisplayBoards;

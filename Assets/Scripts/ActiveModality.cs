@@ -10,41 +10,33 @@ public class ActiveModality : MonoBehaviour //easy way to pick which version
     public bool SpeechRecVirtualRealityLeapMotionModality = false; // Speech rec, Vr, Leap
     public bool SpeechRecVirtualRealityModality = false; // Speech rec, Vr, Leap
     
-    /*
+    
     public GameObject Gamepad_Player; //Gamepad player
     public GameObject SpeechRecVirtualRealityLeapMotion_Player; // Player with speech rec, vr and leap 
     public GameObject SpeechRecVirtualReality_Player; // Player with speech rec, vr
-    */
+    
     
 
 
     // Start is called before the first frame update
     void Awake() //on awake, turns on the right player depending on the bool.
     {
-        /*
         if (GamepadModality == true)
         {
-            Gamepad_Player.SetActive(true);
-            SpeechRecVirtualRealityLeapMotion_Player.SetActive(false);
-            SpeechRecVirtualReality_Player.SetActive(false);
-        }
-
-        else if (SpeechRecVirtualRealityLeapMotionModality == true)
-        {
-            Gamepad_Player.SetActive(false);
-            SpeechRecVirtualRealityLeapMotion_Player.SetActive(true);
-            SpeechRecVirtualReality_Player.SetActive(false);
-
+            GamePadOn();
         }
 
         else if (SpeechRecVirtualRealityModality == true)
         {
-            Gamepad_Player.SetActive(false);
-            SpeechRecVirtualRealityLeapMotion_Player.SetActive(false);
-            SpeechRecVirtualReality_Player.SetActive(true);
+            VR_SR_On();
 
         }
-        */
+
+        else if (SpeechRecVirtualRealityLeapMotionModality == true)
+        {
+            VR_SR_LM_On();
+
+        }
     }
     private void Start()
     {
@@ -58,27 +50,27 @@ public class ActiveModality : MonoBehaviour //easy way to pick which version
 
     public void GamePadOn()
     {
-        GamepadModality = true;
-        SpeechRecVirtualRealityModality = false;
-        SpeechRecVirtualRealityLeapMotionModality = false;
-        SceneManager.LoadScene(1);
+        Gamepad_Player.SetActive(true);
+        SpeechRecVirtualReality_Player.SetActive(false);
+        SpeechRecVirtualRealityLeapMotion_Player.SetActive(false);
+        
 
     }
     public void VR_SR_On()
     {
-        GamepadModality = false;
-        SpeechRecVirtualRealityModality = true;
-        SpeechRecVirtualRealityLeapMotionModality = false;
-        SceneManager.LoadScene(1);
+        Gamepad_Player.SetActive(false);
+        SpeechRecVirtualReality_Player.SetActive(true);
+        SpeechRecVirtualRealityLeapMotion_Player.SetActive(false);
+
 
 
     }
     public void VR_SR_LM_On()
     {
-        GamepadModality = false;
-        SpeechRecVirtualRealityModality = false;
-        SpeechRecVirtualRealityLeapMotionModality = true;
-        SceneManager.LoadScene(1);
+        Gamepad_Player.SetActive(false);
+        SpeechRecVirtualReality_Player.SetActive(false);
+        SpeechRecVirtualRealityLeapMotion_Player.SetActive(true);
+
 
     }
 }

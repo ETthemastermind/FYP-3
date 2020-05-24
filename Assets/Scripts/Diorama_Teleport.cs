@@ -81,7 +81,8 @@ public class Diorama_Teleport : MonoBehaviour   //Gamepad teleporting
 
             if (Input.GetButtonDown("Gamepad_A")) //checks to see if the player has pressed A
             {
-                
+                Debug.Log("Player entering diorama");
+                SceneManager.LoadScene(TargetSceneIndex); //teleport area to the diorama
 
             }
 
@@ -118,15 +119,8 @@ public class Diorama_Teleport : MonoBehaviour   //Gamepad teleporting
 
         }
 
-
         
         
-    }
-
-    public void TeleportPlayer()
-    {
-        Debug.Log("Player entering diorama");
-        SceneManager.LoadScene(TargetSceneIndex); //teleport area to the diorama
     }
 
     

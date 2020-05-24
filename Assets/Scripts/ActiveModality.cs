@@ -45,6 +45,7 @@ public class ActiveModality : MonoBehaviour //easy way to pick which version
     // Update is called once per frame
     void Update()
     {
+    
         
     }
 

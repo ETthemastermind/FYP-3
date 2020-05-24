@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-/*
+
 public class VRHand_Raycast : MonoBehaviour
 {
     public bool 
@@ -47,4 +47,3 @@ public class VRHand_Raycast : MonoBehaviour
         
     }
 }
-*/

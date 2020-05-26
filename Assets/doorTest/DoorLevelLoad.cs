@@ -20,7 +20,7 @@ public class DoorLevelLoad : MonoBehaviour
         {
             gameObject.transform.Rotate(new Vector3 (0f, 90f, 0f));
 
-            Room.SetActive(true);
+            //Room.SetActive(true);
 
             
 

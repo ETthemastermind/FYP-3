@@ -1,0 +1,10 @@
+Part way through making a smoother way to change the modalities.
+For the time being, you need to turn on the player character you want in each scene
+
+just VR and Speech Rec is called Enhanced Player - VR,SR
+
+Words of warning, some diorama scenes might take you to the wrong scene. 
+had to reorder the build index and havent given the exhibits the right index to take them to the right one yet.
+
+Careful when going into the diorama scenes with VR, they havent got a minimum distance before the gesture activates yet,
+you might end up getting sucked in if your go the the exhibit with your hands too far apart.

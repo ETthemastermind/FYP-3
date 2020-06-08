@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ChooseCorrectPlayer : MonoBehaviour
 {
@@ -27,6 +28,8 @@ public class ChooseCorrectPlayer : MonoBehaviour
             VRSRPlayer.SetActive(false);
             VRLMSRPlayer.SetActive(false);
             */
+
+            
         }
 
         else if (ModalityController.GetComponent<ModalityController2>().VRSR_Chosen == true)
@@ -39,6 +42,10 @@ public class ChooseCorrectPlayer : MonoBehaviour
             Player = Instantiate(VRLMSRPlayer, gameObject.transform.position, gameObject.transform.rotation, transform.parent);
         }
 
+
+
+
+       
         Player.SetActive(true);
     }
 

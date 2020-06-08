@@ -1,0 +1,15 @@
+//Portrait//
+Portrait 1
+Portrait 2
+Portrait 3
+Portrait 4
+//Pick-Up Artefact//
+Pick-Up Artefact 1
+Pick-Up Artefact 2
+Pick-Up Artefact 3
+Pick-Up Artefact 4
+//Diorama Exhibit//
+Diorama Exhibit 1
+Diorama Exhibit 2
+Diorama Exhibit 3
+Diorama Exhibit 4

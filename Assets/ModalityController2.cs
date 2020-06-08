@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
 
 
 public class ModalityController2 : MonoBehaviour
@@ -21,6 +22,12 @@ public class ModalityController2 : MonoBehaviour
     public GameObject MainMenuCanvas;
     public GameObject TestingCanvas;
     public GameObject LoadingCanvas;
+
+    //refs for buttons to change colors
+
+    public GameObject Gamepad_Button;
+    public GameObject VRSR_Button;
+    public GameObject VRSRLM_Button;
 
 
     //Testing Variables
@@ -44,6 +51,11 @@ public class ModalityController2 : MonoBehaviour
         VRLMSR_Chosen = false;
         NoModalitySelected.SetActive(false);
 
+        Gamepad_Button.GetComponent<Image>().color = Color.green;
+        VRSR_Button.GetComponent<Image>().color = Color.white;
+        VRSRLM_Button.GetComponent<Image>().color = Color.white;
+
+
     }
 
     public void VRSRModality()
@@ -52,6 +64,10 @@ public class ModalityController2 : MonoBehaviour
         VRSR_Chosen = true;
         VRLMSR_Chosen = false;
         NoModalitySelected.SetActive(false);
+
+        Gamepad_Button.GetComponent<Image>().color = Color.white; //change color of the buttons to indicate choice
+        VRSR_Button.GetComponent<Image>().color = Color.green;
+        VRSRLM_Button.GetComponent<Image>().color = Color.white;
     }
 
     public void VRSRLMModality()
@@ -60,6 +76,10 @@ public class ModalityController2 : MonoBehaviour
         VRSR_Chosen = false;
         VRLMSR_Chosen = true;
         NoModalitySelected.SetActive(false);
+
+        Gamepad_Button.GetComponent<Image>().color = Color.white;
+        VRSR_Button.GetComponent<Image>().color = Color.white;
+        VRSRLM_Button.GetComponent<Image>().color = Color.green;
 
     }
 

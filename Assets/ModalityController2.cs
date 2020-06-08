@@ -17,8 +17,10 @@ public class ModalityController2 : MonoBehaviour
     public GameObject IdentifierInputBox;
     public GameObject NoModalitySelected;
 
+    //refs to canvas
     public GameObject MainMenuCanvas;
     public GameObject TestingCanvas;
+    public GameObject LoadingCanvas;
 
 
     //Testing Variables
@@ -66,12 +68,19 @@ public class ModalityController2 : MonoBehaviour
         if (Gamepad_Chosen == false && VRSR_Chosen == false && VRLMSR_Chosen == false) //check to see if the user has chosen a modality
         {
             NoModalitySelected.SetActive(true); //show error message
+            MainMenuCanvas.SetActive(false);
+            TestingCanvas.SetActive(false);
+            LoadingCanvas.SetActive(true);
 
 
         }
         else
         {
-            SceneManager.LoadScene(SceneToLoad);
+            MainMenuCanvas.SetActive(false);
+            TestingCanvas.SetActive(false);
+            LoadingCanvas.SetActive(true);
+            SceneManager.LoadSceneAsync(SceneToLoad); //keep the music playing while loading
+            
         }
         /*
         if (TestingModeActivated == false)
@@ -128,10 +137,18 @@ public class ModalityController2 : MonoBehaviour
 
     public void BeginTest()
     {
-        
+        Debug.Log("Begin Testing");
+        if (UserIdentifier == "")
+        {
+            
+        }
+        else
+        {
+            LoadLevel();
+        }
     }
 
-    public void GetUserID()
+    public void GetUserID() //gets a user ID;
     {
         Debug.Log("User ID Entered"); //prints to console when the value is changed
         UserIdentifier = IdentifierInputBox.GetComponent<TMP_InputField>().text;

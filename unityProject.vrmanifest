@@ -5,7 +5,7 @@
       "app_key": "application.generated.unity.17thcenturydigitalmuseum.exe",
       "launch_type": "url",
       "url": "steam://launch/",
-      "action_manifest_path": "J:\\3. Year 3\\9. Final Year Project\\FYP-3 - Copy\\Assets\\StreamingAssets\\SteamVR\\actions.json",
+      "action_manifest_path": "C:\\Users\\Owner\\Desktop\\FYP-3 - Copy\\Assets\\StreamingAssets\\SteamVR\\actions.json",
       "strings": {
         "en_us": {
           "name": "17th Century Digital Museum [Testing]"

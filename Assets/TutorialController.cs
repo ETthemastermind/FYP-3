@@ -36,6 +36,29 @@ public class TutorialController : MonoBehaviour
     //Phase 3 variables
     public bool TriggerPhase3;
     public GameObject Notebook;
+    public Material NotebookMat;
+
+    //phase 4 variables
+    public bool TriggerPhase4;
+
+    //phase 5 variables
+    public bool TriggerPhase5;
+
+    //phase 6 variables
+    public bool TriggerPhase6;
+
+    //phase 7 variables
+    public bool TriggerPhase7;
+
+    //phase 8 variables
+    public bool TriggerPhase8;
+
+    //phase 9 variables
+    public bool TriggerPhase9;
+
+    //phase 10 variables
+    public bool TriggerPhase10;
+
 
     // Start is called before the first frame update
     void Start()
@@ -43,6 +66,7 @@ public class TutorialController : MonoBehaviour
         Player = GameObject.FindGameObjectWithTag("Player");
         AS = Player.GetComponent<AudioSource>();
         CuratorPortraitMat = CuratorPortrait.GetComponent<Renderer>().materials[1]; //finds the correct mat on the portrait 
+        NotebookMat = Notebook.GetComponent<Renderer>().material;
         PortraitKeyword1.SetActive(false);
         PortraitKeyword2.SetActive(false);
         PortraitKeyword3.SetActive(false);
@@ -71,7 +95,7 @@ public class TutorialController : MonoBehaviour
         }
         if (TriggerPhase3 == true)
         {
-
+            Phase3();
         }
 
     }
@@ -138,12 +162,50 @@ public class TutorialController : MonoBehaviour
     {
         Debug.Log("Phase 3 Tutorial Active");
         LerpedColour = Color.Lerp(Color.black, Color.yellow, Mathf.PingPong(Time.time, 1));
+        NotebookMat.SetColor("_EmissionColor", LerpedColour);
     }
 
+    public void Phase4() // encourage to pick up
+    {
+
+
+    }
+
+    public void Phase5() // encourage to put down
+    {
+
+    }
+
+    public void Phase6() //Show to request information 
+    {
+
+    }
+
+    public void Phase7() //send to the slider object
+    {
+
+
+    }
+
+    public void Phase8() //Show how to use slider
+    {
+
+
+    }
+
+    public void Phase9() //send to the Diorama
+    {
+
+
+    }
+
+    public void Phase10() //show how to use Diorama
+    {
+
+    } 
 
 
 
-    
 }
 
 

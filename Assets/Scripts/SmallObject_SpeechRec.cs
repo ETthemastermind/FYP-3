@@ -29,7 +29,7 @@ public class SmallObject_SpeechRec : MonoBehaviour
     void Start()
     {
         PlayerController = GameObject.FindGameObjectWithTag("Player");
-        AS = PlayerController.AddComponent<AudioSource>(); //find the audio source on the player controller
+        AS = PlayerController.GetComponent<AudioSource>(); //find the audio source on the player controller
     }
 
     // Update is called once per frame

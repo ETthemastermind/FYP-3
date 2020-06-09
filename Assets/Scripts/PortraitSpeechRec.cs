@@ -13,6 +13,8 @@ public class PortraitSpeechRec : MonoBehaviour
     public GameObject KeywordAskedAbout;
     public AudioClip RequestedInfo;
 
+    public string LastSaidWord;
+
     
 
     // Start is called before the first frame update
@@ -60,6 +62,7 @@ public class PortraitSpeechRec : MonoBehaviour
     private void RecognisedSpeech(PhraseRecognizedEventArgs speech)
     {
         Debug.Log(speech.text);
+        LastSaidWord = speech.text; //for the tutorial
         actions[speech.text].Invoke();
 
     }

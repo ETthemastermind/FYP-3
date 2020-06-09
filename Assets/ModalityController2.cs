@@ -55,6 +55,8 @@ public class ModalityController2 : MonoBehaviour
         VRSR_Button.GetComponent<Image>().color = Color.white;
         VRSRLM_Button.GetComponent<Image>().color = Color.white;
 
+        
+
 
     }
 

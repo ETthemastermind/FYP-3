@@ -29,7 +29,10 @@ public class ChooseCorrectPlayer : MonoBehaviour
             VRLMSRPlayer.SetActive(false);
             */
 
-            
+            if (SceneManager.GetActiveScene().buildIndex == 8)
+            {
+                Player.transform.localScale = new Vector3(1.7f, 1.7f, 1.7f);
+        }
         }
 
         else if (ModalityController.GetComponent<ModalityController2>().VRSR_Chosen == true)

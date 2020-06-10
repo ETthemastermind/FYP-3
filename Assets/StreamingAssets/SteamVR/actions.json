@@ -54,6 +54,22 @@
       "type": "boolean"
     },
     {
+      "name": "/actions/default/in/X_Button",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/default/in/LeftGripTouch",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/default/in/LeftTriggerTouch",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/default/in/X_Button_Touch",
+      "type": "boolean"
+    },
+    {
       "name": "/actions/default/out/Haptic",
       "type": "vibration"
     },

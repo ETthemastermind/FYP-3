@@ -156,6 +156,9 @@
                "inputs" : {
                   "click" : {
                      "output" : "/actions/default/in/grabpinch"
+                  },
+                  "touch" : {
+                     "output" : "/actions/default/in/lefttriggertouch"
                   }
                },
                "mode" : "button",
@@ -267,6 +270,9 @@
                "inputs" : {
                   "pull" : {
                      "output" : "/actions/default/in/squeeze"
+                  },
+                  "touch" : {
+                     "output" : "/actions/default/in/leftgriptouch"
                   }
                },
                "mode" : "trigger",
@@ -289,6 +295,18 @@
                },
                "mode" : "button",
                "path" : "/user/hand/right/input/a"
+            },
+            {
+               "inputs" : {
+                  "click" : {
+                     "output" : "/actions/default/in/x_button"
+                  },
+                  "touch" : {
+                     "output" : "/actions/default/in/x_button_touch"
+                  }
+               },
+               "mode" : "button",
+               "path" : "/user/hand/left/input/x"
             }
          ]
       },

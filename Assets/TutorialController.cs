@@ -71,9 +71,11 @@ public class TutorialController : MonoBehaviour
     //phase 9 variables
     public bool TriggerPhase9;
     public AudioClip ToDiorama;
+    public GameObject DioramaInteractRing;
 
     //phase 10 variables
     public bool TriggerPhase10;
+    public AudioClip DioramaEnterAudio;
 
 
     // Start is called before the first frame update
@@ -148,6 +150,10 @@ public class TutorialController : MonoBehaviour
         else if (TriggerPhase9 == true)
         {
             Phase9();
+        }
+        else if (TriggerPhase10 == true)
+        {
+            Phase10();
         }
     }
 
@@ -343,14 +349,27 @@ public class TutorialController : MonoBehaviour
             AS.PlayOneShot(ToDiorama);
             AudioPlayed = true;
         }
+        if (DioramaInteractRing.GetComponent<AreaEntered>().PlayerInTrigger == true)
+        {
+            TriggerPhase9 = false;
+            TriggerPhase10 = true;
+            AudioPlayed = false;
+        }
 
     }
 
     public void Phase10() //show how to use Diorama
     {
+        if (AudioPlayed == false && AS.isPlaying == false)
+        {
+            AS.PlayOneShot(DioramaEnterAudio);
+            AudioPlayed = true;
 
-    } 
+        }
 
+    }
+
+    
 
 
 }

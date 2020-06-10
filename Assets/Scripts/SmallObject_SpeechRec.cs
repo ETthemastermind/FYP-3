@@ -146,30 +146,46 @@ public class SmallObject_SpeechRec : MonoBehaviour
 
     public void PointOfInterest1() //plays the releva
     {
-        AS.PlayOneShot(GatheredInfo[0]);
-        ActiveCommand_Notebook.text = Keywords[0];
-        ActiveInfo_Notebook.text = Artefact.GetComponent<AssignInformation>().RelevantInfo[0];
+        if (AS.isPlaying == false)
+        {
+            AS.PlayOneShot(GatheredInfo[0]);
+            ActiveCommand_Notebook.text = Keywords[0];
+            ActiveInfo_Notebook.text = Artefact.GetComponent<AssignInformation>().RelevantInfo[0];
+        }
+        
 
     }
     public void PointOfInterest2()
     {
-        AS.PlayOneShot(GatheredInfo[1]);
-        ActiveCommand_Notebook.text = Keywords[1];
-        ActiveInfo_Notebook.text = Artefact.GetComponent<AssignInformation>().RelevantInfo[1];
+        if (AS.isPlaying == false)
+        {
+            AS.PlayOneShot(GatheredInfo[1]);
+            ActiveCommand_Notebook.text = Keywords[1];
+            ActiveInfo_Notebook.text = Artefact.GetComponent<AssignInformation>().RelevantInfo[1];
+        }
+        
 
     }
     public void PointOfInterest3()
     {
-        AS.PlayOneShot(GatheredInfo[2]);
-        ActiveCommand_Notebook.text = Keywords[2];
-        ActiveInfo_Notebook.text = Artefact.GetComponent<AssignInformation>().RelevantInfo[2];
+        if (AS.isPlaying == false)
+        {
+            AS.PlayOneShot(GatheredInfo[2]);
+            ActiveCommand_Notebook.text = Keywords[2];
+            ActiveInfo_Notebook.text = Artefact.GetComponent<AssignInformation>().RelevantInfo[2];
+        }
+        
 
     }
     public void PointOfInterest4()
     {
-        AS.PlayOneShot(GatheredInfo[3]);
-        ActiveCommand_Notebook.text = Keywords[3];
-        ActiveInfo_Notebook.text = Artefact.GetComponent<AssignInformation>().RelevantInfo[3];
+        if (AS.isPlaying == false)
+        {
+            AS.PlayOneShot(GatheredInfo[3]);
+            ActiveCommand_Notebook.text = Keywords[3];
+            ActiveInfo_Notebook.text = Artefact.GetComponent<AssignInformation>().RelevantInfo[3];
+        }
+        
 
     }
 

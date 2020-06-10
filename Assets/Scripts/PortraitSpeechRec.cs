@@ -54,7 +54,11 @@ public class PortraitSpeechRec : MonoBehaviour
     {
         if (RequestedInfo != null)
         {
-            PlayerController.GetComponent<AudioSource>().PlayOneShot(RequestedInfo);
+            if (PlayerController.GetComponent<AudioSource>().isPlaying == false)
+            {
+                PlayerController.GetComponent<AudioSource>().PlayOneShot(RequestedInfo);
+            }
+            
         }
         
     }

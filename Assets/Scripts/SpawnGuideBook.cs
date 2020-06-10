@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Valve.VR;
 public class SpawnGuideBook : MonoBehaviour
 {
 
@@ -27,6 +27,17 @@ public class SpawnGuideBook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (SteamVR_Actions._default.GrabGrip.GetState(SteamVR_Input_Sources.LeftHand) == false && SteamVR_Actions._default.GrabPinch.GetState(SteamVR_Input_Sources.LeftHand) == false && SteamVR_Actions._default.A_Button.GetState(SteamVR_Input_Sources.LeftHand) == false)
+        {
+            Active();
+
+        }
+
+        else
+        {
+            Inactive();
+        }
+        /*
         if (VR_LeftHand.transform.rotation.z > 0.5f && VR_LeftHand.transform.rotation.z < 0.8f)
         {
             Active();
@@ -38,6 +49,8 @@ public class SpawnGuideBook : MonoBehaviour
             Inactive();
 
         }
+
+        */
 
     }
 

@@ -10,6 +10,7 @@ public class TutorialController : MonoBehaviour
     public GameObject PlayersNotebook;
     public AudioSource AS;
     private bool AudioPlayed;
+    private bool AudioPlaying;
     private bool NotebookActive;
     public GameObject NotebookController;
     //Phase 1 variables of the tutorial//
@@ -55,14 +56,21 @@ public class TutorialController : MonoBehaviour
     public bool TriggerPhase6;
     public AudioClip Guidebook;
 
+    public bool TriggerPhase6b;
     //phase 7 variables
     public bool TriggerPhase7;
+    public GameObject SliderExhibit;
+    public GameObject SliderInteractRing;
+    public Material SliderExhibitMat;
+   
 
     //phase 8 variables
     public bool TriggerPhase8;
+    public AudioClip SliderButton;
 
     //phase 9 variables
     public bool TriggerPhase9;
+    public AudioClip ToDiorama;
 
     //phase 10 variables
     public bool TriggerPhase10;
@@ -88,6 +96,8 @@ public class TutorialController : MonoBehaviour
 
         SpeechController = GameObject.FindGameObjectWithTag("SpeechController");
         LastWordDefault = SpeechController.GetComponent<PortraitSpeechRec>().LastSaidWord;
+        //SliderExhibitMat = SliderExhibit.GetComponent<Renderer>().materials[0];
+
     }
 
     // Update is called once per frame
@@ -103,27 +113,42 @@ public class TutorialController : MonoBehaviour
             Phase1(); //run phase 1
         }
 
-        if (TriggerPhase2 == true)
+        else if (TriggerPhase2 == true)
         {
             Phase2();
         }
-        if (TriggerPhase3 == true)
+        else if (TriggerPhase3 == true)
         {
             Phase3();
         }
-        if (TriggerPhase4 == true)
+        else if (TriggerPhase4 == true)
         {
             Phase4();
         }
-        if (TriggerPhase5 == true)
+        else if (TriggerPhase5 == true)
         {
             Phase5();
         }
-        if (TriggerPhase6 == true)
+        else if (TriggerPhase6 == true)
         {
             Phase6();
         }
-
+        else if (TriggerPhase6b == true)
+        {
+            Phase6B();
+        }
+        else if (TriggerPhase7 == true)
+        {
+            Phase7();
+        }
+        else if (TriggerPhase8 == true)
+        {
+            Phase8();
+        }
+        else if (TriggerPhase9 == true)
+        {
+            Phase9();
+        }
     }
 
     public void Phase1() //Leading user to portrait, portrait glows until the user steps in the ring
@@ -138,8 +163,8 @@ public class TutorialController : MonoBehaviour
         }
         
 
-        LerpedColour = Color.Lerp(Color.black, Color.yellow, Mathf.PingPong(Time.time, 1)); //lerp between black and yellow, gives a nice tutorial glowing effect
-        CuratorPortraitMat.SetColor("_EmissionColor", LerpedColour); //sets the glow emissive color of the portrait
+        //LerpedColour = Color.Lerp(Color.black, Color.yellow, Mathf.PingPong(Time.time, 1)); //lerp between black and yellow, gives a nice tutorial glowing effect
+        //CuratorPortraitMat.SetColor("_EmissionColor", LerpedColour); //sets the glow emissive color of the portrait
         if (PortraitInteractRing.GetComponent<AreaEntered>().PlayerInTrigger == true) //if the player enters the interact ring, trigger phase 2
         {
             TriggerPhase2 = true;
@@ -161,7 +186,7 @@ public class TutorialController : MonoBehaviour
         
         string LastWordSaid = SpeechController.GetComponent<PortraitSpeechRec>().LastSaidWord; //gets the last word said from the speech controller
         TriggerPhase1 = false; //deactivates phase one
-        CuratorPortraitMat.SetColor("_EmissionColor", Color.black);
+        //CuratorPortraitMat.SetColor("_EmissionColor", Color.black);
        
         PortraitKeyword1.SetActive(true);
         Instructions.SetActive(true);
@@ -187,8 +212,8 @@ public class TutorialController : MonoBehaviour
     public void Phase3() //Send them to pick-up artefact, make the artefact glow
     {
         Debug.Log("Phase 3 Tutorial Active");
-        NotebookMat.EnableKeyword("_EMISSION");
-        LerpedColour = Color.Lerp(Color.black, Color.yellow, Mathf.PingPong(Time.time, 1));
+        //NotebookMat.EnableKeyword("_EMISSION");
+        //LerpedColour = Color.Lerp(Color.black, Color.yellow, Mathf.PingPong(Time.time, 1));
         NotebookMat.SetColor("_EmissionColor", LerpedColour);
 
         if (ArtifactInteractRing.GetComponent<AreaEntered>().PlayerInTrigger == true) //if user enters trigger area, trigger phase 4 
@@ -202,6 +227,7 @@ public class TutorialController : MonoBehaviour
 
     public void Phase4() // encourage to pick up
     {
+        Debug.Log("Phase 4 Enabled");
         if (AudioPlayed == false && AS.isPlaying == false)
         {
             AS.PlayOneShot(PickUp);
@@ -221,6 +247,7 @@ public class TutorialController : MonoBehaviour
 
     public void Phase5() // encourage to put down
     {
+        Debug.Log("Phase 5 Enabled");
         if (AudioPlayed == false && AS.isPlaying == false)
         {
             AS.PlayOneShot(PutDown);
@@ -238,29 +265,84 @@ public class TutorialController : MonoBehaviour
 
     public void Phase6() //Show to request information 
     {
+        
+        Debug.Log("Phase 6 Enabled");
         NotebookController.SetActive(true);
         if (AudioPlayed == false && AS.isPlaying == false)
         {
             AS.PlayOneShot(Guidebook);
             AudioPlayed = true;
         }
+
+        
+        if (AS.isPlaying == true)
+        {
+            //waiting for the last clip to finish
+        }
+        else
+        {
+            
+            Debug.Log("Audio Instruction Finished");
+            TriggerPhase6b = true;
+            TriggerPhase6 = false;
+            AudioPlayed = false;
+            
+        }
+        
+    }
+    public void Phase6B()
+    {
+        if (AS.isPlaying == true)
+        {
+            TriggerPhase7 = true;
+            TriggerPhase6b = false;
+        }
     }
 
     public void Phase7() //send to the slider object
     {
+        Debug.Log("Phase 7 Enabled");
+        //LerpedColour = Color.Lerp(Color.black, Color.yellow, Mathf.PingPong(Time.time, 1));
+        //SliderExhibitMat.SetColor("_Emission", LerpedColour);
+        if (SliderInteractRing.GetComponent<AreaEntered>().PlayerInTrigger == true)
+        {
+            if (AS.isPlaying == false && AudioPlayed == false)
+            {
+                AS.PlayOneShot(SliderButton);
 
-
+            }
+            TriggerPhase7 = false;
+            TriggerPhase8 = true;
+        }
+        
     }
 
     public void Phase8() //Show how to use slider
     {
+        Debug.Log("Phase 8 Enabled");
+        if (AudioPlayed == false && AS.isPlaying == false)
+        {
+            AS.PlayOneShot(SliderButton);
+            AudioPlayed = true;
+        }
 
+        if (SliderExhibit.GetComponent<SliderObject>().DisplayBoards[0].active == false)
+        {
+            TriggerPhase8 = false;
+            TriggerPhase9 = true;
+            AudioPlayed = false;
+        }
 
     }
 
     public void Phase9() //send to the Diorama
     {
-
+        Debug.Log("Phase 9 Activated");
+        if (AudioPlayed == false && AS.isPlaying == false)
+        {
+            AS.PlayOneShot(ToDiorama);
+            AudioPlayed = true;
+        }
 
     }
 

@@ -4,10 +4,10 @@ Portrait 4
 Portrait 3
 Portrait 4
 //Pick-Up Artefact//
-Excellent, you're halfway through this tutorial. This guidebook can be used to request information from Portrait Exhibits, Artifact Exhibits and Diorama Exhibits. Please follow the rug and go to the Slider Exhibit.
-Excellent, you're halfway through this tutorial. This guidebook can be used to request information from Portrait Exhibits, Artifact Exhibits and Diorama Exhibits. Please follow the rug and go to the Slider Exhibit.
-Excellent, you're halfway through this tutorial. This guidebook can be used to request information from Portrait Exhibits, Artifact Exhibits and Diorama Exhibits. Please follow the rug and go to the Slider Exhibit.
-Excellent, you're halfway through this tutorial. This guidebook can be used to request information from Portrait Exhibits, Artifact Exhibits and Diorama Exhibits. Please follow the rug and go to the Slider Exhibit.
+Excellent, you're halfway through this tutorial. This guidebook can be used to request information from Portrait Exhibits, Artifact Exhibits and Diorama Exhibits. Please follow the rug to the Slider Exhibit and stand in the pink ring.
+Excellent, you're halfway through this tutorial. This guidebook can be used to request information from Portrait Exhibits, Artifact Exhibits and Diorama Exhibits. Please follow the rug to the Slider Exhibit and stand in the pink ring.
+Excellent, you're halfway through this tutorial. This guidebook can be used to request information from Portrait Exhibits, Artifact Exhibits and Diorama Exhibits. Please follow the rug to the Slider Exhibit and stand in the pink ring.
+Excellent, you're halfway through this tutorial. This guidebook can be used to request information from Portrait Exhibits, Artifact Exhibits and Diorama Exhibits. Please follow the rug to the Slider Exhibit and stand in the pink ring.
 //Diorama Exhibit//
 Diorama Exhibit 1
 Diorama Exhibit 2
@@ -19,4 +19,6 @@ Hello There! I will be your guide in this Stuart Era Virtual Museum. I hope you'
 Next, please point at "Portraits" and say "Tell me about this". You can point by squeezing the grip, trigger and pressing A on your right Oculus controller.
 Great! Now pick it up.
 Now you can look at the artifact as much as you like. When youre finished looking, open your hand to drop the artifact.
-Now that you can pick artifacts up, its time to learn how to get information about the artifacts. If you open your left hand, with your palm facing upwards, your guidebook will appear in your hand. With this, you can see the keywords that relate to each artifact, the artifacts name and a text version of the audio information you ask for. Give this a try and say this artifacts keyword.
+Now that you can pick artifacts up, its time to learn how to get information about the artifacts. If you open your left hand, with your palm facing upwards, your guidebook will appear in your hand. With this, you can see the keywords that relate to each artifact, the artifacts name on the left page and a text version of the audio information you ask for on the right page. Give this a try and say one of this artifacts keyword.
+Wonderful. Here you can press the buttons on the left and right of you to cycle this display. Alternativley, you can say "Cycle Left" or "Cycle Right". Give this a try.
+See? Easy. Time for the last exhibit. Follow the rug to the Diorama Exhibit and stand in the blue ring.

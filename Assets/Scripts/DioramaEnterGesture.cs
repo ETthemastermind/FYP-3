@@ -106,7 +106,7 @@ public class DioramaEnterGesture : MonoBehaviour
             }
             else { }
 
-            if (GestureActive == false) //turns off the line renderer when gesture is inactive
+            if (GestureActive == false) //turns off the line renderer when gesture is inactive, 
             {
                 LR.enabled = false;
 

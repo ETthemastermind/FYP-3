@@ -1,25 +1,25 @@
 //Portrait//
 This is one way that you can use to interact with the portrait exhibits. Each keyword on the pedestal can be used to learn about the person in the portrait. Now follow the rug to the book on the pedestal, and stand in the red ring.
-Portrait 4
-Portrait 3
-Portrait 4
+This is one way that you can use to interact with the portrait exhibits. Each keyword on the pedestal can be used to learn about the person in the portrait. Now follow the rug to the book on the pedestal, and stand in the red ring
+This is one way that you can use to interact with the portrait exhibits. Each keyword on the pedestal can be used to learn about the person in the portrait. Now follow the rug to the book on the pedestal, and stand in the red ring
+This is one way that you can use to interact with the portrait exhibits. Each keyword on the pedestal can be used to learn about the person in the portrait. Now follow the rug to the book on the pedestal, and stand in the red ring
 //Pick-Up Artefact//
 Excellent, you're halfway through this tutorial. This guidebook can be used to request information from Portrait Exhibits, Artifact Exhibits and Diorama Exhibits. Please follow the rug to the Slider Exhibit and stand in the pink ring.
 Excellent, you're halfway through this tutorial. This guidebook can be used to request information from Portrait Exhibits, Artifact Exhibits and Diorama Exhibits. Please follow the rug to the Slider Exhibit and stand in the pink ring.
 Excellent, you're halfway through this tutorial. This guidebook can be used to request information from Portrait Exhibits, Artifact Exhibits and Diorama Exhibits. Please follow the rug to the Slider Exhibit and stand in the pink ring.
 Excellent, you're halfway through this tutorial. This guidebook can be used to request information from Portrait Exhibits, Artifact Exhibits and Diorama Exhibits. Please follow the rug to the Slider Exhibit and stand in the pink ring.
 //Diorama Exhibit//
-Diorama Exhibit 1
-Diorama Exhibit 2
-Diorama Exhibit 3
-Diorama Exhibit 4
+The Diorama Exhibits allow you to enter the scene displayed behind the glass. To do this, move your hands close together, until a red line appears between your hands and move your hands apart until the line turns green. Hold your hands whilst the line is green and you will be teleported into the scene. To cancel this action, close both of your hands before the teleport
+The Diorama Exhibits allow you to enter the scene displayed behind the glass. To do this, move your hands close together, until a red line appears between your hands and move your hands apart until the line turns green. Hold your hands whilst the line is green and you will be teleported into the scene. To cancel this action, close both of your hands before the teleport
+The Diorama Exhibits allow you to enter the scene displayed behind the glass. To do this, move your hands close together, until a red line appears between your hands and move your hands apart until the line turns green. Hold your hands whilst the line is green and you will be teleported into the scene. To cancel this action, close both of your hands before the teleport
+The Diorama Exhibits allow you to enter the scene displayed behind the glass. To do this, move your hands close together, until a red line appears between your hands and move your hands apart until the line turns green. Hold your hands whilst the line is green and you will be teleported into the scene. To cancel this action, close both of your hands before the teleport
 
 
 Hello There! I will be your guide in this Stuart Era Virtual Museum. I hope you're as excited as I am! Firstly, could you move towards me and come into the green ring below me, until you see particles floating around you. Alternatively, you can walk through the door on your left to opt out of this tutorial.
-Next, please point at "Portraits" and say "Tell me about this".
+Next, please point at one of the keywords on the pedestal and say "Tell me about this".
 Great! Now pick it up.
 Now you can look at the artifact as much as you like. When youre finished looking, open your hand to drop the artifact.
 Now that you can pick artifacts up, its time to learn how to get information about the artifacts. If you open your left hand, your guidebook will appear in your hand. With this, you can see the keywords that relate to each artifact, the artifacts name on the left page and a text version of the audio information you ask for on the right page. Give this a try and say one of this artifacts keyword.
 Wonderful. Here you can press the buttons on the left and right of you to cycle this display. Alternativley, you can say "Cycle Left" or "Cycle Right". Give this a try.
 See? Easy. Time for the last exhibit. Follow the rug to the Diorama Exhibit and stand in the blue ring.
-The Diorama Exhibits allow you to enter the scene displayed behind the glass. To do this, move your hands close together, until a red line appears between your hands and move your hands apart until the line turns green. Hold your hands whilst the line is green and you will be teleported into the scene. To cancel this action, close both of your hands before the teleporting happens.
+The Diorama Exhibits allow you to enter the scene displayed behind the glass. To do this, move your hands close together, until a red line appears between your hands and move your hands apart until the line turns green. Hold your hands whilst the line is green and you will be teleported into the scene. To cancel this action, close both of your hands before the teleport

@@ -29,6 +29,8 @@ public class ModalityController2 : MonoBehaviour
     public GameObject VRSR_Button;
     public GameObject VRSRLM_Button;
 
+    public bool TutorialCompleted; //is this persists across scenes, might as well use it for variables to carry across scenes.
+
 
     //Testing Variables
     public string UserIdentifier;

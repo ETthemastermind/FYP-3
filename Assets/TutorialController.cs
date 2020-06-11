@@ -6,6 +6,8 @@ using TMPro;
 
 public class TutorialController : MonoBehaviour
 {
+
+    public GameObject ModalityController;
     public GameObject Player;
     public GameObject PlayersNotebook;
     public AudioSource AS;
@@ -13,6 +15,8 @@ public class TutorialController : MonoBehaviour
     private bool AudioPlaying;
     private bool NotebookActive;
     public GameObject NotebookController;
+    
+
     //Phase 1 variables of the tutorial//
     public bool TriggerPhase1;
     public GameObject CuratorPortrait; //ref for the curator portrait
@@ -77,10 +81,17 @@ public class TutorialController : MonoBehaviour
     public bool TriggerPhase10;
     public AudioClip DioramaEnterAudio;
 
+    //phase 11 variables
+    public bool TriggerPhase11;
+    public GameObject DioramaGesture;
+    public AudioClip TutFinsihed;
+    public GameObject LastRope;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        ModalityController = GameObject.FindGameObjectWithTag("ModalityController");
         Player = GameObject.FindGameObjectWithTag("Player");
         PlayersNotebook = GameObject.FindGameObjectWithTag("Notebook");
         AS = Player.GetComponent<AudioSource>();
@@ -88,6 +99,7 @@ public class TutorialController : MonoBehaviour
         NotebookController = GameObject.FindGameObjectWithTag("NotebookController");
         PlayersNotebook.SetActive(false);
         NotebookController.SetActive(false);
+        DioramaGesture.SetActive(false);
 
         CuratorPortraitMat = CuratorPortrait.GetComponent<Renderer>().materials[1]; //finds the correct mat on the portrait 
         NotebookMat = Notebook.GetComponent<Renderer>().materials[0];
@@ -99,6 +111,16 @@ public class TutorialController : MonoBehaviour
         SpeechController = GameObject.FindGameObjectWithTag("SpeechController");
         LastWordDefault = SpeechController.GetComponent<PortraitSpeechRec>().LastSaidWord;
         //SliderExhibitMat = SliderExhibit.GetComponent<Renderer>().materials[0];
+
+
+        if (ModalityController.GetComponent<ModalityController2>().TutorialCompleted == false) //if the user has already completed the tutorial, dont trigger it again.
+        {
+            TriggerPhase1 = true;
+        }
+        else
+        {
+            OptedOutOfTutorial(); //run the opt of of tutorial function
+        }
 
     }
 
@@ -155,6 +177,10 @@ public class TutorialController : MonoBehaviour
         {
             Phase10();
         }
+        else if (TriggerPhase11 == true)
+        {
+            Phase11();
+        }
     }
 
     public void Phase1() //Leading user to portrait, portrait glows until the user steps in the ring
@@ -184,10 +210,11 @@ public class TutorialController : MonoBehaviour
     public void Phase2() //introducing the "tell me about this"
     {
         Debug.Log("Phase 2 tutorial active");
-        if (AudioPlayed == false && AS.isPlaying == false)
+        if (AudioPlayed == false && AS.isPlaying == false) // if the audioclip has not been played or a current audioclip is not playing
         {
-            AS.PlayOneShot(TellMeAboutThis);
-            AudioPlayed = true;
+            AS.PlayOneShot(TellMeAboutThis); //play the instruction audioclip
+            AudioPlayed = true; //change audio played to true so that it can only be played once
+
         }
         
         string LastWordSaid = SpeechController.GetComponent<PortraitSpeechRec>().LastSaidWord; //gets the last word said from the speech controller
@@ -332,7 +359,7 @@ public class TutorialController : MonoBehaviour
             AudioPlayed = true;
         }
 
-        if (SliderExhibit.GetComponent<SliderObject>().DisplayBoards[0].active == false)
+        if (SliderExhibit.GetComponent<SliderObject>().DisplayBoards[0].active == false) //checks to see if the display has swapped, therefore the button hasnt been pressed
         {
             TriggerPhase8 = false;
             TriggerPhase9 = true;
@@ -360,13 +387,48 @@ public class TutorialController : MonoBehaviour
 
     public void Phase10() //show how to use Diorama
     {
+        Debug.Log("Phase 10 Activated");
         if (AudioPlayed == false && AS.isPlaying == false)
         {
             AS.PlayOneShot(DioramaEnterAudio);
             AudioPlayed = true;
 
         }
+        if (AS.isPlaying == false)
+        {
+            TriggerPhase10 = false;
+            TriggerPhase11 = true;
+            AudioPlayed = false;
+        }
 
+    }
+
+    public void Phase11()
+    {
+        Debug.Log("Phase 11 Activated");
+        DioramaGesture.SetActive(true); //diroama gesture was deactivated so the player could not use it before the instructions are finished.
+        if (DioramaGesture.GetComponent<LineRenderer>().enabled == true)
+        {
+            if (AudioPlayed == false && AS.isPlaying == false)
+            {
+                AS.PlayOneShot(TutFinsihed);
+                AudioPlayed = false;
+                ModalityController.GetComponent<ModalityController2>().TutorialCompleted = true;
+                LastRope.SetActive(false);
+                TriggerPhase11 = false;
+                
+            }
+        }
+
+    }
+
+    public void OptedOutOfTutorial() //makes sure all the objects turned off by the tutorial are turned back on.
+    {
+        NotebookController.SetActive(true);
+        DioramaGesture.SetActive(true);
+        this.gameObject.SetActive(false);
+        ModalityController.GetComponent<ModalityController2>().TutorialCompleted = true;
+        LastRope.SetActive(false);
     }
 
     

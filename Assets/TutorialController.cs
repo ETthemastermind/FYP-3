@@ -92,6 +92,18 @@ public class TutorialController : MonoBehaviour
     void Start()
     {
         ModalityController = GameObject.FindGameObjectWithTag("ModalityController");
+        if (ModalityController.GetComponent<ModalityController2>().VRSR_Chosen == true)
+        {
+
+        }
+
+        else
+
+        {
+            this.gameObject.SetActive(false);
+
+        }
+        
         Player = GameObject.FindGameObjectWithTag("Player");
         PlayersNotebook = GameObject.FindGameObjectWithTag("Notebook");
         AS = Player.GetComponent<AudioSource>();

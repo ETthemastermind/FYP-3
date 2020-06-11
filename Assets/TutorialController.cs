@@ -15,6 +15,8 @@ public class TutorialController : MonoBehaviour
     private bool AudioPlaying;
     private bool NotebookActive;
     public GameObject NotebookController;
+
+    
     
 
     //Phase 1 variables of the tutorial//

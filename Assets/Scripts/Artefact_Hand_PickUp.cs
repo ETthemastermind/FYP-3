@@ -17,6 +17,8 @@ public class Artefact_Hand_PickUp : MonoBehaviour //
     public GameObject Palm; // reference the leap motion palm, right hand
 
     public GameObject Vr_RightHand;
+    public GameObject Vr_LeftHand;
+    public GameObject GrippedHand;
     public bool VR_HoldingObject;
     public bool Gripping;
 
@@ -39,6 +41,7 @@ public class Artefact_Hand_PickUp : MonoBehaviour //
     void Start()
     {
         Vr_RightHand = GameObject.FindGameObjectWithTag("VR_RightHand");
+        Vr_LeftHand = GameObject.FindGameObjectWithTag("VR_LeftHand");
         Player = GameObject.FindGameObjectWithTag("Player");
         AS = Player.GetComponent<AudioSource>();
     }
@@ -50,11 +53,19 @@ public class Artefact_Hand_PickUp : MonoBehaviour //
         if (SteamVR_Actions._default.GrabGrip.GetState(SteamVR_Input_Sources.RightHand) == true && SteamVR_Actions._default.GrabPinch.GetState(SteamVR_Input_Sources.RightHand) == true && SteamVR_Actions._default.A_Button.GetState(SteamVR_Input_Sources.RightHand) == true) // && SteamVR_Actions._default.A_Button.GetState(SteamVR_Input_Sources.RightHand) == true
         {
             Gripping = true;
+            GrippedHand = Vr_RightHand;
+        }
+
+        else if (SteamVR_Actions._default.GrabGrip.GetState(SteamVR_Input_Sources.LeftHand) == true && SteamVR_Actions._default.GrabPinch.GetState(SteamVR_Input_Sources.LeftHand) == true && SteamVR_Actions._default.X_Button.GetState(SteamVR_Input_Sources.LeftHand) == true) // && SteamVR_Actions._default.A_Button.GetState(SteamVR_Input_Sources.RightHand) == true
+        {
+            Gripping = true;
+            GrippedHand = Vr_LeftHand;
         }
 
         else
         {
             Gripping = false;
+            GrippedHand = null;
 
         }
 
@@ -63,7 +74,7 @@ public class Artefact_Hand_PickUp : MonoBehaviour //
             ArtefactObject_StartLocation = ObjectToPickUp.transform.position; //get its start location
             ArtefactObject_StartOrientation = ObjectToPickUp.transform.localEulerAngles; //get its start rotation
             ArtefactObject_Home = ObjectToPickUp.gameObject.transform.parent.gameObject;// get its home display
-            ObjectToPickUp.transform.parent = Vr_RightHand.transform; //parent the object to pick up to the player's palm
+            ObjectToPickUp.transform.parent = GrippedHand.transform; //parent the object to pick up to the player's palm
             ObjectToPickUp.GetComponent<PickUpObject_Hand>().HaloGlow.SetActive(false);
 
             VR_HoldingObject = true;
@@ -79,6 +90,7 @@ public class Artefact_Hand_PickUp : MonoBehaviour //
             ObjectToPickUp.transform.localEulerAngles = ArtefactObject_StartOrientation;
             VR_HoldingObject = false;
             AS.PlayOneShot(PickUp_Noise);
+            GrippedHand = null;
         }
 
         

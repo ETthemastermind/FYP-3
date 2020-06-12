@@ -120,7 +120,8 @@ public class SphereCastPointGesture : MonoBehaviour
             LR.SetPosition(1, FingerTip.transform.position);
 
             LR.enabled = false;
-            
+            FingerTip = RightFingerTip;
+
 
         }
         

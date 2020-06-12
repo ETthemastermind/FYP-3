@@ -114,7 +114,7 @@ public class TutorialController : MonoBehaviour
         PlayersNotebook.SetActive(false);
         NotebookController.SetActive(false);
         DioramaGesture.SetActive(false);
-
+        SpeechController = GameObject.FindGameObjectWithTag("SpeechController");
         CuratorPortraitMat = CuratorPortrait.GetComponent<Renderer>().materials[1]; //finds the correct mat on the portrait 
         NotebookMat = Notebook.GetComponent<Renderer>().materials[0];
         PortraitKeyword1.SetActive(false);
@@ -122,7 +122,7 @@ public class TutorialController : MonoBehaviour
         PortraitKeyword3.SetActive(false);
         PortraitKeyword4.SetActive(false);
 
-        SpeechController = GameObject.FindGameObjectWithTag("SpeechController");
+        
         LastWordDefault = SpeechController.GetComponent<PortraitSpeechRec>().LastSaidWord;
         //SliderExhibitMat = SliderExhibit.GetComponent<Renderer>().materials[0];
 

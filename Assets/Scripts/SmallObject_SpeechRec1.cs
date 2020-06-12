@@ -15,11 +15,11 @@ public class SmallObject_SpeechRec1 : MonoBehaviour
     public GameObject other; //reference for the artifact's interact riing gotten from the player, named other because im copying and pasting my oringal small object speech rec script over
 
     public bool GetKeywords = false;
-    public GameObject LastInteractRing;
+    public string[] LastKeywords;
 
     public bool SliderObject = false;
     public GameObject Artefact; //reference for the given artefact
-
+    public GameObject LastArtefact;
     public GameObject Temp;
     public string[] Keywords; //list of keywords that the player can say
     public AudioClip[] GatheredInfo; //list of relevant audioclips
@@ -31,28 +31,32 @@ public class SmallObject_SpeechRec1 : MonoBehaviour
 
 
     // Start is called before the first frame update
-    private void RecognisedSpeech(PhraseRecognizedEventArgs speech)
-    {
-        Debug.Log(speech.text);
-        actions[speech.text].Invoke();
-
-    }
+    
 
     void Start()
     {
-        PlayerController = GameObject.FindGameObjectWithTag("Player");
-        AS = PlayerController.GetComponent<AudioSource>(); //find the audio source on the player controller
-        Keywords[0] = "arduous";
-        Keywords[1] = "convoluted.";
-        Keywords[2] = "perplexing.";
-        Keywords[3] = "Pulchritudinous";
+        keywordRecogniser.Dispose();
+        actions.Remove(Keywords[0]);
+        actions.Remove(Keywords[1]);
+        actions.Remove(Keywords[2]);
+        actions.Remove(Keywords[3]);
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (PlayerController.GetComponent<PlayerExhibitObserver>().InteractRing == null)
+        if (PlayerController == null)
         {
+            PlayerController = GameObject.FindGameObjectWithTag("Player");
+            AS = PlayerController.GetComponent<AudioSource>(); //find the audio source on the player controller
+
+        }
+        if (PlayerController.GetComponent<PlayerExhibitObserver>().InteractRing == null && PlayerController != null)
+        {
+            /*
+            Debug.Log("User not in area");
             InArtefactArea = false;
             other = null;
             SliderObject = false;
@@ -66,12 +70,13 @@ public class SmallObject_SpeechRec1 : MonoBehaviour
             Keywords = null;
             keywordRecogniser.Dispose();
             keywordRecogniser.Stop();
+            */
 
         }
 
         else
         {
-            
+            Debug.Log("User in area");
             InArtefactArea = true;
             other = PlayerController.GetComponent<PlayerExhibitObserver>().InteractRing;
             for (int i = 0; i < other.transform.parent.childCount; i++) //for each of the sibling gameobjects of the interact ring
@@ -84,16 +89,29 @@ public class SmallObject_SpeechRec1 : MonoBehaviour
                 if (other.gameObject.transform.parent.GetChild(i).gameObject.tag == "Artefact")
 
                 {
+                    LastArtefact = Artefact;
                     Artefact = other.gameObject.transform.parent.GetChild(i).gameObject; //assigns the artefact object
                     GatheredInfo = Artefact.GetComponent<AssignInformation>().AudioInfo; //gets the audio clips from the assign info script on the object
 
+                    
 
                     Keywords = Artefact.GetComponent<AssignInformation>().keywords; // gets the keywords from the assing info script on the object
-                                                                                    //KeywordsFucntion();
+                    
+                    Debug.Log("New Keywords added");
+                    actions.Add(Keywords[0], PointOfInterest1); //creates the commands from the keywords
+                    actions.Add(Keywords[1], PointOfInterest2);
+                    actions.Add(Keywords[2], PointOfInterest3);
+                    actions.Add(Keywords[3], PointOfInterest4);
+                    Debug.Log("Keyword Recogniser started");
+                    keywordRecogniser = new KeywordRecognizer(actions.Keys.ToArray()); //activates the speech rec
+                    keywordRecogniser.OnPhraseRecognized += RecognisedSpeech;
+                    keywordRecogniser.Start();
+
+
 
 
                 }
-
+                
 
 
             }
@@ -110,20 +128,15 @@ public class SmallObject_SpeechRec1 : MonoBehaviour
 
     public void KeywordsFucntion()
     {
-        Keywords = Artefact.GetComponent<AssignInformation>().keywords; // gets the keywords from the assing info script on the object
+        
 
-        actions.Add(Keywords[0], PointOfInterest1); //creates the commands from the keywords
-        actions.Add(Keywords[1], PointOfInterest2);
-        actions.Add(Keywords[2], PointOfInterest3);
-        actions.Add(Keywords[3], PointOfInterest4);
+        
 
 
         //Debug.Log("Break Two");
 
 
-        keywordRecogniser = new KeywordRecognizer(actions.Keys.ToArray()); //activates the speech rec
-        keywordRecogniser.OnPhraseRecognized += RecognisedSpeech;
-        keywordRecogniser.Start();
+        
 
         
         
@@ -173,7 +186,12 @@ public class SmallObject_SpeechRec1 : MonoBehaviour
 
 
     }
+    private void RecognisedSpeech(PhraseRecognizedEventArgs speech)
+    {
+        Debug.Log(speech.text);
+        actions[speech.text].Invoke();
 
+    }
 
 
 }

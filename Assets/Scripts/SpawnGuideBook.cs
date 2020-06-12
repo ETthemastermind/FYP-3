@@ -27,13 +27,13 @@ public class SpawnGuideBook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (SteamVR_Actions._default.LeftTriggerTouch.GetState(SteamVR_Input_Sources.LeftHand) == false && SteamVR_Actions._default.LeftGripTouch.GetState(SteamVR_Input_Sources.LeftHand) == false && SteamVR_Actions._default.X_Button_Touch.GetState(SteamVR_Input_Sources.LeftHand) == false)
+        if (SteamVR_Actions._default.X_Button.GetState(SteamVR_Input_Sources.LeftHand) == true)
         {
             Active();
 
         }
 
-        else
+        else if (SteamVR_Actions._default.X_Button.GetState(SteamVR_Input_Sources.LeftHand) == false)
         {
             Inactive();
         }

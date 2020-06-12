@@ -8,6 +8,8 @@ public class SphereCastPointGesture : MonoBehaviour
 {
     public bool _IsPointing = false;
 
+    public GameObject RightFingerTip;
+    public GameObject LeftFingerTip;
     public GameObject FingerTip;
     public float sphereRadius;
     public float maxDistance;
@@ -44,9 +46,11 @@ public class SphereCastPointGesture : MonoBehaviour
     {
         if (_IsPointing == true)
         {
-            RaycastHit ObjectHit;
-            LR.SetPosition(0,FingerTip.transform.position);
             
+            RaycastHit ObjectHit;
+            
+            
+
             if (Physics.SphereCast(FingerTip.transform.position, sphereRadius, FingerTip.transform.forward, out ObjectHit, maxDistance, layerMask, QueryTriggerInteraction.Ignore))
             {
                 CurrentHitObject = ObjectHit.transform.gameObject;
@@ -55,11 +59,12 @@ public class SphereCastPointGesture : MonoBehaviour
                 Debug.Log(ObjectHit);
                 if (CurrentHitObject.gameObject.tag == "Keyword")
                 {
+                    LR.enabled = true;
+                    LR.SetPosition(0, FingerTip.transform.position);
                     LR.SetPosition(1, ObjectHit.point);
                     if (KeywordObject != null)
                     {
                         KeywordObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.white;
-
                     }
                     
                     KeywordObject = CurrentHitObject.transform.gameObject;
@@ -82,24 +87,43 @@ public class SphereCastPointGesture : MonoBehaviour
             else
             {
                 CurrentHitDistance = maxDistance;
-                CurrentHitObject = null;
                 
                 
             }
 
         }
-        
-        if (SteamVR_Actions._default.GrabGrip.GetState(SteamVR_Input_Sources.RightHand) == true && SteamVR_Actions._default.GrabPinch.GetState(SteamVR_Input_Sources.RightHand) == false && SteamVR_Actions._default.A_Button.GetState(SteamVR_Input_Sources.RightHand) == true && LeapHandsActive == false) //&& SteamVR_Actions._default.A_Button.GetState(SteamVR_Input_Sources.RightHand) == true
+
+        if (SteamVR_Actions._default.GrabGrip.GetState(SteamVR_Input_Sources.RightHand) == true && SteamVR_Actions._default.GrabPinch.GetState(SteamVR_Input_Sources.RightHand) == false && LeapHandsActive == false) //&& SteamVR_Actions._default.A_Button.GetState(SteamVR_Input_Sources.RightHand) == true
         {
             _IsPointing = true;
-            LR.enabled = true;
+            FingerTip = RightFingerTip;
+            
+        }
+        else if (SteamVR_Actions._default.GrabGrip.GetState(SteamVR_Input_Sources.LeftHand) == true && SteamVR_Actions._default.GrabPinch.GetState(SteamVR_Input_Sources.LeftHand) == false && LeapHandsActive == false) //&& SteamVR_Actions._default.A_Button.GetState(SteamVR_Input_Sources.RightHand) == true
+        {
+            _IsPointing = true;
+            FingerTip = LeftFingerTip;
+            
         }
 
         else if (LeapHandsActive == false)
         {
             _IsPointing = false;
             LR.enabled = false;
+            FingerTip = RightFingerTip;
         }
+
+        else
+        {
+            _IsPointing = false;
+            LR.SetPosition(0, FingerTip.transform.position);
+            LR.SetPosition(1, FingerTip.transform.position);
+
+            LR.enabled = false;
+            
+
+        }
+        
         
 
     }

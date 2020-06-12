@@ -27,13 +27,13 @@ public class CommandsPage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (SpeechController.GetComponent<SmallObject_SpeechRec>().Artefact != null)
+        if (SpeechController.GetComponent<SmallObject_SpeechRec1>().Artefact != null)
         {
-            FoundInfo[0] = SpeechController.GetComponent<SmallObject_SpeechRec>().Artefact.gameObject.name; //finds all the relevant info from the speech controller
-            FoundInfo[1] = SpeechController.GetComponent<SmallObject_SpeechRec>().Keywords[0];
-            FoundInfo[2] = SpeechController.GetComponent<SmallObject_SpeechRec>().Keywords[1];
-            FoundInfo[3] = SpeechController.GetComponent<SmallObject_SpeechRec>().Keywords[2];
-            FoundInfo[4] = SpeechController.GetComponent<SmallObject_SpeechRec>().Keywords[3];
+            FoundInfo[0] = SpeechController.GetComponent<SmallObject_SpeechRec1>().Artefact.gameObject.name; //finds all the relevant info from the speech controller
+            FoundInfo[1] = SpeechController.GetComponent<SmallObject_SpeechRec1>().Keywords[0];
+            FoundInfo[2] = SpeechController.GetComponent<SmallObject_SpeechRec1>().Keywords[1];
+            FoundInfo[3] = SpeechController.GetComponent<SmallObject_SpeechRec1>().Keywords[2];
+            FoundInfo[4] = SpeechController.GetComponent<SmallObject_SpeechRec1>().Keywords[3];
 
             ArtefactName_CMD.text = FoundInfo[0]; //assigns the found information
             ArtefactName_INFO.text = FoundInfo[0];
@@ -42,7 +42,7 @@ public class CommandsPage : MonoBehaviour
             CommandThree.text = FoundInfo[3];
             CommandFour.text = FoundInfo[4];
         }
-        else if (SpeechController.GetComponent<SmallObject_SpeechRec>().Artefact = null) { }
+        else if (SpeechController.GetComponent<SmallObject_SpeechRec1>().Artefact = null) { }
 
 
 

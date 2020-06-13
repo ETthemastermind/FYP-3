@@ -433,10 +433,12 @@ public class TutorialController : MonoBehaviour
         {
             if (AudioPlayed == false && AS.isPlaying == false)
             {
+                
+                LastRope.SetActive(false);
                 AS.PlayOneShot(TutFinsihed);
                 AudioPlayed = false;
                 ModalityController.GetComponent<ModalityController2>().TutorialCompleted = true;
-                LastRope.SetActive(false);
+                Debug.Log("Tutorial Complete");
                 TriggerPhase11 = false;
                 
             }
@@ -450,7 +452,11 @@ public class TutorialController : MonoBehaviour
         DioramaGesture.SetActive(true);
         this.gameObject.SetActive(false);
         ModalityController.GetComponent<ModalityController2>().TutorialCompleted = true;
-        LastRope.SetActive(false);
+        
+    }
+    public void TutorialFinished()
+    {
+
     }
 
     

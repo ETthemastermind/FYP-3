@@ -94,7 +94,7 @@ public class TutorialController : MonoBehaviour
     void Start()
     {
         ModalityController = GameObject.FindGameObjectWithTag("ModalityController");
-        if (ModalityController.GetComponent<ModalityController2>().VRSR_Chosen == true)
+        if (ModalityController.GetComponent<ModalityController2>().VRSR_Chosen == true || GameObject.Find("ChoosePlayer").GetComponent<ChooseCorrectPlayer>().VRSRPlayerOnDebug == true)
         {
             TriggerPhase1 = true;
         }
@@ -105,22 +105,9 @@ public class TutorialController : MonoBehaviour
             this.gameObject.SetActive(false);
 
         }
+
         
-        Player = GameObject.FindGameObjectWithTag("Player");
-        PlayersNotebook = GameObject.FindGameObjectWithTag("Notebook");
-        AS = Player.GetComponent<AudioSource>();
-        PickUpController = GameObject.FindGameObjectWithTag("PickUpController");
-        //NotebookController = GameObject.FindGameObjectWithTag("NotebookController");
-        PlayersNotebook.SetActive(false);
-        NotebookController.SetActive(false);
-        DioramaGesture.SetActive(false);
-        SpeechController = GameObject.FindGameObjectWithTag("SpeechController");
-        CuratorPortraitMat = CuratorPortrait.GetComponent<Renderer>().materials[1]; //finds the correct mat on the portrait 
-        NotebookMat = Notebook.GetComponent<Renderer>().materials[0];
-        PortraitKeyword1.SetActive(false);
-        PortraitKeyword2.SetActive(false);
-        PortraitKeyword3.SetActive(false);
-        PortraitKeyword4.SetActive(false);
+        
 
         
         LastWordDefault = SpeechController.GetComponent<PortraitSpeechRec>().LastSaidWord;
@@ -142,6 +129,26 @@ public class TutorialController : MonoBehaviour
     void Update()
 
     {
+        if (Player == null)
+        {
+            Player = GameObject.FindGameObjectWithTag("Player");
+            PlayersNotebook = GameObject.FindGameObjectWithTag("Notebook");
+            AS = Player.GetComponent<AudioSource>();
+            PickUpController = GameObject.FindGameObjectWithTag("PickUpController");
+            //NotebookController = GameObject.FindGameObjectWithTag("Notebook");
+            PlayersNotebook.SetActive(false);
+            NotebookController.SetActive(false);
+            //SpeechController = GameObject.FindGameObjectWithTag("SpeechController");
+            DioramaGesture = Player;
+
+            SpeechController = Player;
+            CuratorPortraitMat = CuratorPortrait.GetComponent<Renderer>().materials[1]; //finds the correct mat on the portrait 
+            NotebookMat = Notebook.GetComponent<Renderer>().materials[0];
+            PortraitKeyword1.SetActive(false);
+            PortraitKeyword2.SetActive(false);
+            PortraitKeyword3.SetActive(false);
+            PortraitKeyword4.SetActive(false);
+        }
 
 
 
@@ -216,6 +223,7 @@ public class TutorialController : MonoBehaviour
             TriggerPhase2 = true;
             TriggerPhase1 = false;
             AudioPlayed = false;
+            
 
         }
 
@@ -261,11 +269,11 @@ public class TutorialController : MonoBehaviour
         Debug.Log("Phase 3 Tutorial Active");
         //NotebookMat.EnableKeyword("_EMISSION");
         //LerpedColour = Color.Lerp(Color.black, Color.yellow, Mathf.PingPong(Time.time, 1));
-        NotebookMat.SetColor("_EmissionColor", LerpedColour);
+        //NotebookMat.SetColor("_EmissionColor", LerpedColour);
 
         if (ArtifactInteractRing.GetComponent<AreaEntered>().PlayerInTrigger == true) //if user enters trigger area, trigger phase 4 
         {
-            NotebookMat.SetColor("_EmissionColor", Color.black);
+            //NotebookMat.SetColor("_EmissionColor", Color.black);
             TriggerPhase3 = false;
             TriggerPhase4 = true;
 

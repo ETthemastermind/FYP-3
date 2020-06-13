@@ -39,7 +39,7 @@ public class ModalityController2 : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(gameObject); //keeps the modality controller persistent between scenes
-        XRSettings.enabled = false;
+        
         
     }
 
@@ -75,6 +75,8 @@ public class ModalityController2 : MonoBehaviour
         Gamepad_Button.GetComponent<Image>().color = Color.white; //change color of the buttons to indicate choice
         VRSR_Button.GetComponent<Image>().color = Color.green;
         VRSRLM_Button.GetComponent<Image>().color = Color.white;
+
+        
     }
 
     public void VRSRLMModality()
@@ -87,6 +89,8 @@ public class ModalityController2 : MonoBehaviour
         Gamepad_Button.GetComponent<Image>().color = Color.white;
         VRSR_Button.GetComponent<Image>().color = Color.white;
         VRSRLM_Button.GetComponent<Image>().color = Color.green;
+
+        
 
     }
 

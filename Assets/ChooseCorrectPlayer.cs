@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.XR;
 
 public class ChooseCorrectPlayer : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class ChooseCorrectPlayer : MonoBehaviour
     public GameObject VRSRPlayer;
     public GameObject VRLMSRPlayer;
 
+    public bool DebugEnableXR;
     
 
     
@@ -31,6 +33,7 @@ public class ChooseCorrectPlayer : MonoBehaviour
             GamepadPlayer.SetActive(false);
             VRSRPlayer.SetActive(true);
             VRLMSRPlayer.SetActive(false);
+            XRSettings.enabled = true;
         }
 
         else if (ModalityController.GetComponent<ModalityController2>().VRLMSR_Chosen == true)
@@ -38,6 +41,12 @@ public class ChooseCorrectPlayer : MonoBehaviour
             GamepadPlayer.SetActive(false);
             VRSRPlayer.SetActive(false);
             VRLMSRPlayer.SetActive(true);
+            XRSettings.enabled = true;
+        }
+
+        if (DebugEnableXR == true)
+        {
+            XRSettings.enabled = true;
         }
 
 

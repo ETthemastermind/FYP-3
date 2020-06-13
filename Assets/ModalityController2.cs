@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.XR;
 
 
 public class ModalityController2 : MonoBehaviour
@@ -38,6 +39,8 @@ public class ModalityController2 : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(gameObject); //keeps the modality controller persistent between scenes
+        XRSettings.enabled = false;
+        
     }
 
     // Update is called once per frame

@@ -96,7 +96,7 @@ public class TutorialController : MonoBehaviour
         ModalityController = GameObject.FindGameObjectWithTag("ModalityController");
         if (ModalityController.GetComponent<ModalityController2>().VRSR_Chosen == true)
         {
-
+            TriggerPhase1 = true;
         }
 
         else
@@ -110,7 +110,7 @@ public class TutorialController : MonoBehaviour
         PlayersNotebook = GameObject.FindGameObjectWithTag("Notebook");
         AS = Player.GetComponent<AudioSource>();
         PickUpController = GameObject.FindGameObjectWithTag("PickUpController");
-        NotebookController = GameObject.FindGameObjectWithTag("NotebookController");
+        //NotebookController = GameObject.FindGameObjectWithTag("NotebookController");
         PlayersNotebook.SetActive(false);
         NotebookController.SetActive(false);
         DioramaGesture.SetActive(false);

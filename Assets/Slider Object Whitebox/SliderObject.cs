@@ -50,6 +50,8 @@ public class SliderObject : MonoBehaviour
         //Instantiate(DisplayBoards[0], gameObject.transform.position, gameObject.transform.rotation * DisplayRotOffset);
         //Debug.Log(DisplayBoards.Length);
         ProgressSlider.GetComponent<Slider>().maxValue = DisplayBoards.Length - 1;
+
+        
         Player = GameObject.FindGameObjectWithTag("Player");
         AS = Player.GetComponent<AudioSource>();
     }
@@ -57,7 +59,7 @@ public class SliderObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ;
+        if (Player == null)
         if (Initialised == false)
         {
             for (int i = 1; i != DisplayBoards.Length; i++)

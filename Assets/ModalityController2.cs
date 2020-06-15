@@ -39,7 +39,7 @@ public class ModalityController2 : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(gameObject); //keeps the modality controller persistent between scenes
-        
+        XRSettings.enabled = false;
         
     }
 

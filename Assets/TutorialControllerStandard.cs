@@ -7,7 +7,7 @@ public class TutorialControllerStandard : MonoBehaviour
     public GameObject ModalityController;
     //phase 1 variables//
 
-    public bool TriggerPhase1;
+    
     // Start is called before the first frame update
     void Start()
     {

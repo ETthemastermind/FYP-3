@@ -28,6 +28,8 @@ public class ChooseCorrectPlayer : MonoBehaviour
             VRSRPlayer.SetActive(false);
             VRLMSRPlayer.SetActive(false);
 
+            XRSettings.enabled = false;
+
 
 
         }
@@ -37,6 +39,7 @@ public class ChooseCorrectPlayer : MonoBehaviour
             GamepadPlayer.SetActive(false);
             VRSRPlayer.SetActive(true);
             VRLMSRPlayer.SetActive(false);
+            XRSettings.enabled = true;
 
 
             GameObject.FindGameObjectWithTag("Player").SetActive(true);
@@ -47,7 +50,8 @@ public class ChooseCorrectPlayer : MonoBehaviour
             GamepadPlayer.SetActive(false);
             VRSRPlayer.SetActive(false);
             VRLMSRPlayer.SetActive(true);
-           
+            XRSettings.enabled = true;
+
         }
 
        

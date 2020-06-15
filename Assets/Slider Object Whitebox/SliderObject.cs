@@ -60,6 +60,10 @@ public class SliderObject : MonoBehaviour
     void Update()
     {
         if (Player == null)
+        {
+            Player = GameObject.FindGameObjectWithTag("Player");
+            AS = Player.GetComponent<AudioSource>();
+        }
         if (Initialised == false)
         {
             for (int i = 1; i != DisplayBoards.Length; i++)

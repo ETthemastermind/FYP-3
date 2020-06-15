@@ -67,6 +67,7 @@ public class SliderObjectSpeech : MonoBehaviour
         {
             Debug.Log("Cycling Right");
             SliderObject.GetComponent<SliderObject>().IncrementDisplay();
+            SliderObject.GetComponent<SliderExhibitTelemetry>().SRUsed += 1;
         }
         
 
@@ -78,6 +79,7 @@ public class SliderObjectSpeech : MonoBehaviour
         {
             Debug.Log("Cycling Left");
             SliderObject.GetComponent<SliderObject>().DecrementDisplay();
+            SliderObject.GetComponent<SliderExhibitTelemetry>().SRUsed += 1;
         }
         
     }

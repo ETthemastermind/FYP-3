@@ -33,6 +33,7 @@ public class ChangeDisplay : MonoBehaviour
                 Debug.Log("Cycle Right");
                 //Display.SendMessage("IncrementDisplay");
                 Display.GetComponent<SliderObject>().IncrementDisplay(); //runs the increment function on the slider display
+                gameObject.transform.parent.GetComponent<SliderExhibitTelemetry>().ButtonPressed += 1;
             }
 
             else if (LeftCycle == true) //if the player has pressed the left cycle button
@@ -40,6 +41,7 @@ public class ChangeDisplay : MonoBehaviour
                 Debug.Log("Cycle Left");
                 //Display.SendMessage("DecrementDisplay");
                 Display.GetComponent<SliderObject>().DecrementDisplay(); //runs the decrement function on the slider display
+                gameObject.transform.parent.GetComponent<SliderExhibitTelemetry>().ButtonPressed += 1;
             }
            
         }

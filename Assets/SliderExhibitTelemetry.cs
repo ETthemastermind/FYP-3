@@ -20,10 +20,11 @@ public class SliderExhibitTelemetry : MonoBehaviour
 
     //Standard Telemetry Variables
     //VR Telemtry Variables
-    public int Keyword1Said;
-    public int Keyword2Said;
-    public int Keyword3Said;
-    public int Keyword4Said;
+    public int ButtonPressed;
+    public float SRUsed;
+    
+      
+
 
     //VR+ Telemtry Variables
     //other needed Variables
@@ -104,6 +105,8 @@ public class SliderExhibitTelemetry : MonoBehaviour
         DataToPushToMasterTelemetry[1] = TypeOfExhibit;
         DataToPushToMasterTelemetry[2] = TimeStamp_Entered;
         DataToPushToMasterTelemetry[3] = TimeStamp_Left;
+        DataToPushToMasterTelemetry[4] = ButtonPressed.ToString();
+        DataToPushToMasterTelemetry[5] = SRUsed.ToString();
         
 
         MasterTelemetrySystem.GetComponent<TelemetrySystem>().AddEntry(DataToPushToMasterTelemetry);

@@ -1,3 +1,4 @@
-EuropeMapSlider,Slider Exhibit,20:37:59,20:38:03,,,,,,,
-Millenary Petition,PickUp Artefacts,20:38:05,20:38:12,What - 0,Purpose - 0,Backing - 0,Outcome - 0,,,
-FinanceSliderObject,Slider Exhibit,20:38:18,20:38:20,,,,,,,
+EuropeMapSlider,Slider Exhibit,20:55:55,20:56:15,0,2,,,,,
+EuropeMapSlider,Slider Exhibit,20:56:16,20:56:16,0,2,,,,,
+EuropeMapSlider,Slider Exhibit,20:56:17,20:56:29,5,2,,,,,
+FinanceSliderObject,Slider Exhibit,20:56:32,20:57:00,3,2,,,,,

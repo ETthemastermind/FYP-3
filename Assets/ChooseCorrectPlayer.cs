@@ -13,6 +13,9 @@ public class ChooseCorrectPlayer : MonoBehaviour
     public bool GamepadPlayerOnDebug;
     public bool VRSRPlayerOnDebug;
     public bool VRSRLMPlayerOnDebug;
+
+    //variables controlling Gamepad player returning from Diorama
+    
     
 
     
@@ -30,6 +33,23 @@ public class ChooseCorrectPlayer : MonoBehaviour
 
             XRSettings.enabled = false;
 
+            if (SceneManager.GetActiveScene().buildIndex == 1)
+            {
+                if (ModalityController.GetComponent<ModalityController2>().FirstMusSpawn == false)
+                {
+                    ModalityController.GetComponent<ModalityController2>().FirstMusSpawn = true;
+
+                } //if this is the first time the gamepad player is spawning into the museum, turn the variable on
+                else
+                {
+                    Debug.Log("Player Returning");
+                    GameObject.FindGameObjectWithTag("Player").transform.position = ModalityController.GetComponent<ModalityController2>().GamepadPlayer_Return;
+
+
+
+                }
+
+            }
 
 
         }

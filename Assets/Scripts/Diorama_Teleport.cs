@@ -18,13 +18,16 @@ public class Diorama_Teleport : MonoBehaviour   //Gamepad teleporting
 
     public bool InDiorama = false;
 
-    public GameObject InfoGUI;
+    public GameObject InfoGUI;  //GUI references
     public Text DisplayedInformation;
 
     public GameObject Keyword1;  
     public GameObject Keyword2;
     public GameObject Keyword3;
     public GameObject Keyword4;
+    public GameObject LoadingScreen;
+
+    public GameObject ModalityController;
 
 
 
@@ -38,12 +41,15 @@ public class Diorama_Teleport : MonoBehaviour   //Gamepad teleporting
         Keyword2 = GameObject.FindGameObjectWithTag("DD_KW_2");
         Keyword3 = GameObject.FindGameObjectWithTag("DD_KW_3");
         Keyword4 = GameObject.FindGameObjectWithTag("DD_KW_4");
+        LoadingScreen = GameObject.FindGameObjectWithTag("GP_LoadingScreen");
+        ModalityController = GameObject.FindGameObjectWithTag("ModalityController");
     }
     void Start()
     {
         Debug.Log("Diorma Start Function");
         PressA.SetActive(false); //sets the GUI to false
         InfoGUI.SetActive(false); //sets the GUI to false
+        LoadingScreen.SetActive(false);
     }
 
     // Update is called once per frame
@@ -82,7 +88,10 @@ public class Diorama_Teleport : MonoBehaviour   //Gamepad teleporting
             if (Input.GetButtonDown("Gamepad_A")) //checks to see if the player has pressed A
             {
                 Debug.Log("Player entering diorama");
-                SceneManager.LoadScene(TargetSceneIndex); //teleport area to the diorama
+                PressA.SetActive(false);
+                LoadingScreen.SetActive(true);
+                ModalityController.GetComponent<ModalityController2>().GamepadPlayer_Return = GameObject.FindGameObjectWithTag("Player").transform.position;
+                SceneManager.LoadSceneAsync(TargetSceneIndex); //teleport area to the diorama
 
             }
 

@@ -7,12 +7,12 @@ using UnityEngine.UI;
 using UnityEngine.XR;
 
 
-public class ModalityController2 : MonoBehaviour
+public class ModalityController2 : MonoBehaviour  //due to the dont destroy on load, might as well keep anything that needs to be kept across scenes here
 {
     public bool Gamepad_Chosen;
+    public bool GamepadFirstSpawned; //checks to see if the player has already been spawned, purpose is to allow the player to return to where they left when going to diorama scenes
     public bool VRSR_Chosen;
     public bool VRLMSR_Chosen;
-
     public bool TestingModeActivated;
 
     public int SceneToLoad;
@@ -30,11 +30,21 @@ public class ModalityController2 : MonoBehaviour
     public GameObject VRSR_Button;
     public GameObject VRSRLM_Button;
 
+
+
     public bool TutorialCompleted; //is this persists across scenes, might as well use it for variables to carry across scenes.
+    //diorama return variables
+
+    public Vector3 GamepadPlayer_Return; // vector 3 coords, assinged by the diorama artifacts when the player changes scenes
+    public bool FirstMusSpawn;
+    
 
 
-    //Testing Variables
+
+    //Test Variables
     public string UserIdentifier;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -60,6 +70,7 @@ public class ModalityController2 : MonoBehaviour
         VRSR_Button.GetComponent<Image>().color = Color.white;
         VRSRLM_Button.GetComponent<Image>().color = Color.white;
 
+        
         
 
 

@@ -64,7 +64,7 @@ public class SliderObject : MonoBehaviour
         {
             for (int i = 1; i != DisplayBoards.Length; i++)
             {
-                Debug.Log(DisplayBoards[i].gameObject.name);
+                //Debug.Log(DisplayBoards[i].gameObject.name);
                 DisplayBoards[i].gameObject.SetActive(false);
 
             }

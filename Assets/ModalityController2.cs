@@ -18,6 +18,7 @@ public class ModalityController2 : MonoBehaviour  //due to the dont destroy on l
     public int SceneToLoad;
     public GameObject IdentifierInputBox;
     public GameObject NoModalitySelected;
+    public GameObject TelemetrySystem;
 
     //refs to canvas
     public GameObject MainMenuCanvas;
@@ -50,6 +51,7 @@ public class ModalityController2 : MonoBehaviour  //due to the dont destroy on l
     {
         DontDestroyOnLoad(gameObject); //keeps the modality controller persistent between scenes
         XRSettings.enabled = false;
+        TelemetrySystem = GameObject.FindGameObjectWithTag("TelemetrySystem");
         
     }
 
@@ -166,6 +168,7 @@ public class ModalityController2 : MonoBehaviour  //due to the dont destroy on l
 
         if (TestingModeActivated == false)
         {
+            TelemetrySystem.GetComponent<TelemetrySystem>().enabled = false;
             LoadLevel();
         }
         else if (TestingModeActivated == true)
@@ -173,21 +176,16 @@ public class ModalityController2 : MonoBehaviour  //due to the dont destroy on l
             Debug.Log("Turn Main Menu Canvas Off");
             MainMenuCanvas.SetActive(false);
             TestingCanvas.SetActive(true);
+            
+            
+
 
         }
     }
 
     public void BeginTest()
     {
-        Debug.Log("Begin Testing");
-        if (UserIdentifier == "")
-        {
-            
-        }
-        else
-        {
-            LoadLevel();
-        }
+        LoadLevel();
     }
 
     public void GetUserID() //gets a user ID;

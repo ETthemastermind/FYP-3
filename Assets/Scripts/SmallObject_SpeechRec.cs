@@ -24,12 +24,15 @@ public class SmallObject_SpeechRec : MonoBehaviour
 
     public TMP_Text ActiveCommand_Notebook;
     public TMP_Text ActiveInfo_Notebook;
+
+    public GameObject TelemetrySystem; //refernce to the telemetry system (the top parent object)
     
     // Start is called before the first frame update
     void Start()
     {
         PlayerController = GameObject.FindGameObjectWithTag("Player");
         AS = PlayerController.GetComponent<AudioSource>(); //find the audio source on the player controller
+        
     }
 
     // Update is called once per frame
@@ -151,6 +154,9 @@ public class SmallObject_SpeechRec : MonoBehaviour
             AS.PlayOneShot(GatheredInfo[0]);
             ActiveCommand_Notebook.text = Keywords[0];
             ActiveInfo_Notebook.text = Artefact.GetComponent<AssignInformation>().RelevantInfo[0];
+            Artefact.transform.parent.GetComponent<PortraitTelemetry>().Keyword1Said += 1;
+
+
         }
         
 
@@ -162,6 +168,7 @@ public class SmallObject_SpeechRec : MonoBehaviour
             AS.PlayOneShot(GatheredInfo[1]);
             ActiveCommand_Notebook.text = Keywords[1];
             ActiveInfo_Notebook.text = Artefact.GetComponent<AssignInformation>().RelevantInfo[1];
+            Artefact.transform.parent.GetComponent<PortraitTelemetry>().Keyword2Said += 1;
         }
         
 
@@ -173,6 +180,8 @@ public class SmallObject_SpeechRec : MonoBehaviour
             AS.PlayOneShot(GatheredInfo[2]);
             ActiveCommand_Notebook.text = Keywords[2];
             ActiveInfo_Notebook.text = Artefact.GetComponent<AssignInformation>().RelevantInfo[2];
+            Artefact.transform.parent.GetComponent<PortraitTelemetry>().Keyword3Said += 1;
+
         }
         
 
@@ -184,6 +193,8 @@ public class SmallObject_SpeechRec : MonoBehaviour
             AS.PlayOneShot(GatheredInfo[3]);
             ActiveCommand_Notebook.text = Keywords[3];
             ActiveInfo_Notebook.text = Artefact.GetComponent<AssignInformation>().RelevantInfo[3];
+            Artefact.transform.parent.GetComponent<PortraitTelemetry>().Keyword4Said += 1;
+
         }
         
 
@@ -193,7 +204,9 @@ public class SmallObject_SpeechRec : MonoBehaviour
     private void RecognisedSpeech(PhraseRecognizedEventArgs speech)
     {
         Debug.Log(speech.text);
+ 
         actions[speech.text].Invoke();
+        
 
     }
 

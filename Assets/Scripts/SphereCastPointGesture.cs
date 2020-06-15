@@ -30,6 +30,8 @@ public class SphereCastPointGesture : MonoBehaviour
 
     public bool LeapHandsActive = false;
 
+    public GameObject PotraitTelemetrySystem; // reference to the telemetry system
+
     
     // Start is called before the first frame update
     void Start()
@@ -76,6 +78,8 @@ public class SphereCastPointGesture : MonoBehaviour
                         AS.PlayOneShot(SelectSound);
                     }
 
+
+
                     LastHitObject = CurrentHitObject;
                 }
 
@@ -83,6 +87,8 @@ public class SphereCastPointGesture : MonoBehaviour
                 {
                     LR.SetPosition(1, FingerTip.transform.position);
                 }
+
+
             }
             else
             {

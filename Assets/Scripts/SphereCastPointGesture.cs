@@ -30,6 +30,9 @@ public class SphereCastPointGesture : MonoBehaviour
 
     public bool LeapHandsActive = false;
 
+    public GameObject PortraitTelemetrySystem;
+
+
     
 
     
@@ -63,8 +66,11 @@ public class SphereCastPointGesture : MonoBehaviour
                 Debug.Log(ObjectHit);
                 if (CurrentHitObject.gameObject.tag == "Keyword")
                 {
-                    
-                    
+
+                    PortraitTelemetrySystem = CurrentHitObject.transform.parent.gameObject; //dirty dirty hard code
+                    PortraitTelemetrySystem = PortraitTelemetrySystem.transform.parent.gameObject;
+                    PortraitTelemetrySystem = PortraitTelemetrySystem.transform.parent.gameObject;
+
 
 
                     LR.enabled = true;
@@ -82,6 +88,10 @@ public class SphereCastPointGesture : MonoBehaviour
                     if (CurrentHitObject != LastHitObject)
                     {
                         AS.PlayOneShot(SelectSound);
+                        PortraitTelemetrySystem.GetComponent<PortraitTelemetry>().PointGestureUsed += 1;
+                        
+
+
                         
                     }
 
@@ -136,6 +146,11 @@ public class SphereCastPointGesture : MonoBehaviour
             FingerTip = RightFingerTip;
 
 
+        }
+
+        if (LastHitObject != CurrentHitObject)
+        {
+            
         }
         
         

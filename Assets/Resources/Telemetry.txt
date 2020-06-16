@@ -1,5 +1,1 @@
-Identifier,Version,Exhibit ,Type of Exhibit,Time Entered,Time Left,Keyword 1 Used,Keyword 2 Used,Keyword 3 Used,Keyword 4 Used,,,,,,,,,,,
-ES2405,Standard,James I and VI of England Ireland and Scotland,Portrait Exhibit,12:52:15,12:52:18,Who? - 1,When? - 1,Life Style - 1,Attitude - 1,,,
-ES2405,Standard,Anne of Denmark,Portrait Exhibit,12:52:20,12:52:22,Who? - 0,When? - 1,Marriage - 1,Appearance - 1,,,
-ES2405,Standard,Henry Frederick Stuart Prince of Wales,Portrait Exhibit,12:52:22,12:52:26,Who? - 1,When? - 0,The Would be King - 1,Popularity - 1,,,
-ES2405,Standard,Elizabeth Queen of Bohemia,Portrait Exhibit,12:52:27,12:52:29,Who? - 1,When? - 1,Marriage - 0,The Winter Queen - 1,,,
+Identifier,Version,Exhibit ,Type of Exhibit,Time Entered,Time Left,Keyword 1 Used,Keyword 2 Used,Keyword 3 Used,Keyword 4 Used,VR - Point gesture used and keyword found,VR - "Tell me about this used",,,,,,,,,

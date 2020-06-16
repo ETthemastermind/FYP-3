@@ -25,8 +25,9 @@ public class PortraitTelemetry : MonoBehaviour
     public int Keyword3Said;
     public int Keyword4Said;
 
-    public int PointGestureActivated; // increments when the player does a point gesture
+    
     public int PointGestureUsed; // increments if the point gesture is used and a keyword is selected
+    public int TellMeAboutThisSaid;
 
     //VR+ Telemtry Variables
     //other needed Variables
@@ -100,14 +101,16 @@ public class PortraitTelemetry : MonoBehaviour
     public void GatherData()
     {
         
-        DataToPushToMasterTelemetry[0] = ArtefactName;
-        DataToPushToMasterTelemetry[1] = TypeOfExhibit;
-        DataToPushToMasterTelemetry[2] = TimeStamp_Entered;
-        DataToPushToMasterTelemetry[3] = TimeStamp_Left;
-        DataToPushToMasterTelemetry[4] = (Artefact.GetComponent<AssignInformation>().keywords[0] + " - " + Keyword1Said).ToString();
+        DataToPushToMasterTelemetry[0] = ArtefactName; //Name of the Artefact
+        DataToPushToMasterTelemetry[1] = TypeOfExhibit; //What type of Exhibit is this
+        DataToPushToMasterTelemetry[2] = TimeStamp_Entered; //what time did they get to the exhibit
+        DataToPushToMasterTelemetry[3] = TimeStamp_Left; //what time did they leave
+        DataToPushToMasterTelemetry[4] = (Artefact.GetComponent<AssignInformation>().keywords[0] + " - " + Keyword1Said).ToString(); //gets the first keyword from this artefact and adds the number of times it was called, same for all the rest with similar lines
         DataToPushToMasterTelemetry[5] = (Artefact.GetComponent<AssignInformation>().keywords[1] + " - " + Keyword2Said).ToString();
         DataToPushToMasterTelemetry[6] = (Artefact.GetComponent<AssignInformation>().keywords[2] + " - " + Keyword3Said).ToString();
         DataToPushToMasterTelemetry[7] = (Artefact.GetComponent<AssignInformation>().keywords[3] + " - " + Keyword4Said).ToString();
+        DataToPushToMasterTelemetry[8] = PointGestureUsed.ToString(); // number of times the point gesture is used and a keyword is said
+        DataToPushToMasterTelemetry[9] = TellMeAboutThisSaid.ToString(); //number of times "tell me about this" is said with the artefact
 
         MasterTelemetrySystem.GetComponent<TelemetrySystem>().AddEntry(DataToPushToMasterTelemetry);
 

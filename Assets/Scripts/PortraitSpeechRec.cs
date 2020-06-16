@@ -57,6 +57,11 @@ public class PortraitSpeechRec : MonoBehaviour
             if (PlayerController.GetComponent<AudioSource>().isPlaying == false)
             {
                 PlayerController.GetComponent<AudioSource>().PlayOneShot(RequestedInfo);
+                //telemetry code//
+
+                GameObject Artefact;
+                Artefact = PointingGesture.GetComponent<SphereCastPointGesture>().PortraitTelemetrySystem;
+                Artefact.GetComponent<PortraitTelemetry>().TellMeAboutThisSaid += 1;
             }
             
         }

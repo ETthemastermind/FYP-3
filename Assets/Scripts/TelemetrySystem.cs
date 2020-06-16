@@ -16,6 +16,9 @@ public class TelemetrySystem : MonoBehaviour
     public string path;
     public StreamWriter file;
 
+    public string[] DemographicInfo;
+    public string[] Headers;
+
     public TextAsset TF;
     // Start is called before the first frame update
     void Start()
@@ -24,6 +27,19 @@ public class TelemetrySystem : MonoBehaviour
         path = AssetDatabase.GetAssetPath(TF); //get the path of the file
         File.WriteAllText(path, ""); //clear the file before use
 
+        for (int h = 0; h < Headers.Length; h++) //adds headers as the first line of the txt file
+        {
+            string CurrentEntry = Headers[h] + ",";
+            LogToEnter = LogToEnter + CurrentEntry;
+        }
+        StreamWriter file = new StreamWriter(path, true);
+        Debug.Log("stream writer");
+
+
+        file.WriteLine(LogToEnter); //write data to a line
+        file.Close();
+
+        Debug.Log("Data Added");
 
 
 
@@ -46,16 +62,16 @@ public class TelemetrySystem : MonoBehaviour
         
     }
 
-    public void DemographicInformation()
-    {
-        
-
-    }
-
     public void AddEntry(string[] DataLog) //array gets passed in from the subtelemetry systems
     {
         LogToEnter = "";
         Debug.Log("Add Entry"); //debug to make sure the method passes
+
+        for (int d = 0; d < DemographicInfo.Length; d++) //adds the demographic data to be entered to the line
+        {
+            string CurrentEntry = DemographicInfo[d] + ",";
+            LogToEnter = LogToEnter + CurrentEntry;
+        }
         for (int i = 0; i < DataLog.Length; i++) //for each entry in the passed array, end goal is to put the data in a format that can be used as a CSV
         {
             //Debug.Log(DataLog[i]);

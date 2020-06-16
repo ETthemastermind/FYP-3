@@ -30,7 +30,7 @@ public class SphereCastPointGesture : MonoBehaviour
 
     public bool LeapHandsActive = false;
 
-    public GameObject PotraitTelemetrySystem; // reference to the telemetry system
+    
 
     
     // Start is called before the first frame update
@@ -41,6 +41,8 @@ public class SphereCastPointGesture : MonoBehaviour
 
         Player = GameObject.FindGameObjectWithTag("Player");
         AS = Player.GetComponent<AudioSource>();
+
+        
     }
 
     // Update is called once per frame
@@ -61,6 +63,10 @@ public class SphereCastPointGesture : MonoBehaviour
                 Debug.Log(ObjectHit);
                 if (CurrentHitObject.gameObject.tag == "Keyword")
                 {
+                    
+                    
+
+
                     LR.enabled = true;
                     LR.SetPosition(0, FingerTip.transform.position);
                     LR.SetPosition(1, ObjectHit.point);
@@ -76,6 +82,7 @@ public class SphereCastPointGesture : MonoBehaviour
                     if (CurrentHitObject != LastHitObject)
                     {
                         AS.PlayOneShot(SelectSound);
+                        
                     }
 
 

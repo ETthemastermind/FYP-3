@@ -20,10 +20,13 @@ public class PortraitTelemetry : MonoBehaviour
 
     //Standard Telemetry Variables
     //VR Telemtry Variables
-    public int Keyword1Said;
+    public int Keyword1Said; //increments if the keyword is said
     public int Keyword2Said;
     public int Keyword3Said;
     public int Keyword4Said;
+
+    public int PointGestureActivated; // increments when the player does a point gesture
+    public int PointGestureUsed; // increments if the point gesture is used and a keyword is selected
 
     //VR+ Telemtry Variables
     //other needed Variables

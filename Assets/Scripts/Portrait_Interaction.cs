@@ -25,7 +25,10 @@ public class Portrait_Interaction : MonoBehaviour
     public Text Keyword4;
 
     public bool ActiveArtefact = false;
-    private bool Dpad_Active = false;
+    public bool Dpad_Active_H = false;
+    public bool Dpad_Active_V = false;
+
+    public GameObject TelemetrySystem; //reference to the telemetry system on the top level parent
   
     
     // Start is called before the first frame update
@@ -46,6 +49,8 @@ public class Portrait_Interaction : MonoBehaviour
         Debug.Log("PortraitInteraction start");
         Portrait_GUI.SetActive(false);
         Infomation_GUI.SetActive(false);
+
+        TelemetrySystem = gameObject.transform.parent.gameObject;
         
     }
 
@@ -70,7 +75,7 @@ public class Portrait_Interaction : MonoBehaviour
 
 
         }
-        else if (PlayerInTrigger == false & ActiveArtefact == true) //When PLayer Exits
+        else if (PlayerInTrigger == false && ActiveArtefact == true) //When PLayer Exits
         {
             ActiveArtefact = false;
             Portrait_GUI.SetActive(false);
@@ -79,51 +84,57 @@ public class Portrait_Interaction : MonoBehaviour
 
         }
 
-        if (Input.GetAxis("Dpad_Vertical") == 1 & Dpad_Active == false & ActiveArtefact == true)
+        if (Input.GetAxis("Dpad_Vertical") == 1 && Dpad_Active_V == false && ActiveArtefact == true)
         {
             Infomation_GUI.SetActive(true);
-            Dpad_Active = true;
+            Dpad_Active_V = true;
             DisplayedInformation.GetComponent<Text>().text = Info1;
-            Debug.Log("Who Active");
+            TelemetrySystem.GetComponent<PortraitTelemetry>().Keyword1Said += 1;
+            //Debug.Log("Who Active");
 
         }
 
-        else if (Input.GetAxis("Dpad_Horizontal") == 1 & Dpad_Active == false & ActiveArtefact == true)
+        else if (Input.GetAxis("Dpad_Horizontal") == 1 && Dpad_Active_H == false && ActiveArtefact == true)
         {
             Infomation_GUI.SetActive(true);
-            Dpad_Active = true;
+            Dpad_Active_H = true;
             DisplayedInformation.GetComponent<Text>().text = Info2;
-            Debug.Log("When Active");
+
+            TelemetrySystem.GetComponent<PortraitTelemetry>().Keyword2Said += 1;
+            //Debug.Log("When Active");
 
         }
 
-        else if (Input.GetAxis("Dpad_Horizontal") == -1 & Dpad_Active == false & ActiveArtefact == true)
+        else if (Input.GetAxis("Dpad_Horizontal") == -1 && Dpad_Active_H == false && ActiveArtefact == true)
         {
             Infomation_GUI.SetActive(true);
-            Dpad_Active = true;
+            Dpad_Active_H = true;
             DisplayedInformation.GetComponent<Text>().text = Info4;
-            Debug.Log("When Active");
+            TelemetrySystem.GetComponent<PortraitTelemetry>().Keyword4Said += 1;
+            //Debug.Log("When Active");
 
         }
 
-        else if (Input.GetAxis("Dpad_Vertical") == -1 & Dpad_Active == false & ActiveArtefact == true)
+        else if (Input.GetAxis("Dpad_Vertical") == -1 && Dpad_Active_V == false && ActiveArtefact == true)
         {
             Infomation_GUI.SetActive(true);
-            Dpad_Active = true;
+            Dpad_Active_V = true;
             DisplayedInformation.GetComponent<Text>().text = Info3;
-            Debug.Log("When Active");
+            TelemetrySystem.GetComponent<PortraitTelemetry>().Keyword3Said += 1;
+            //Debug.Log("When Active");
 
         }
 
-        else if (Input.GetAxis("Dpad_Horizontal") == 0 & Dpad_Active == true & ActiveArtefact == true)
+        if (Input.GetAxis("Dpad_Horizontal") == 0 && Dpad_Active_H == true)// & ActiveArtefact == true)
         {
-            Dpad_Active = false;
+            Dpad_Active_H = false;
+            
 
         }
 
-        else if (Input.GetAxis("Dpad_Vertical") == 0 & Dpad_Active == true & ActiveArtefact == true)
+        if (Input.GetAxis("Dpad_Vertical") == 0  && Dpad_Active_V == true)// & ActiveArtefact == true)
         {
-            Dpad_Active = false;
+            Dpad_Active_V = false;
 
         }
 

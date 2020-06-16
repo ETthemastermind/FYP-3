@@ -18,12 +18,20 @@ public class PickupArtefactTelemetry : MonoBehaviour
     public string[] DataToPushToMasterTelemetry;
     public GameObject MasterTelemetrySystem;
 
-    //Standard Telemetry Variables
-    //VR Telemtry Variables
+    //universal variables for each version
     public int Keyword1Said;
     public int Keyword2Said;
     public int Keyword3Said;
     public int Keyword4Said;
+    public int ArtefactPickedUp;
+    public string TimePickedUp;
+    public string TimePutDown;
+
+    //Standard Telemetry Variables
+    public int S_ObjectRotated;
+    public int S_ObjectScaled;
+    //VR Telemtry Variables
+    
 
     //VR+ Telemtry Variables
     //other needed Variables
@@ -97,14 +105,21 @@ public class PickupArtefactTelemetry : MonoBehaviour
     public void GatherData()
     {
 
-        DataToPushToMasterTelemetry[0] = ArtefactName;
-        DataToPushToMasterTelemetry[1] = TypeOfExhibit;
-        DataToPushToMasterTelemetry[2] = TimeStamp_Entered;
-        DataToPushToMasterTelemetry[3] = TimeStamp_Left;
-        DataToPushToMasterTelemetry[4] = (Artefact.GetComponent<AssignInformation>().keywords[0] + " - " + Keyword1Said).ToString();
+        DataToPushToMasterTelemetry[0] = ArtefactName; //Artefact Name
+        DataToPushToMasterTelemetry[1] = TypeOfExhibit; //What type of Exhibit is this
+        DataToPushToMasterTelemetry[2] = TimeStamp_Entered; //what time did they get to the exhibit
+        DataToPushToMasterTelemetry[3] = TimeStamp_Left; //what time did they leave
+        DataToPushToMasterTelemetry[4] = (Artefact.GetComponent<AssignInformation>().keywords[0] + " - " + Keyword1Said).ToString(); //gets the first keyword from this artefact and adds the number of times it was called, same for all the rest with similar lines
         DataToPushToMasterTelemetry[5] = (Artefact.GetComponent<AssignInformation>().keywords[1] + " - " + Keyword2Said).ToString();
         DataToPushToMasterTelemetry[6] = (Artefact.GetComponent<AssignInformation>().keywords[2] + " - " + Keyword3Said).ToString();
         DataToPushToMasterTelemetry[7] = (Artefact.GetComponent<AssignInformation>().keywords[3] + " - " + Keyword4Said).ToString();
+        DataToPushToMasterTelemetry[8] = ArtefactPickedUp.ToString();
+        DataToPushToMasterTelemetry[9] = TimePickedUp;
+        DataToPushToMasterTelemetry[10] = TimePutDown;
+        DataToPushToMasterTelemetry[11] = S_ObjectScaled.ToString();
+        DataToPushToMasterTelemetry[12] = S_ObjectRotated.ToString();
+
+
 
         MasterTelemetrySystem.GetComponent<TelemetrySystem>().AddEntry(DataToPushToMasterTelemetry);
 

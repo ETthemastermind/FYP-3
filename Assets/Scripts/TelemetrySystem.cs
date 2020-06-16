@@ -26,7 +26,7 @@ public class TelemetrySystem : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         path = AssetDatabase.GetAssetPath(TF); //get the path of the file
         File.WriteAllText(path, ""); //clear the file before use
-
+        /*
         for (int h = 0; h < Headers.Length; h++) //adds headers as the first line of the txt file
         {
             string CurrentEntry = Headers[h] + ",";
@@ -34,7 +34,7 @@ public class TelemetrySystem : MonoBehaviour
         }
         StreamWriter file = new StreamWriter(path, true);
         Debug.Log("stream writer");
-
+        */
 
         file.WriteLine(LogToEnter); //write data to a line
         file.Close();
@@ -51,7 +51,7 @@ public class TelemetrySystem : MonoBehaviour
     {
         if (TestRunAddEntry == true) //debug to test adding data
         {
-            TestAddEntry();
+            //TestAddEntry();
             TestRunAddEntry = false;
         }
     }
@@ -90,6 +90,7 @@ public class TelemetrySystem : MonoBehaviour
         Debug.Log("Data Added");
     }
 
+    /*
 
     public void TestAddEntry() //array gets passed in from the subtelemetry systems //https://www.youtube.com/watch?v=vDpww7HsdnM 
     {
@@ -120,5 +121,6 @@ public class TelemetrySystem : MonoBehaviour
         
 
         
-    }
+    }#
+    */
 }

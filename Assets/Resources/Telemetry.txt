@@ -1,1 +1,1 @@
-Identifier,Version,Exhibit ,Type of Exhibit,Time Entered,Time Left,Keyword 1 Used,Keyword 2 Used,Keyword 3 Used,Keyword 4 Used,VR - Point gesture used and keyword found,VR - "Tell me about this used",,,,,,,,,
+ES2405,Standard,CharlesMarriageInvite,PickUp Artefacts,15:30:20,15:30:34,What - 1,Second Choice - 2,First Meeting - 4,Later Years - 4,1,15:30:21,15:30:33,4,2,,,,,,,,

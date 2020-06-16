@@ -18,14 +18,13 @@ public class PortraitTelemetry : MonoBehaviour
     public string[] DataToPushToMasterTelemetry;
     public GameObject MasterTelemetrySystem;
 
-    //Standard Telemetry Variables
-    //VR Telemtry Variables
+    //universal variables for all versions
     public int Keyword1Said; //increments if the keyword is said
     public int Keyword2Said;
     public int Keyword3Said;
     public int Keyword4Said;
-
-    
+    //Standard Telemetry Variables
+    //VR Telemtry Variables
     public int PointGestureUsed; // increments if the point gesture is used and a keyword is selected
     public int TellMeAboutThisSaid;
 

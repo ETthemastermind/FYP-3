@@ -38,10 +38,13 @@ public class PickUpObject_GP : MonoBehaviour
     public Text Keyword4;
 
 
-    private bool Dpad_Active_H = false; //bool for if the Dpad is being used
-    private bool Dpad_Active_V = false;
-
+    public bool Dpad_Active_H = false; //bool for if the Dpad is being used
+    public bool Dpad_Active_V = false;
+    private bool Manip_Active_R = false; //bool for the telemetry, need the system to rotate based on holding buttons which will constantly increment the variable, this variable is to stop that just for the telemetry. this version for Rotating
+    private bool Manip_Active_S = false; //bool for the telemetry, need the system to rotate based on holding buttons which will constantly increment the variable, this variable is to stop that just for the telemetry. this version for Scaling
     public bool ActiveScript = false;
+
+    public GameObject PickUpTelemetrySystem;
 
 
     // Start is called before the first frame update
@@ -64,6 +67,8 @@ public class PickUpObject_GP : MonoBehaviour
         Artifact_Orient = gameObject.transform.rotation.eulerAngles;
         Artifact_Size = gameObject.transform.lossyScale;
 
+        PickUpTelemetrySystem = gameObject.transform.parent.gameObject; //reference for the pick up telemetry system (highest level parent on the prefab)
+        
         
 
 
@@ -119,8 +124,8 @@ public class PickUpObject_GP : MonoBehaviour
             Debug.Log(MaxSize);
             gameObject.transform.parent = Inspect_Pos.transform;
 
-            
-
+            PickUpTelemetrySystem.GetComponent<PickupArtefactTelemetry>().ArtefactPickedUp += 1; //incremst the pickup counter in the telemetry system
+            PickUpTelemetrySystem.GetComponent<PickupArtefactTelemetry>().TimePickedUp = System.DateTime.Now.ToLongTimeString(); //gives the telemetry a timestamp for when the artefact gets picked up
 
             PressA.SetActive(false);
             PressB.SetActive(true);
@@ -144,7 +149,8 @@ public class PickUpObject_GP : MonoBehaviour
             gameObject.transform.parent = null;
             gameObject.transform.localScale = Artifact_Size;
             gameObject.transform.parent = Artifact_Home.transform;
-            
+
+            PickUpTelemetrySystem.GetComponent<PickupArtefactTelemetry>().TimePutDown = System.DateTime.Now.ToLongTimeString(); //gives the telemetry a timestamp for when the artefact gets put down;
             PressB.SetActive(false);
             InfoBackDrop.SetActive(false);
 
@@ -170,78 +176,101 @@ public class PickUpObject_GP : MonoBehaviour
             {
                 Debug.Log("Left Trigger Active");
                 gameObject.transform.Rotate(Vector3.left, MoveSpeed * Time.deltaTime);
+                if (Manip_Active_R == false)
+                {
+                    Manip_Active_R = true;
+                    PickUpTelemetrySystem.GetComponent<PickupArtefactTelemetry>().S_ObjectRotated += 1;
+                }
             }
 
-            if (RightTrigger == 1)
+            else if (RightTrigger == 1)
             {
                 Debug.Log("Right Trigger Active");
                 gameObject.transform.Rotate(Vector3.right, MoveSpeed * Time.deltaTime);
+                if (Manip_Active_R == false)
+                {
+                    Manip_Active_R = true;
+                    PickUpTelemetrySystem.GetComponent<PickupArtefactTelemetry>().S_ObjectRotated += 1;
+                }
             }
 
-            if (Input.GetButton("Left_Bumper"))
+            else if (Input.GetButton("Left_Bumper"))
             {
                 Debug.Log("Left Bumper Pressed");
                 gameObject.transform.Rotate(Vector3.back, MoveSpeed * Time.deltaTime);
+                if (Manip_Active_R == false)
+                {
+                    Manip_Active_R = true;
+                    PickUpTelemetrySystem.GetComponent<PickupArtefactTelemetry>().S_ObjectRotated += 1;
+                }
 
             }
 
-            if (Input.GetButton("Right_Bumper"))
+            else if (Input.GetButton("Right_Bumper"))
             {
                 Debug.Log("Right Bumper Pressed");
                 gameObject.transform.Rotate(Vector3.forward, MoveSpeed * Time.deltaTime);
+                if (Manip_Active_R == false)
+                {
+                    Manip_Active_R = true;
+                    PickUpTelemetrySystem.GetComponent<PickupArtefactTelemetry>().S_ObjectRotated += 1;
+                }
 
             }
 
             else
             {
-                // do nothing
-
+               
+                Manip_Active_R = false;
 
 
             }
 
-            if (Dpad_Horizontal == 1 & Dpad_Active_H == false)
+            //getting info
+
+            if (Dpad_Horizontal == 1 && Dpad_Active_H == false)
             {
                 InfoBackDrop.SetActive(true);
                 DisplayedInformation.GetComponent<Text>().text = gameObject.GetComponent<AssignInformation>().RelevantInfo[1];
+                PickUpTelemetrySystem.GetComponent<PickupArtefactTelemetry>().Keyword2Said += 1;
                 Dpad_Active_H = true;
             }
-            else if (Dpad_Horizontal == -1 & Dpad_Active_H == false)
+            else if (Dpad_Horizontal == -1 && Dpad_Active_H == false)
             {
                 InfoBackDrop.SetActive(true);
                 DisplayedInformation.GetComponent<Text>().text = gameObject.GetComponent<AssignInformation>().RelevantInfo[3];
+                PickUpTelemetrySystem.GetComponent<PickupArtefactTelemetry>().Keyword4Said += 1;
                 Dpad_Active_H = true;
             }
-            else if (Dpad_Horizontal == 0 & Dpad_Active_H == true)
+            else if (Dpad_Horizontal == 0 && Dpad_Active_H == true)
             {
                 Dpad_Active_H = false;
             }
 
-            else if (Dpad_Vertical == 1 & Dpad_Active_V == false)
+            else if (Dpad_Vertical == 1 && Dpad_Active_V == false)
             {
                 InfoBackDrop.SetActive(true);
                 DisplayedInformation.GetComponent<Text>().text = gameObject.GetComponent<AssignInformation>().RelevantInfo[0];
+                PickUpTelemetrySystem.GetComponent<PickupArtefactTelemetry>().Keyword1Said += 1;
                 Dpad_Active_V = true;
             }
 
-            else if (Dpad_Vertical == -1 & Dpad_Active_V == false)
+            else if (Dpad_Vertical == -1 && Dpad_Active_V == false)
             {
                 InfoBackDrop.SetActive(true);
                 DisplayedInformation.GetComponent<Text>().text = gameObject.GetComponent<AssignInformation>().RelevantInfo[2];
+                PickUpTelemetrySystem.GetComponent<PickupArtefactTelemetry>().Keyword3Said += 1;
                 Dpad_Active_V = true;
 
             }
-            else if (Dpad_Horizontal == 0 & Dpad_Active_V == true)
+            else if (Dpad_Vertical == 0 && Dpad_Active_V == true)
             {
                 Dpad_Active_V = false;
             }
 
-            else
-            {
-                //do nothing
+           
 
-            }
-
+            //scaling
 
             if (Input.GetButton("Gamepad_X"))
             {
@@ -250,7 +279,11 @@ public class PickUpObject_GP : MonoBehaviour
                 {
                     Debug.Log("Make Bigger");
                     gameObject.transform.localScale += new Vector3(0.1f, 0.1f, 0.1f);
-
+                    if (Manip_Active_S == false)
+                    {
+                        Manip_Active_S = true;
+                        PickUpTelemetrySystem.GetComponent<PickupArtefactTelemetry>().S_ObjectScaled += 1;
+                    }
                 }
                 
 
@@ -264,7 +297,13 @@ public class PickUpObject_GP : MonoBehaviour
                 {
                     Debug.Log("Make Smaller");
                     gameObject.transform.localScale += new Vector3(-0.1f, -0.1f, -0.1f);
-                    
+
+                    if (Manip_Active_S == false)
+                    {
+                        Manip_Active_S = true;
+                        PickUpTelemetrySystem.GetComponent<PickupArtefactTelemetry>().S_ObjectScaled += 1;
+                    }
+
 
                 }
                 
@@ -273,7 +312,8 @@ public class PickUpObject_GP : MonoBehaviour
 
             else
             {
-                //do nothing
+                Manip_Active_S = false;
+                
 
             }
         }

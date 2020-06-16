@@ -18,6 +18,8 @@ public class DioramaExhibitTelemetry : MonoBehaviour
     public string[] DataToPushToMasterTelemetry;
     public GameObject MasterTelemetrySystem;
 
+    //universal variables for each modalityu
+    public int DioramaEntered;
     //Standard Telemetry Variables
     //VR Telemtry Variables
     public int Keyword1Said;

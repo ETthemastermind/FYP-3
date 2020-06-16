@@ -29,6 +29,9 @@ public class Diorama_Teleport : MonoBehaviour   //Gamepad teleporting
 
     public GameObject ModalityController;
 
+    public bool Dpad_Active_H;
+    public bool Dpad_Active_V;
+
 
 
     // Start is called before the first frame update
@@ -91,40 +94,56 @@ public class Diorama_Teleport : MonoBehaviour   //Gamepad teleporting
                 PressA.SetActive(false);
                 LoadingScreen.SetActive(true);
                 ModalityController.GetComponent<ModalityController2>().GamepadPlayer_Return = GameObject.FindGameObjectWithTag("Player").transform.position;
+                gameObject.transform.parent.GetComponent<DioramaExhibitTelemetry>().DioramaEntered += 1;
                 SceneManager.LoadSceneAsync(TargetSceneIndex); //teleport area to the diorama
 
             }
 
-            if (Input.GetAxis("Dpad_Vertical") == 1 ) //if up on the dpad is pressed
+            if (Input.GetAxis("Dpad_Vertical") == 1 && Dpad_Active_V == false) //if up on the dpad is pressed
             {
                 InfoGUI.SetActive(true);
-               
+
                 Debug.Log("Dpad Up");
                 DisplayedInformation.GetComponent<Text>().text = gameObject.GetComponent<AssignInformation>().RelevantInfo[0]; //show the first line of information
+                gameObject.transform.parent.GetComponent<DioramaExhibitTelemetry>().Keyword1Said += 1;
+                Dpad_Active_V = true;
 
             }
-            else if (Input.GetAxis("Dpad_Vertical") == -1 ) //if down on the dpad is pressed
+            else if (Input.GetAxis("Dpad_Vertical") == -1 && Dpad_Active_V == false) //if down on the dpad is pressed
             {
                 InfoGUI.SetActive(true);
                 DisplayedInformation.GetComponent<Text>().text = gameObject.GetComponent<AssignInformation>().RelevantInfo[2]; //show the third line of information
                 Debug.Log("Dpad Down");
+                gameObject.transform.parent.GetComponent<DioramaExhibitTelemetry>().Keyword2Said += 1;
+                Dpad_Active_V = true;
 
             }
-            else if (Input.GetAxis("Dpad_Horizontal") == 1 ) //if right on the dpad is pressed
+            else if (Input.GetAxis("Dpad_Horizontal") == 1 && Dpad_Active_H == false) //if right on the dpad is pressed
             {
                 InfoGUI.SetActive(true);
                 DisplayedInformation.GetComponent<Text>().text = gameObject.GetComponent<AssignInformation>().RelevantInfo[1]; //show the second line of information
                 Debug.Log("Dpad Right");
-
+                gameObject.transform.parent.GetComponent<DioramaExhibitTelemetry>().Keyword3Said += 1;
+                Dpad_Active_H = true;
             }
-            else if (Input.GetAxis("Dpad_Horizontal") == -1 ) //if left on the dpad is pressed
+            else if (Input.GetAxis("Dpad_Horizontal") == -1 && Dpad_Active_H == false) //if left on the dpad is pressed
             {
                 InfoGUI.SetActive(true);
                 DisplayedInformation.GetComponent<Text>().text = gameObject.GetComponent<AssignInformation>().RelevantInfo[3]; //show the fourth line of information
                 Debug.Log("Dpad Left");
+                gameObject.transform.parent.GetComponent<DioramaExhibitTelemetry>().Keyword4Said += 1;
+                Dpad_Active_H = true;
 
             }
-            
+            else if (Input.GetAxis("Dpad_Vertical") == 0 && Dpad_Active_V == true)
+            {
+                Dpad_Active_V = false;
+            }
+            else if (Input.GetAxis("Dpad_Horizontal") == 0 && Dpad_Active_H == true)
+            {
+                Dpad_Active_H = false;
+            }
+
 
         }
 

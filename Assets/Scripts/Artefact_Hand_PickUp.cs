@@ -26,6 +26,7 @@ public class Artefact_Hand_PickUp : MonoBehaviour //
     public AudioSource AS;
     public AudioClip PickUp_Noise;
 
+   
     //public GameObject ObjectHolding_Text;
     /*
 
@@ -71,26 +72,31 @@ public class Artefact_Hand_PickUp : MonoBehaviour //
 
         if (Gripping == true && VR_HoldingObject == false)
         {
+
+            
             ArtefactObject_StartLocation = ObjectToPickUp.transform.position; //get its start location
             ArtefactObject_StartOrientation = ObjectToPickUp.transform.localEulerAngles; //get its start rotation
             ArtefactObject_Home = ObjectToPickUp.gameObject.transform.parent.gameObject;// get its home display
             ObjectToPickUp.transform.parent = GrippedHand.transform; //parent the object to pick up to the player's palm
             ObjectToPickUp.GetComponent<PickUpObject_Hand>().HaloGlow.SetActive(false);
-
+            
             VR_HoldingObject = true;
 
             AS.PlayOneShot(PickUp_Noise);
+            
 
         }
 
         if (Gripping == false && VR_HoldingObject == true)
         {
+            
             ObjectToPickUp.transform.parent = ArtefactObject_Home.transform;
             ObjectToPickUp.transform.position = ArtefactObject_StartLocation;
             ObjectToPickUp.transform.localEulerAngles = ArtefactObject_StartOrientation;
             VR_HoldingObject = false;
             AS.PlayOneShot(PickUp_Noise);
             GrippedHand = null;
+            ObjectToPickUp.transform.parent.gameObject.GetComponent<PickupArtefactTelemetry>().TimePutDown = System.DateTime.Now.ToLongTimeString(); //gives the telemetry a timestamp for when the artefact gets picked up
         }
 
         

@@ -63,7 +63,40 @@ public class TeleportCursor : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {   //---------------------------------------limits how far the cursor can move--------------------------------------------///
+    {   //shows user cursor
+        if (_IsPointing == true)
+        {
+
+            Cursor2.SetActive(true);
+            Cursor2_Location = new Vector3(TeleportTestCursor.transform.position.x, Cursor2.transform.position.y, TeleportTestCursor.transform.position.z);
+            Cursor2.transform.position = Cursor2_Location;
+            /*
+                        CurrentPosition = FingerTip.transform.position;
+                        if (Vector3.Distance(StartPosition, CurrentPosition) > Deadzone)
+                        {
+                            Cursor2.GetComponent<Renderer>().material.color = Color.yellow;
+
+
+
+
+                        }
+
+
+
+                    }
+
+                    else
+                    {
+                        //cursor2.SetActive(false);
+                        Cursor2.transform.position = Cursor2_Location;
+                    }
+             */
+
+
+
+        }
+        
+        //---------------------------------------limits how far the cursor can move--------------------------------------------///
         CurrentDistance = Vector3.Distance(transform.position, TeleportTestCursor.transform.position);
         if (CurrentDistance > 1.5f)
         {
@@ -129,39 +162,9 @@ public class TeleportCursor : MonoBehaviour
 
         }
         
-        if (_IsPointing == true)
-        {
-
-            Cursor2.SetActive(true);
-            Cursor2_Location = new Vector3(TeleportTestCursor.transform.position.x, Cursor2.transform.position.y, TeleportTestCursor.transform.position.z);
-            Cursor2.transform.position = Cursor2_Location;
-            /*
-                        CurrentPosition = FingerTip.transform.position;
-                        if (Vector3.Distance(StartPosition, CurrentPosition) > Deadzone)
-                        {
-                            Cursor2.GetComponent<Renderer>().material.color = Color.yellow;
-
-
-
-
-                        }
-
-
-
-                    }
-
-                    else
-                    {
-                        //cursor2.SetActive(false);
-                        Cursor2.transform.position = Cursor2_Location;
-                    }
-             */
-
-            
-
-        }
+        
       
-
+        
         
     }
 

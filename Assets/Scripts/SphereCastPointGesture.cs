@@ -32,7 +32,7 @@ public class SphereCastPointGesture : MonoBehaviour
 
     public GameObject PortraitTelemetrySystem;
 
-
+    public bool UsingVR_Hands = true;
     
 
     
@@ -62,10 +62,15 @@ public class SphereCastPointGesture : MonoBehaviour
             {
                 CurrentHitObject = ObjectHit.transform.gameObject;
                 CurrentHitDistance = ObjectHit.distance;
+
+                
                 
                 Debug.Log(ObjectHit);
                 if (CurrentHitObject.gameObject.tag == "Keyword")
                 {
+                    LR.enabled = true;
+                    LR.SetPosition(0, FingerTip.transform.position);
+                    LR.SetPosition(1, ObjectHit.point);
 
                     PortraitTelemetrySystem = CurrentHitObject.transform.parent.gameObject; //dirty dirty hard code
                     PortraitTelemetrySystem = PortraitTelemetrySystem.transform.parent.gameObject;
@@ -73,9 +78,7 @@ public class SphereCastPointGesture : MonoBehaviour
 
 
 
-                    LR.enabled = true;
-                    LR.SetPosition(0, FingerTip.transform.position);
-                    LR.SetPosition(1, ObjectHit.point);
+                    
                     if (KeywordObject != null)
                     {
                         KeywordObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.white;
@@ -116,44 +119,52 @@ public class SphereCastPointGesture : MonoBehaviour
 
         }
 
-        if (SteamVR_Actions._default.GrabGrip.GetState(SteamVR_Input_Sources.RightHand) == true && SteamVR_Actions._default.GrabPinch.GetState(SteamVR_Input_Sources.RightHand) == false && LeapHandsActive == false) //&& SteamVR_Actions._default.A_Button.GetState(SteamVR_Input_Sources.RightHand) == true
+        if (UsingVR_Hands == true)
         {
-            _IsPointing = true;
-            FingerTip = RightFingerTip;
-            
+            if (SteamVR_Actions._default.GrabGrip.GetState(SteamVR_Input_Sources.RightHand) == true && SteamVR_Actions._default.GrabPinch.GetState(SteamVR_Input_Sources.RightHand) == false && LeapHandsActive == false) //&& SteamVR_Actions._default.A_Button.GetState(SteamVR_Input_Sources.RightHand) == true
+            {
+                _IsPointing = true;
+                FingerTip = RightFingerTip;
+
+            }
+            else if (SteamVR_Actions._default.GrabGrip.GetState(SteamVR_Input_Sources.LeftHand) == true && SteamVR_Actions._default.GrabPinch.GetState(SteamVR_Input_Sources.LeftHand) == false && LeapHandsActive == false) //&& SteamVR_Actions._default.A_Button.GetState(SteamVR_Input_Sources.RightHand) == true
+            {
+                _IsPointing = true;
+                FingerTip = LeftFingerTip;
+
+            }
+
+            else if (LeapHandsActive == false)
+            {
+                _IsPointing = false;
+                LR.enabled = false;
+                FingerTip = RightFingerTip;
+            }
+
+            else
+            {
+                _IsPointing = false;
+                LR.SetPosition(0, FingerTip.transform.position);
+                LR.SetPosition(1, FingerTip.transform.position);
+
+                LR.enabled = false;
+                FingerTip = RightFingerTip;
+
+
+            }
+
+            if (LastHitObject != CurrentHitObject)
+            {
+
+            }
+
+
+
+
         }
-        else if (SteamVR_Actions._default.GrabGrip.GetState(SteamVR_Input_Sources.LeftHand) == true && SteamVR_Actions._default.GrabPinch.GetState(SteamVR_Input_Sources.LeftHand) == false && LeapHandsActive == false) //&& SteamVR_Actions._default.A_Button.GetState(SteamVR_Input_Sources.RightHand) == true
-        {
-            _IsPointing = true;
-            FingerTip = LeftFingerTip;
-            
-        }
-
-        else if (LeapHandsActive == false)
-        {
-            _IsPointing = false;
-            LR.enabled = false;
-            FingerTip = RightFingerTip;
-        }
-
-        else
-        {
-            _IsPointing = false;
-            LR.SetPosition(0, FingerTip.transform.position);
-            LR.SetPosition(1, FingerTip.transform.position);
-
-            LR.enabled = false;
-            FingerTip = RightFingerTip;
 
 
-        }
 
-        if (LastHitObject != CurrentHitObject)
-        {
-            
-        }
-        
-        
 
     }
 
@@ -162,6 +173,7 @@ public class SphereCastPointGesture : MonoBehaviour
         Debug.Log("Player started pointing");
         _IsPointing = true;
         LR.enabled = true;
+        
         
     }
 

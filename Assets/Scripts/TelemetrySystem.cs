@@ -44,7 +44,11 @@ public class TelemetrySystem : MonoBehaviour
         PUApath = AssetDatabase.GetAssetPath(PickUpArtefactTelemetryFile); //get the path of the file
         Dpath = AssetDatabase.GetAssetPath(DioramaTelemetryFile); //get the path of the file
         Spath = AssetDatabase.GetAssetPath(SliderTelemetryFile); //get the path of the file
-        File.WriteAllText(path, ""); //clear the file before use
+        File.WriteAllText(DTpath, ""); //clear the file before use
+        File.WriteAllText(Ppath, ""); //clear the file before use
+        File.WriteAllText(PUApath, ""); //clear the file before use
+        File.WriteAllText(Dpath, ""); //clear the file before use
+        File.WriteAllText(Spath, ""); //clear the file before use
         /*
         for (int h = 0; h < Headers.Length; h++) //adds headers as the first line of the txt file
         {
@@ -60,7 +64,7 @@ public class TelemetrySystem : MonoBehaviour
 
         Debug.Log("Data Added");
         */
-
+        //AddEntry(DemographicInfo);
 
 
     }
@@ -91,19 +95,38 @@ public class TelemetrySystem : MonoBehaviour
             string CurrentEntry = DemographicInfo[d] + ",";
             LogToEnter = LogToEnter + CurrentEntry;
         }
-        for (int i = 0; i < DataLog.Length; i++) //adds the demographic data to be entered to the line
+        
+        for (int i = 0; i < DataLog.Length; i++)
         {
             string CurrentEntry = DataLog[i] + ",";
-            LogToEnter = LogToEnter + CurrentEntry;
+            LogToEnter += CurrentEntry;
         }
-        StreamWriter file = new StreamWriter(path, true);
-        Debug.Log("stream writer");
 
+        if (DataLog[1] == "Portrait Exhibit")
+        {
+            StreamWriter file = new StreamWriter(Ppath, true);
+            file.WriteLine(LogToEnter); //write data to a line
+            file.Close();
+        }
+        else if (DataLog[1] == "PickUp Artefacts")
+        {
+            StreamWriter file = new StreamWriter(PUApath, true);
+            file.WriteLine(LogToEnter); //write data to a line
+            file.Close();
+        }
 
-        file.WriteLine(LogToEnter); //write data to a line
-        file.Close();
-
-        Debug.Log("Data Added");
+        else if (DataLog[1] == "Diorama")
+        {
+            StreamWriter file = new StreamWriter(Dpath, true);
+            file.WriteLine(LogToEnter); //write data to a line
+            file.Close();
+        }
+        else if (DataLog[1] == "Slider Exhibit")
+        {
+            StreamWriter file = new StreamWriter(Spath, true);
+            file.WriteLine(LogToEnter); //write data to a line
+            file.Close();
+        }
     }
 
     /*

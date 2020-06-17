@@ -82,7 +82,7 @@ public class SliderExhibitTelemetry : MonoBehaviour
         {
             TimeStamp_Left = System.DateTime.Now.ToLongTimeString();
             TimeEntered_Found = false;
-            //GatherData();
+            GatherData();
 
         }
 

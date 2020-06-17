@@ -23,6 +23,8 @@ public class Artefact_Hand_PickUp : MonoBehaviour //
     public bool VR_HoldingObject;
     public bool Gripping;
 
+    public bool UsingVRHands = true;
+
     public GameObject Player;
     public AudioSource AS;
     public AudioClip PickUp_Noise;
@@ -55,71 +57,75 @@ public class Artefact_Hand_PickUp : MonoBehaviour //
     void Update()
     {
         Debug.Log(ObjectToPickUp);
+
+        if (UsingVRHands == true)
+        {
+            if (SteamVR_Actions._default.GrabGrip.GetState(SteamVR_Input_Sources.RightHand) == true && SteamVR_Actions._default.GrabPinch.GetState(SteamVR_Input_Sources.RightHand) == true && SteamVR_Actions._default.A_Button.GetState(SteamVR_Input_Sources.RightHand) == true) // && SteamVR_Actions._default.A_Button.GetState(SteamVR_Input_Sources.RightHand) == true
+            {
+                Gripping = true;
+                GrippedHand = Vr_RightHand;
+
+            }
+
+            else if (SteamVR_Actions._default.GrabGrip.GetState(SteamVR_Input_Sources.LeftHand) == true && SteamVR_Actions._default.GrabPinch.GetState(SteamVR_Input_Sources.LeftHand) == true && SteamVR_Actions._default.X_Button.GetState(SteamVR_Input_Sources.LeftHand) == true) // && SteamVR_Actions._default.A_Button.GetState(SteamVR_Input_Sources.RightHand) == true
+            {
+                Gripping = true;
+                GrippedHand = Vr_LeftHand;
+            }
+
+            else
+            {
+                Gripping = false;
+                GrippedHand = null;
+
+            }
+
+            if (Gripping == true && VR_HoldingObject == false && ObjectToPickUp.name != this.gameObject.name)
+            {
+
+                Debug.Log("PickedUp");
+                Parent = ObjectToPickUp.transform.parent.gameObject;
+                ObjectToPickUp.transform.parent.gameObject.GetComponent<PickupArtefactTelemetry>().TimePickedUp = System.DateTime.Now.ToLongTimeString(); //gives the telemetry a timestamp for when the artefact gets picked up
+                ObjectToPickUp.transform.parent.gameObject.GetComponent<PickupArtefactTelemetry>().ArtefactPickedUp += 1; //gives the telemetry a timestamp for when the artefact gets picked up
+                ArtefactObject_StartLocation = ObjectToPickUp.transform.position; //get its start location
+                ArtefactObject_StartOrientation = ObjectToPickUp.transform.localEulerAngles; //get its start rotation
+                ArtefactObject_Home = ObjectToPickUp.gameObject.transform.parent.gameObject;// get its home display
+                ObjectToPickUp.transform.parent = GrippedHand.transform; //parent the object to pick up to the player's palm
+                ObjectToPickUp.GetComponent<PickUpObject_Hand>().HaloGlow.SetActive(false);
+                VR_HoldingObject = true;
+
+                AS.PlayOneShot(PickUp_Noise);
+                Debug.Log("Send Data");
+
+
+                Debug.Log("Data Sent");
+
+            }
+
+            else if (Gripping == false && VR_HoldingObject == true)
+            {
+
+                ObjectToPickUp.transform.parent = ArtefactObject_Home.transform;
+                ObjectToPickUp.transform.position = ArtefactObject_StartLocation;
+                ObjectToPickUp.transform.localEulerAngles = ArtefactObject_StartOrientation;
+                VR_HoldingObject = false;
+                AS.PlayOneShot(PickUp_Noise);
+                GrippedHand = null;
+
+
+                ObjectToPickUp.transform.parent.gameObject.GetComponent<PickupArtefactTelemetry>().TimePutDown = System.DateTime.Now.ToLongTimeString(); //gives the telemetry a timestamp for when the artefact gets picked up
+                ObjectToPickUp = this.gameObject;
+            }
+
+            else
+            {
+
+            }
+
+        }
         
-        /*
-        if (SteamVR_Actions._default.GrabGrip.GetState(SteamVR_Input_Sources.RightHand) == true && SteamVR_Actions._default.GrabPinch.GetState(SteamVR_Input_Sources.RightHand) == true && SteamVR_Actions._default.A_Button.GetState(SteamVR_Input_Sources.RightHand) == true) // && SteamVR_Actions._default.A_Button.GetState(SteamVR_Input_Sources.RightHand) == true
-        {
-            Gripping = true;
-            GrippedHand = Vr_RightHand;
-            
-        }
 
-        else if (SteamVR_Actions._default.GrabGrip.GetState(SteamVR_Input_Sources.LeftHand) == true && SteamVR_Actions._default.GrabPinch.GetState(SteamVR_Input_Sources.LeftHand) == true && SteamVR_Actions._default.X_Button.GetState(SteamVR_Input_Sources.LeftHand) == true) // && SteamVR_Actions._default.A_Button.GetState(SteamVR_Input_Sources.RightHand) == true
-        {
-            Gripping = true;
-            GrippedHand = Vr_LeftHand;
-        }
-
-        else
-        {
-            Gripping = false;
-            GrippedHand = null;
-
-        }
-
-        if (Gripping == true && VR_HoldingObject == false && ObjectToPickUp.name != this.gameObject.name)
-        {
-
-            Debug.Log("PickedUp");
-            Parent = ObjectToPickUp.transform.parent.gameObject;
-            ObjectToPickUp.transform.parent.gameObject.GetComponent<PickupArtefactTelemetry>().TimePickedUp = System.DateTime.Now.ToLongTimeString(); //gives the telemetry a timestamp for when the artefact gets picked up
-            ObjectToPickUp.transform.parent.gameObject.GetComponent<PickupArtefactTelemetry>().ArtefactPickedUp += 1; //gives the telemetry a timestamp for when the artefact gets picked up
-            ArtefactObject_StartLocation = ObjectToPickUp.transform.position; //get its start location
-            ArtefactObject_StartOrientation = ObjectToPickUp.transform.localEulerAngles; //get its start rotation
-            ArtefactObject_Home = ObjectToPickUp.gameObject.transform.parent.gameObject;// get its home display
-            ObjectToPickUp.transform.parent = GrippedHand.transform; //parent the object to pick up to the player's palm
-            ObjectToPickUp.GetComponent<PickUpObject_Hand>().HaloGlow.SetActive(false);
-            VR_HoldingObject = true;
-
-            AS.PlayOneShot(PickUp_Noise);
-            Debug.Log("Send Data");
-            
-            
-            Debug.Log("Data Sent");
-            
-        }
-
-        else if (Gripping == false && VR_HoldingObject == true)
-        {
-
-            ObjectToPickUp.transform.parent = ArtefactObject_Home.transform;
-            ObjectToPickUp.transform.position = ArtefactObject_StartLocation;
-            ObjectToPickUp.transform.localEulerAngles = ArtefactObject_StartOrientation;
-            VR_HoldingObject = false;
-            AS.PlayOneShot(PickUp_Noise);
-            GrippedHand = null;
-
-
-            ObjectToPickUp.transform.parent.gameObject.GetComponent<PickupArtefactTelemetry>().TimePutDown = System.DateTime.Now.ToLongTimeString(); //gives the telemetry a timestamp for when the artefact gets picked up
-            ObjectToPickUp = this.gameObject;
-        }
-
-        else
-        {
-            ;
-        }
-
-        */
+        
     }
 
     public void GrippingObject() //function to pick up the object

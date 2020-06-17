@@ -63,6 +63,8 @@ public class DioramaEnterGesture : MonoBehaviour
 
             if (GestureActive == true) // if diorma hand gesture is true
             {
+
+                Debug.Log("Do Diorama Things");
                 LR.enabled = true; //turn on line renderer 
                 LR.SetPosition(0, RightPalm.transform.position); //set positions 1 and 2 of the line renderer to the palms.
                 LR.SetPosition(1, LeftPalm.transform.position);
@@ -119,20 +121,25 @@ public class DioramaEnterGesture : MonoBehaviour
 
     public void DioramaGestureActive() //using detectors on the gesture controller, this activates when both hands are facing forwards with open palms 
     {
-
+        Debug.Log("Gesture Active");
+        
+        
         if (PalmDistance <= 0.5f) //if the the user's hands are close together, activates this bool to enable the rest of the script to work 
         {
             GestureActive = true;
 
         }
         
+        
 
     }
 
     public void DioramaGestureInactive()
     {
+        Debug.Log("Gesture Inactive");
         GestureActive = false;
         //DebugSphere.GetComponent<Renderer>().material.color = Color.white;
+
 
     }
     /*
@@ -190,4 +197,10 @@ public class DioramaEnterGesture : MonoBehaviour
         LevelToLoad = 0;
     }
 
+    public void DebuggingDE()
+    {
+        Debug.Log("DE - Hands Open");
+    }
+
+    
 }

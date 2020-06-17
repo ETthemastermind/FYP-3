@@ -162,6 +162,7 @@ public class SphereCastPointGesture : MonoBehaviour
         Debug.Log("Player started pointing");
         _IsPointing = true;
         LR.enabled = true;
+        
     }
 
     public void IsNotPointing()

@@ -5,9 +5,9 @@ using Valve.VR;
 
 public class TeleportPointGesture : MonoBehaviour
 {
-    public bool IsPointing;
-    public LineRenderer LR;
-    public GameObject FingerTip;
+    //public bool IsPointing;
+    public LineRenderer LR; //ref for the line renderer
+    //public GameObject FingerTip;
 
     public GameObject TeleportCursor;
     public GameObject Camera;
@@ -16,7 +16,7 @@ public class TeleportPointGesture : MonoBehaviour
     public float ElapsedTime;
     public bool MovePlayer = false;
 
-    public bool TeleportFadeInTest;
+    public bool TeleportFadeInTest;  //both tests here are for debug
     public bool TeleportFadeOutTest;
     public bool Teleport;
     public bool Loading;
@@ -25,14 +25,15 @@ public class TeleportPointGesture : MonoBehaviour
     public void Start()
     {
         LR = gameObject.GetComponent<LineRenderer>();
-        Player = GameObject.FindGameObjectWithTag("Player");
+        //Player = GameObject.FindGameObjectWithTag("Player");
         
         
     }
 
     public void Update()
     {
-        if (IsPointing == true)
+        /*
+        if (IsPointing == true) //was making a line renderder arc for it a while ago, doesnt do anything yet
         {
             LR.SetPosition(0, FingerTip.transform.position);
             LR.SetPosition(2, TeleportCursor.transform.position);
@@ -43,7 +44,7 @@ public class TeleportPointGesture : MonoBehaviour
             Vector3 NewMidPoint = new Vector3(MidPoint.x, MidPoint.y + MidPoint_Y, MidPoint.z);
             LR.SetPosition(1, NewMidPoint);
         }
-
+        */
         if (TeleportFadeInTest == true)
         {
             TeleportFadeIn();
@@ -59,31 +60,38 @@ public class TeleportPointGesture : MonoBehaviour
 
         }
 
-        if (Teleport == true)
+        if (Teleport == true) //if teleport is true, gets set from the teleport cursor script
         {
-            TeleportFadeIn();
-            if (ElapsedTime < WaitBeforeTP)
+            TeleportFadeIn(); //fades the camera out to black
+            if (ElapsedTime < WaitBeforeTP) //waits for time to elapse
             {
                 ElapsedTime += Time.deltaTime;
             }
-
-            else if (ElapsedTime > WaitBeforeTP)
+            else if (ElapsedTime > WaitBeforeTP) //if time has elapsed
             {
-                Vector3 CursorLocation = TeleportCursor.transform.position;
-                Vector3 NewPlayerLocation = new Vector3(CursorLocation.x, Player.transform.position.y, CursorLocation.z);
-                Player.transform.position = NewPlayerLocation;
+                
+                Vector3 CursorLocation = TeleportCursor.transform.position; //get location of the teleport cursor
+                Vector3 NewPlayerLocation = new Vector3(CursorLocation.x, Player.transform.position.y, CursorLocation.z); //creates a vector 3 where the player is going to move to
 
-                TeleportFadeOut();
+                Player.transform.position = NewPlayerLocation; //moves the player to the new location
+                Debug.Log(Player.transform.position);
 
-                Teleport = false;
-                ElapsedTime = 0f;
+                TeleportFadeOut(); //fades back out
+                Teleport = false; //sets teleport bool to false
+
+
+                ElapsedTime = 0f; // resets elapsed time
             }
+
+            
+
+            /
         }
 
 
        
     }
-
+    /*
     public void GestureActive()
     {
         IsPointing = true;
@@ -97,8 +105,8 @@ public class TeleportPointGesture : MonoBehaviour
         IsPointing = false;
         
     }
-
-    public void TeleportFadeIn()
+    */
+    public void TeleportFadeIn() //calls the fade in script, method on the teleport cursor script
     {
         
         Camera.GetComponent<TeleportCursor>().TeleportFadeIn();
@@ -107,35 +115,15 @@ public class TeleportPointGesture : MonoBehaviour
 
     }
 
-    public void TeleportFadeOut()
+    public void TeleportFadeOut() //calls the fade out script, method on the teleport cursor script
     {
         
         Camera.GetComponent<TeleportCursor>().TeleportFadeOut();
 
     }
+    
 
-    public void TeleportToCursor()
-    {
-        TeleportFadeIn();
-       
-        Vector3 CursorLocation = TeleportCursor.transform.position;
-        Vector3 NewPlayerLocation = new Vector3(CursorLocation.x, Player.transform.position.y, CursorLocation.z);
-        Player.transform.position = NewPlayerLocation;
-        
-        TeleportFadeOut();
-        
-
-    }
-
-    IEnumerator WaitAfterFade()
-    {
-        yield return new WaitForSeconds(10f);
-        
-
-        Debug.Log("TimerDone");
-
-    }
-
+   
     
 
     

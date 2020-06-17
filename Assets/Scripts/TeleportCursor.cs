@@ -7,31 +7,29 @@ using System.Linq;
 
 public class TeleportCursor : MonoBehaviour
 {
-    public GameObject TeleportTestCursor;
+    public GameObject TeleportTestCursor; //pink capsule on VR camera, underneath SteamVRObjects on NEW Enhanced Player - VR,SR,LM
     public GameObject Cursor2;
-
+    public GameObject Player;
     public Vector3 Cursor2_Location;
     public Vector3 Cursor2_LocationStart;
-    public bool MoveForward;
-    public bool MoveBackward;
-    public float Speed = 5f;
+   
+    
 
-    public float MaxDistance;
-    public Vector3 CurrentPosition;
-    public Vector3 StartPosition;
+    public float MaxDistance; //maximum distance cursor can go from player
+    
+    
 
-    public bool _IsPointing;
-    public GameObject FingerTip;
-    public GameObject TeleportPointGesture;
+    public bool _IsPointing; //bool for when the fingertip is pointing
+    
+    public GameObject TeleportPointGesture; //ref for the object w/ the teleport point gesture script
 
-    public float Deadzone;
+    
 
-    public bool MoveForwards;
-    public bool MoveBackwards;
+    
 
 
-    public float CurrentDistance;
-    public bool CursorCanMoveForwards = true;
+    public float CurrentDistance; //distance from cursor to player
+    public bool CursorCanMoveForwards = true; //bools that determine if the cursor can still move
     public bool CursorCanMoveBackwards = true;
 
     private KeywordRecognizer keywordRecogniser; //sets up speech rec
@@ -39,7 +37,7 @@ public class TeleportCursor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        actions.Add("Move Cursor Forwards", MoveCursorForward);
+        actions.Add("Move Cursor Forwards", MoveCursorForward);  //keywords with the cursor
         actions.Add("Move Cursor Forwards A Little", MoveCursorForward2);
         actions.Add("Move Cursor Forwards A Lot", MoveCursorForward3);
 
@@ -51,7 +49,7 @@ public class TeleportCursor : MonoBehaviour
         keywordRecogniser.OnPhraseRecognized += RecognisedSpeech;
         keywordRecogniser.Start();
 
-        Cursor2_LocationStart = TeleportTestCursor.transform.position;
+        Cursor2_LocationStart = TeleportTestCursor.transform.position; //gets start location of the cursor
 
     }
     private void RecognisedSpeech(PhraseRecognizedEventArgs speech)
@@ -64,33 +62,13 @@ public class TeleportCursor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   //shows user cursor
-        if (_IsPointing == true)
+        if (_IsPointing == true) //if the user is pointing
         {
 
-            Cursor2.SetActive(true);
-            Cursor2_Location = new Vector3(TeleportTestCursor.transform.position.x, Cursor2.transform.position.y, TeleportTestCursor.transform.position.z);
-            Cursor2.transform.position = Cursor2_Location;
-            /*
-                        CurrentPosition = FingerTip.transform.position;
-                        if (Vector3.Distance(StartPosition, CurrentPosition) > Deadzone)
-                        {
-                            Cursor2.GetComponent<Renderer>().material.color = Color.yellow;
-
-
-
-
-                        }
-
-
-
-                    }
-
-                    else
-                    {
-                        //cursor2.SetActive(false);
-                        Cursor2.transform.position = Cursor2_Location;
-                    }
-             */
+            Cursor2.SetActive(true); //activate the cursor
+            Cursor2_Location = new Vector3(TeleportTestCursor.transform.position.x, Cursor2.transform.position.y, TeleportTestCursor.transform.position.z); //create new vector3 to place the cursor
+            Cursor2.transform.position = Cursor2_Location; //place the cursor, places underneath the test cursor (pink capsule) on the floor 
+            
 
 
 
@@ -127,7 +105,7 @@ public class TeleportCursor : MonoBehaviour
             TeleportTestCursor.transform.position -= TeleportTestCursor.transform.forward * 0.5f;
         }
 
-        //---------------------------------------------Stops the cursor going through walls ----------------------------------------------------//
+        //---------------------------------------------Stops the cursor going through walls ----------------------------------------------------// temp disabled
 
         if (TeleportTestCursor.GetComponent<InWall>().CursorInWall == true)
         {
@@ -135,122 +113,40 @@ public class TeleportCursor : MonoBehaviour
 
         }
 
-
-
-
-
-
-
-
-
-
-//--------------------------------------------------------------------------------------------------------------------------------------//
-
-
-        if (MoveForwards == true)
-        {
-            //TeleportTestCursor.transform.Translate(Vector3.forward * Speed * Time.deltaTime);
-            TeleportTestCursor.transform.position += TeleportTestCursor.transform.forward * 1f;
-            MoveForwards = false;
-        }
-
-        else if (MoveBackwards == true)
-        {
-            //TeleportTestCursor.transform.Translate(Vector3.back * Speed * Time.deltaTime);
-            TeleportTestCursor.transform.position -= TeleportTestCursor.transform.forward * 1f;
-            MoveBackwards = false;
-
-        }
         
-        
-      
-        
-        
-    }
-
-    public void TeleportFadeIn()
-    {
-        SteamVR_Fade.Start(Color.black, 0.2f);
-        Debug.Log("Fade In");
-        
-
-    }
-
-    public void TeleportFadeOut()
-    {
-        SteamVR_Fade.Start(Color.clear, 0.2f);
-        Debug.Log("Fade Out");
-
     }
 
 
     public void IsPointingGesture()
     {
-        _IsPointing = true;
-        StartPosition = FingerTip.transform.position;
+        _IsPointing = true; //player is pointing
+        //StartPosition = FingerTip.transform.position;
 
 
     }
 
-    public void IsNotPointingGesture()
+    public void IsNotPointingGesture() //player is not pointing
     {
         _IsPointing = false;
     }
 
     public void ThumbsUp()
     {
-        //Cursor2.GetComponent<Renderer>().material.color = Color.green;
-        TeleportPointGesture.GetComponent<TeleportPointGesture>().Teleport = true;
+        
+        TeleportPointGesture.GetComponent<TeleportPointGesture>().Teleport = true; //actiavte teleport bool on teleport point gesture script (on the TeleportPointGesture object under NEW Enhanced player - VR, SR, LM
+        
     }
 
-    public void ThumbsDown()
-    {
-        Cursor2.GetComponent<Renderer>().material.color = Color.red;
-
-    }
+    
 
 
 
 
+    
 
-    /*
-       if (MoveForward == true && Vector3.Distance(transform.position, TeleportTestCursor.transform.position) < MaxDistance)
-       {
-           TeleportTestCursor.transform.Translate(Vector3.forward * Speed * Time.deltaTime);
-       }
+   
 
-       if (MoveBackward == true && Vector3.Distance(transform.position, TeleportTestCursor.transform.position) > 3)
-       {
-
-           TeleportTestCursor.transform.Translate(Vector3.back * Speed * Time.deltaTime);
-       }
-       */
-
-    public void TempMoveForward_On()
-    {
-        MoveForwards = true;
-        MoveBackwards = false;
-        Debug.Log("Debug for Moving Forwards");
-        TeleportTestCursor.transform.position += TeleportTestCursor.transform.forward * 1f;
-    }
-
-    public void TempMoveForward_Off()
-    {
-        MoveForwards = false;
-
-    }
-    public void TempMoveBackwards_ON()
-    {
-        MoveBackwards = true;
-        MoveForwards = false;
-    }
-    public void TempMoveBackwards_Off()
-    {
-        MoveBackwards = false;
-
-    }
-
-    public void MoveCursorForward()
+    public void MoveCursorForward()  //move cursor forwards
     {
         if (CursorCanMoveForwards == true)
         {
@@ -259,7 +155,7 @@ public class TeleportCursor : MonoBehaviour
         
 
     }
-    public void MoveCursorForward2()
+    public void MoveCursorForward2() //move cursor forwards a little
     {
         if (CursorCanMoveForwards == true)
         {
@@ -269,7 +165,7 @@ public class TeleportCursor : MonoBehaviour
 
     }
 
-    public void MoveCursorForward3()
+    public void MoveCursorForward3() //move cursor forwards a lot
     {
         if (CursorCanMoveForwards == true)
         {
@@ -279,7 +175,7 @@ public class TeleportCursor : MonoBehaviour
 
     }
 
-    public void MoveCursorBackwards()
+    public void MoveCursorBackwards() //move cursor backwards
     {
         if (CursorCanMoveBackwards == true)
         {
@@ -288,7 +184,7 @@ public class TeleportCursor : MonoBehaviour
         
 
     }
-    public void MoveCursorBackwards2()
+    public void MoveCursorBackwards2() //move cursor backwards a little
     {
         if (CursorCanMoveBackwards == true)
         {
@@ -297,7 +193,7 @@ public class TeleportCursor : MonoBehaviour
         
 
     }
-    public void MoveCursorBackwards3()
+    public void MoveCursorBackwards3() //move cursor backwards a lot
     {
         if (CursorCanMoveBackwards == true)
         {
@@ -307,10 +203,25 @@ public class TeleportCursor : MonoBehaviour
 
     }
 
-    public void ResetCursor()
+    public void ResetCursor() //reset cursor
     {
         TeleportTestCursor.transform.position = Cursor2_LocationStart;
     }
 
+
+    public void TeleportFadeIn() //Fades VR cam to black
+    {
+        SteamVR_Fade.Start(Color.black, 0.2f);
+        Debug.Log("Fade In");
+
+
+    }
+
+    public void TeleportFadeOut() //fades VR cam back to being able to see
+    {
+        SteamVR_Fade.Start(Color.clear, 0.2f);
+        Debug.Log("Fade Out");
+
+    }
 
 }

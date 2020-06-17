@@ -14,6 +14,8 @@ public class SpawnGuideBook : MonoBehaviour
     public Vector3 Position_Offset;
     public Vector3 RotationOffset;
 
+    public bool UsingVR_Hands = true;
+
     
     // Start is called before the first frame update
     void Start()
@@ -27,30 +29,35 @@ public class SpawnGuideBook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (SteamVR_Actions._default.X_Button.GetState(SteamVR_Input_Sources.LeftHand) == true)
+        if (UsingVR_Hands == true)
         {
-            Active();
+            if (SteamVR_Actions._default.X_Button.GetState(SteamVR_Input_Sources.LeftHand) == true)
+            {
+                Active();
+
+            }
+
+            else if (SteamVR_Actions._default.X_Button.GetState(SteamVR_Input_Sources.LeftHand) == false)
+            {
+                Inactive();
+            }
+            /*
+            if (VR_LeftHand.transform.rotation.z > 0.5f && VR_LeftHand.transform.rotation.z < 0.8f)
+            {
+                Active();
+
+            }
+
+            else
+            {
+                Inactive();
+
+            }
+
+            */
 
         }
 
-        else if (SteamVR_Actions._default.X_Button.GetState(SteamVR_Input_Sources.LeftHand) == false)
-        {
-            Inactive();
-        }
-        /*
-        if (VR_LeftHand.transform.rotation.z > 0.5f && VR_LeftHand.transform.rotation.z < 0.8f)
-        {
-            Active();
-
-        }
-
-        else
-        {
-            Inactive();
-
-        }
-
-        */
 
     }
 

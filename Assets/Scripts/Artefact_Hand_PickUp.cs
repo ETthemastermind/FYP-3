@@ -10,7 +10,8 @@ public class Artefact_Hand_PickUp : MonoBehaviour //
 
 
     public GameObject DebugCube;
-    public GameObject ObjectToPickUp; //object to pick up, gotten from PickUpObject_Hand script
+    public GameObject ObjectToPickUp = null; //object to pick up, gotten from PickUpObject_Hand script
+    public GameObject ArtefactPickedUp;
     public Vector3 ArtefactObject_StartLocation; //reference for the location the artefact starts at
     public Vector3 ArtefactObject_StartOrientation; //reference for the rotation the artefact starts at
     public GameObject ArtefactObject_Home; //refeernce for the home display of the object
@@ -27,6 +28,8 @@ public class Artefact_Hand_PickUp : MonoBehaviour //
     public AudioClip PickUp_Noise;
 
     public GameObject Parent;
+
+    
     //public GameObject ObjectHolding_Text;
     /*
 
@@ -45,14 +48,15 @@ public class Artefact_Hand_PickUp : MonoBehaviour //
         Vr_LeftHand = GameObject.FindGameObjectWithTag("VR_LeftHand");
         Player = GameObject.FindGameObjectWithTag("Player");
         AS = Player.GetComponent<AudioSource>();
-        ObjectToPickUp = this.gameObject;
+        //ObjectToPickUp = this.gameObject;
     }
     //SteamVR_Actions._default.GrabGrip.GetState(SteamVR_Input_Sources.RightHand) == true && SteamVR_Actions._default.GrabPinch.GetState(SteamVR_Input_Sources.RightHand) == true && SteamVR_Actions._default.A_Button.GetState(SteamVR_Input_Sources.RightHand) == true
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(ObjectToPickUp);
         
-        
+        /*
         if (SteamVR_Actions._default.GrabGrip.GetState(SteamVR_Input_Sources.RightHand) == true && SteamVR_Actions._default.GrabPinch.GetState(SteamVR_Input_Sources.RightHand) == true && SteamVR_Actions._default.A_Button.GetState(SteamVR_Input_Sources.RightHand) == true) // && SteamVR_Actions._default.A_Button.GetState(SteamVR_Input_Sources.RightHand) == true
         {
             Gripping = true;
@@ -115,25 +119,47 @@ public class Artefact_Hand_PickUp : MonoBehaviour //
             ;
         }
 
-        
+        */
     }
 
     public void GrippingObject() //function to pick up the object
     {
-        //DebugCube.GetComponent<Renderer>().material.color = Color.green; //visual debug
-
-        if (ObjectToPickUp != null) //if there is an object to pick up
+        if (Gripping == false)
         {
-            ArtefactObject_StartLocation = ObjectToPickUp.transform.position; //get its start location
-            ArtefactObject_StartOrientation = ObjectToPickUp.transform.localEulerAngles; //get its start rotation
-            ArtefactObject_Home = ObjectToPickUp.gameObject.transform.parent.gameObject;// get its home display
-            ObjectToPickUp.transform.parent = Palm.transform; //parent the object to pick up to the player's palm
-            //ObjectHolding_Text.GetComponent<TextMeshProUGUI>().text = ObjectToPickUp.gameObject.name;
-            ObjectToPickUp.GetComponent<PickUpObject_Hand>().HaloGlow.SetActive(false);
-            AS.PlayOneShot(PickUp_Noise);
+            Debug.Log("LM Hand Gripped");
 
+            Debug.Log(ObjectToPickUp + "Gripped");
+            if (ObjectToPickUp == null)
+            {
+                Debug.Log("NoObjectToPickUp");
+            }
+            else
+            {
+                Gripping = true;
+                ArtefactObject_Home = ObjectToPickUp.gameObject.transform.parent.gameObject;// get its home display
+                ArtefactObject_StartLocation = ObjectToPickUp.transform.position;
+                ArtefactObject_StartOrientation = ObjectToPickUp.transform.localEulerAngles; //get its start rotation
+                ObjectToPickUp.transform.parent = Palm.transform; //parent the object to pick up to the player's palm
+                ObjectToPickUp.GetComponent<PickUpObject_Hand>().HaloGlow.SetActive(false);
+                ArtefactPickedUp = ObjectToPickUp;
+                AS.PlayOneShot(PickUp_Noise);
+
+            }
 
         }
+        //DebugCube.GetComponent<Renderer>().material.color = Color.green; //visual debug
+        
+        
+        
+        
+
+
+
+
+        //ObjectHolding_Text.GetComponent<TextMeshProUGUI>().text = ObjectToPickUp.gameObject.name;
+
+
+        
         /*
         Debug.Log("Hand Open");
         ObjectsInRadius = Physics.OverlapSphere(Palm.gameObject.transform.position, radius);
@@ -159,29 +185,34 @@ public class Artefact_Hand_PickUp : MonoBehaviour //
         */
     }
 
+
     public void UngrippingObject() //function to put the object back
     {
-        //DebugCube.GetComponent<Renderer>().material.color = Color.blue; //visual debug
-        if (ObjectToPickUp != null)
+        if (Gripping == true)
         {
-            //places the object back on its pedestal and parents it back to the pedestal 
-            ObjectToPickUp.transform.parent = ArtefactObject_Home.transform;
-            ObjectToPickUp.transform.position = ArtefactObject_StartLocation;
-            ObjectToPickUp.transform.localEulerAngles = ArtefactObject_StartOrientation;
+            Debug.Log("LM Hand Ungripped");
+
+            ArtefactPickedUp.transform.parent = ArtefactObject_Home.transform;
+
+            ArtefactPickedUp.transform.position = ArtefactObject_StartLocation;
+
+            ArtefactPickedUp.transform.localEulerAngles = ArtefactObject_StartOrientation;
+
+            ArtefactPickedUp = null;
             AS.PlayOneShot(PickUp_Noise);
 
-            //ObjectHolding_Text.GetComponent<Text>().text = null;
-            //ObjectHolding_Text.GetComponent<TextMeshProUGUI>().text = null;
+            Gripping = false;
+            //DebugCube.GetComponent<Renderer>().material.color = Color.blue; //visual debug
 
 
+            /*
+            ArtefactObject.transform.parent = null;
+            ArtefactObject = null;
+            ObjectsInRadius = new Collider[0];
+            */
 
         }
-        
-        /*
-        ArtefactObject.transform.parent = null;
-        ArtefactObject = null;
-        ObjectsInRadius = new Collider[0];
-        */
+
 
 
 

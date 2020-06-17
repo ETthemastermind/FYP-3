@@ -40,7 +40,7 @@ public class PickUpObject_Hand : MonoBehaviour
         
     }
 
-    public void OnTriggerEnter(Collider other)
+    public void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "Right Hand" || other.gameObject.tag == "VR_RightHand" || other.gameObject.tag == "VR_LeftHand") //if a hand is in the object's trigger area
         {
@@ -48,6 +48,7 @@ public class PickUpObject_Hand : MonoBehaviour
             //PickUpController.GetComponent<Artefact_Hand_PickUp>().ObjectToPickUp = gameObject; //assigns the pickup object of the pickup controller to this object
             PickUpController.GetComponent<Artefact_Hand_PickUp>().GetArtefact(this.gameObject);
             HaloGlow.SetActive(true); //turns the halo on
+            Debug.Log("Hand Entered" + gameObject.name.ToString());
 
 
         }
@@ -60,8 +61,8 @@ public class PickUpObject_Hand : MonoBehaviour
         if (other.gameObject.tag == "Right Hand" || other.gameObject.tag == "VR_RightHand" || other.gameObject.tag == "Left Hand" || other.gameObject.tag == "VR_LeftHand") //if a hand has left the objects trigger area
         {
             //DebugCube.GetComponent<Renderer>().material.color = Color.white; //visual debug
-            //PickUpController.GetComponent<Artefact_Hand_PickUp>().ObjectToPickUp = null; //clears the object to pick up
-            PickUpController.GetComponent<Artefact_Hand_PickUp>().GetArtefact(PickUpController);
+            PickUpController.GetComponent<Artefact_Hand_PickUp>().ObjectToPickUp = null; //clears the object to pick up
+            //PickUpController.GetComponent<Artefact_Hand_PickUp>().GetArtefact(PickUpController);
             HaloGlow.SetActive(false); //turns the halo off
         }
     }

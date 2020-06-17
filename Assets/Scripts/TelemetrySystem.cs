@@ -12,19 +12,38 @@ public class TelemetrySystem : MonoBehaviour
 
     public string[] TestArray;
     public bool TestRunAddEntry;
+    public string[] GatheredData;
     public string LogToEnter;
-    public string path;
+    
     public StreamWriter file;
 
     public string[] DemographicInfo;
     public string[] Headers;
 
-    public TextAsset TF;
+    public TextAsset DemographicTelemetryFile;
+    public string DTpath;
+    public TextAsset PortraitTelemetryFile;
+    public string Ppath;
+    public TextAsset PickUpArtefactTelemetryFile;
+    public string PUApath;
+    public TextAsset DioramaTelemetryFile;
+    public string Dpath;
+    public TextAsset SliderTelemetryFile;
+    public string Spath;
+
+
+
+
+
     // Start is called before the first frame update
     void Start()
     {
         DontDestroyOnLoad(gameObject);
-        path = AssetDatabase.GetAssetPath(TF); //get the path of the file
+        DTpath = AssetDatabase.GetAssetPath(DemographicTelemetryFile); //get the path of the file
+        Ppath = AssetDatabase.GetAssetPath(PickUpArtefactTelemetryFile); //get the path of the file
+        PUApath = AssetDatabase.GetAssetPath(PickUpArtefactTelemetryFile); //get the path of the file
+        Dpath = AssetDatabase.GetAssetPath(DioramaTelemetryFile); //get the path of the file
+        Spath = AssetDatabase.GetAssetPath(SliderTelemetryFile); //get the path of the file
         File.WriteAllText(path, ""); //clear the file before use
         /*
         for (int h = 0; h < Headers.Length; h++) //adds headers as the first line of the txt file
@@ -34,13 +53,13 @@ public class TelemetrySystem : MonoBehaviour
         }
         StreamWriter file = new StreamWriter(path, true);
         Debug.Log("stream writer");
-        */
+        
 
         file.WriteLine(LogToEnter); //write data to a line
         file.Close();
 
         Debug.Log("Data Added");
-
+        */
 
 
 
@@ -72,14 +91,11 @@ public class TelemetrySystem : MonoBehaviour
             string CurrentEntry = DemographicInfo[d] + ",";
             LogToEnter = LogToEnter + CurrentEntry;
         }
-        for (int i = 0; i < DataLog.Length; i++) //for each entry in the passed array, end goal is to put the data in a format that can be used as a CSV
+        for (int i = 0; i < DataLog.Length; i++) //adds the demographic data to be entered to the line
         {
-            //Debug.Log(DataLog[i]);
-            string CurrentEntry = DataLog[i] + ","; //make the data from array[i] suitable for a CSV
-            LogToEnter = LogToEnter + CurrentEntry; //add the current entry to the full entry
-
+            string CurrentEntry = DataLog[i] + ",";
+            LogToEnter = LogToEnter + CurrentEntry;
         }
-
         StreamWriter file = new StreamWriter(path, true);
         Debug.Log("stream writer");
 

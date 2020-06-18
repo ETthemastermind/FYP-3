@@ -1,0 +1,1 @@
+ES2405,Standard,13:48:41,,EuropeMapSlider,Slider Exhibit,13:49:25,13:49:27,5,0,,,,,

@@ -59,64 +59,61 @@ public class SmallObject_SpeechRec : MonoBehaviour
         if (other.gameObject.tag == "InteractRing" & InArtefactArea == false) //if the object entering the trigger is the interact ring and the player hasnt already entered the area, latter is needed as sometimes the trigger would activate twice and bork the process
         {
             InArtefactArea = true; //turns the bool to true
-
-            
-            for (int i = 0; i < other.transform.parent.childCount; i++) //for each of the sibling gameobjects of the interact ring
+            Artefact = other.gameObject.transform.parent.gameObject; //assigns the artefact object
+            if (Artefact.tag == "PickUpArtefactDisplay")
             {
-                if (other.gameObject.transform.parent.GetChild(i).gameObject.tag == "Artefact") //finds the artefact
+                Debug.Log("Found PickUp Artefact");
+                GatheredInfo = Artefact.GetComponent<AssignInformation>().AudioInfo; //gets the audio clips from the assign info script on the object
+
+                Keywords = Artefact.GetComponent<AssignInformation>().keywords; // gets the keywords from the assing info script on the object                    
+                actions.Add(Keywords[0], PointOfInterest1); //creates the commands from the keywords
+                actions.Add(Keywords[1], PointOfInterest2);
+                actions.Add(Keywords[2], PointOfInterest3);
+                actions.Add(Keywords[3], PointOfInterest4);
+
+                keywordRecogniser = new KeywordRecognizer(actions.Keys.ToArray()); //activates the speech rec
+                keywordRecogniser.OnPhraseRecognized += RecognisedSpeech;
+                keywordRecogniser.Start();
+
+            }
+            else if (Artefact.tag == "DioramaDisplay" || Artefact.tag == "PortraitDisplay")
+            {
+                Debug.Log("Found Diorama Artefact or Portrait Display");
+                for (int i = 0; i < other.transform.parent.childCount; i++) //for each of the sibling gameobjects of the interact ring
                 {
-
-                    if (keywordRecogniser != null) //resets the keyword recogniser if it is not already null
+                    if (other.gameObject.transform.parent.GetChild(i).gameObject.tag == "Artefact") //finds the artefact
                     {
-                        keywordRecogniser.Dispose();
-                    }
 
-
-
-
-                    Artefact = other.gameObject.transform.parent.GetChild(i).gameObject; //assigns the artefact object
-                    GatheredInfo = Artefact.GetComponent<AssignInformation>().AudioInfo; //gets the audio clips from the assign info script on the object
-
-
-                    Keywords = Artefact.GetComponent<AssignInformation>().keywords; // gets the keywords from the assing info script on the object                    
-                    actions.Add(Keywords[0], PointOfInterest1); //creates the commands from the keywords
-                    actions.Add(Keywords[1], PointOfInterest2);
-                    actions.Add(Keywords[2], PointOfInterest3);
-                    actions.Add(Keywords[3], PointOfInterest4);
-                    //Debug.Log("Break Two");
-
-
-                    keywordRecogniser = new KeywordRecognizer(actions.Keys.ToArray()); //activates the speech rec
-                    keywordRecogniser.OnPhraseRecognized += RecognisedSpeech;
-                    keywordRecogniser.Start();
-
-                    //Debug.Log("Break Three");
-
-                }
-                //TempObject = other.gameObject.transform.GetChild(i);
-                //Debug.Log(other.transform.parent.GetChild(i));
-
-                else if (other.gameObject.transform.parent.GetChild(i).gameObject.tag == "SliderArtefactParent")
-                {
-                    SliderObject = true;
-                    Debug.Log("Found Slider Object");
-                    Temp = other.gameObject.transform.parent.GetChild(i).gameObject;
-                    for (int j = 0; j < Temp.transform.childCount; j++)
-                    {
-                        if (Temp.transform.GetChild(j).gameObject.activeInHierarchy == true)
+                        if (keywordRecogniser != null) //resets the keyword recogniser if it is not already null
                         {
-                            //Debug.Log(Temp.transform.GetChild(j).gameObject.name);
-                            Artefact = Temp.transform.GetChild(j).gameObject;
-
+                            keywordRecogniser.Dispose();
                         }
-                        
 
 
+
+
+                        Artefact = other.gameObject.transform.parent.GetChild(i).gameObject; //assigns the artefact object
+                        GatheredInfo = Artefact.GetComponent<AssignInformation>().AudioInfo; //gets the audio clips from the assign info script on the object
+
+
+                        Keywords = Artefact.GetComponent<AssignInformation>().keywords; // gets the keywords from the assing info script on the object                    
+                        actions.Add(Keywords[0], PointOfInterest1); //creates the commands from the keywords
+                        actions.Add(Keywords[1], PointOfInterest2);
+                        actions.Add(Keywords[2], PointOfInterest3);
+                        actions.Add(Keywords[3], PointOfInterest4);
+                        //Debug.Log("Break Two");
+
+
+                        keywordRecogniser = new KeywordRecognizer(actions.Keys.ToArray()); //activates the speech rec
+                        keywordRecogniser.OnPhraseRecognized += RecognisedSpeech;
+                        keywordRecogniser.Start();
+
+                        //Debug.Log("Break Three");
                     }
+
 
                 }
             }
-
         }
         
     }
@@ -217,4 +214,79 @@ public class SmallObject_SpeechRec : MonoBehaviour
 
 
     }
-}
+
+
+
+
+
+            /*
+                    InArtefactArea = true; //turns the bool to true
+                    Artefact = other.gameObject.transform.parent.gameObject; //assigns the artefact object
+                    GatheredInfo = Artefact.GetComponent<AssignInformation>().AudioInfo; //gets the audio clips from the assign info script on the object
+
+                    Keywords = Artefact.GetComponent<AssignInformation>().keywords; // gets the keywords from the assing info script on the object                    
+                    actions.Add(Keywords[0], PointOfInterest1); //creates the commands from the keywords
+                    actions.Add(Keywords[1], PointOfInterest2);
+                    actions.Add(Keywords[2], PointOfInterest3);
+                    actions.Add(Keywords[3], PointOfInterest4);
+
+                    keywordRecogniser = new KeywordRecognizer(actions.Keys.ToArray()); //activates the speech rec
+                    keywordRecogniser.OnPhraseRecognized += RecognisedSpeech;
+                    keywordRecogniser.Start();
+                    /*
+                    for (int i = 0; i < other.transform.parent.childCount; i++) //for each of the sibling gameobjects of the interact ring
+                    {
+                        if (other.gameObject.transform.parent.GetChild(i).gameObject.tag == "Artefact") //finds the artefact
+                        {
+
+                            if (keywordRecogniser != null) //resets the keyword recogniser if it is not already null
+                            {
+                                keywordRecogniser.Dispose();
+                            }
+
+
+
+
+                            Artefact = other.gameObject.transform.parent.GetChild(i).gameObject; //assigns the artefact object
+                            GatheredInfo = Artefact.GetComponent<AssignInformation>().AudioInfo; //gets the audio clips from the assign info script on the object
+
+
+                            Keywords = Artefact.GetComponent<AssignInformation>().keywords; // gets the keywords from the assing info script on the object                    
+                            actions.Add(Keywords[0], PointOfInterest1); //creates the commands from the keywords
+                            actions.Add(Keywords[1], PointOfInterest2);
+                            actions.Add(Keywords[2], PointOfInterest3);
+                            actions.Add(Keywords[3], PointOfInterest4);
+                            //Debug.Log("Break Two");
+
+
+                            keywordRecogniser = new KeywordRecognizer(actions.Keys.ToArray()); //activates the speech rec
+                            keywordRecogniser.OnPhraseRecognized += RecognisedSpeech;
+                            keywordRecogniser.Start();
+
+                            //Debug.Log("Break Three");
+
+                        }
+                        //TempObject = other.gameObject.transform.GetChild(i);
+                        //Debug.Log(other.transform.parent.GetChild(i));
+
+                        else if (other.gameObject.transform.parent.GetChild(i).gameObject.tag == "SliderArtefactParent")
+                        {
+                            SliderObject = true;
+                            Debug.Log("Found Slider Object");
+                            Temp = other.gameObject.transform.parent.GetChild(i).gameObject;
+                            for (int j = 0; j < Temp.transform.childCount; j++)
+                            {
+                                if (Temp.transform.GetChild(j).gameObject.activeInHierarchy == true)
+                                {
+                                    //Debug.Log(Temp.transform.GetChild(j).gameObject.name);
+                                    Artefact = Temp.transform.GetChild(j).gameObject;
+
+                                }
+
+
+
+                            }
+
+                        }
+                    }*/
+        }

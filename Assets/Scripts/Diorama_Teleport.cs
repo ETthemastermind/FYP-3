@@ -95,6 +95,7 @@ public class Diorama_Teleport : MonoBehaviour   //Gamepad teleporting
                 LoadingScreen.SetActive(true);
                 ModalityController.GetComponent<ModalityController2>().GamepadPlayer_Return = GameObject.FindGameObjectWithTag("Player").transform.position;
                 gameObject.transform.parent.GetComponent<DioramaExhibitTelemetry>().DioramaEntered += 1;
+                gameObject.transform.parent.GetComponent<DioramaExhibitTelemetry>().DioramaEnteredTel();
                 SceneManager.LoadSceneAsync(TargetSceneIndex); //teleport area to the diorama
 
             }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DioramaExhibitTelemetry : MonoBehaviour
 {
@@ -96,7 +97,7 @@ public class DioramaExhibitTelemetry : MonoBehaviour
         TimeStamp_Left = null;
     }
 
-    public void GatherData()
+    public void GatherData() //gather data and push to the master telemetry handler object
     {
 
         DataToPushToMasterTelemetry[0] = ArtefactName;
@@ -113,6 +114,25 @@ public class DioramaExhibitTelemetry : MonoBehaviour
         ResetTelemetry();
 
     }
+
+    public void DioramaEnteredTel() //if the player teleports, get the timestamp when they pressed A and make that the timestamp_left
+    {
+        TimeStamp_Left = System.DateTime.Now.ToLongTimeString();
+        TimeEntered_Found = false;
+        GatherData();
+    }
+
+
+    public void OnApplicationQuit()
+    {
+        if (PlayerInInteractRing == true)
+        {
+            TimeStamp_Left = System.DateTime.Now.ToLongTimeString();
+            TimeEntered_Found = false;
+            GatherData();
+        }
+    }
+
 
 }
 

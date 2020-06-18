@@ -35,12 +35,24 @@ public class TelemetrySystem : MonoBehaviour
 
 
 
-    // Start is called before the first frame update
+    // Start is called before the first frame update#
+    private void Awake()
+    {
+        DemographicInfo[2] = System.DateTime.Now.ToLongTimeString();
+    }
+    public void OnApplicationQuit() //on application quit, might not need this
+    {
+        Debug.Log("Application Ended");
+        DemographicInfo[3] = System.DateTime.Now.ToLongTimeString();
+        AddEntry(DemographicInfo);
+
+    }
+
     void Start()
     {
         DontDestroyOnLoad(gameObject);
         DTpath = AssetDatabase.GetAssetPath(DemographicTelemetryFile); //get the path of the file
-        Ppath = AssetDatabase.GetAssetPath(PickUpArtefactTelemetryFile); //get the path of the file
+        Ppath = AssetDatabase.GetAssetPath(PortraitTelemetryFile); //get the path of the file
         PUApath = AssetDatabase.GetAssetPath(PickUpArtefactTelemetryFile); //get the path of the file
         Dpath = AssetDatabase.GetAssetPath(DioramaTelemetryFile); //get the path of the file
         Spath = AssetDatabase.GetAssetPath(SliderTelemetryFile); //get the path of the file
@@ -79,11 +91,7 @@ public class TelemetrySystem : MonoBehaviour
         }
     }
 
-    public void OnApplicationQuit() //on application quit, might not need this
-    {
-        Debug.Log("Application Ended");
-        
-    }
+    
 
     public void AddEntry(string[] DataLog) //array gets passed in from the subtelemetry systems
     {
@@ -102,14 +110,17 @@ public class TelemetrySystem : MonoBehaviour
             LogToEnter += CurrentEntry;
         }
 
+
         if (DataLog[1] == "Portrait Exhibit")
         {
+            Debug.Log("Pushing to Portrait File");
             StreamWriter file = new StreamWriter(Ppath, true);
             file.WriteLine(LogToEnter); //write data to a line
             file.Close();
         }
         else if (DataLog[1] == "PickUp Artefacts")
         {
+            Debug.Log("Pushing to PickUp File");
             StreamWriter file = new StreamWriter(PUApath, true);
             file.WriteLine(LogToEnter); //write data to a line
             file.Close();
@@ -117,13 +128,23 @@ public class TelemetrySystem : MonoBehaviour
 
         else if (DataLog[1] == "Diorama")
         {
+            Debug.Log("Pushing to Diorama File");
             StreamWriter file = new StreamWriter(Dpath, true);
             file.WriteLine(LogToEnter); //write data to a line
             file.Close();
         }
         else if (DataLog[1] == "Slider Exhibit")
         {
+            Debug.Log("Pushing to Slider File");
             StreamWriter file = new StreamWriter(Spath, true);
+            file.WriteLine(LogToEnter); //write data to a line
+            file.Close();
+        }
+
+        else
+        {
+            Debug.Log("Pushing to Demographic File");
+            StreamWriter file = new StreamWriter(DTpath, true);
             file.WriteLine(LogToEnter); //write data to a line
             file.Close();
         }

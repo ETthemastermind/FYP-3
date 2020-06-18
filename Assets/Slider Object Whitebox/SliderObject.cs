@@ -102,6 +102,7 @@ public class SliderObject : MonoBehaviour
                 //Debug.Log("Right Pressed");
                 Dpad_Active = true;
                 IncrementDisplay();
+                gameObject.GetComponent<SliderExhibitTelemetry>().ButtonPressed += 1;
             }
 
             else if (Dpad_Horizontal == -1 & Dpad_Active == false)
@@ -109,7 +110,7 @@ public class SliderObject : MonoBehaviour
                 //Debug.Log("Left Pressed");
                 Dpad_Active = true;
                 DecrementDisplay();
-
+                gameObject.GetComponent<SliderExhibitTelemetry>().ButtonPressed += 1;
             }
 
             else if (Dpad_Horizontal == 0)
@@ -138,6 +139,7 @@ public class SliderObject : MonoBehaviour
         ProgressSlider.GetComponent<Slider>().value = CurrentDisplayBoard;
         //Display.GetComponent<Renderer>().material = materials[CurrentMat];
         AS.PlayOneShot(ButtonPress);
+        
 
     }
 
@@ -158,6 +160,7 @@ public class SliderObject : MonoBehaviour
         ProgressSlider.GetComponent<Slider>().value = CurrentDisplayBoard;
         //Display.GetComponent<Renderer>().material = materials[CurrentMat];
         AS.PlayOneShot(ButtonPress);
+        
 
     }
 

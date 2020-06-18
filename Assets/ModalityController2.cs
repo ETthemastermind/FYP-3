@@ -19,6 +19,7 @@ public class ModalityController2 : MonoBehaviour  //due to the dont destroy on l
     public GameObject IdentifierInputBox;
     public GameObject NoModalitySelected;
     public GameObject TelemetrySystem;
+    public bool DataMissing;
 
     //refs to canvas
     public GameObject MainMenuCanvas;
@@ -32,6 +33,10 @@ public class ModalityController2 : MonoBehaviour  //due to the dont destroy on l
     public GameObject VRSRLM_Button;
 
 
+    //testing canvas variables 
+    public GameObject Version_InputBox;
+
+    
 
     public bool TutorialCompleted; //is this persists across scenes, might as well use it for variables to carry across scenes.
     //diorama return variables
@@ -52,7 +57,8 @@ public class ModalityController2 : MonoBehaviour  //due to the dont destroy on l
         DontDestroyOnLoad(gameObject); //keeps the modality controller persistent between scenes
         XRSettings.enabled = false;
         TelemetrySystem = GameObject.FindGameObjectWithTag("TelemetrySystem");
-        
+
+        //Version_InputBox.GetComponent<Text>().text = "Set Version";
     }
 
     // Update is called once per frame
@@ -72,8 +78,12 @@ public class ModalityController2 : MonoBehaviour  //due to the dont destroy on l
         VRSR_Button.GetComponent<Image>().color = Color.white;
         VRSRLM_Button.GetComponent<Image>().color = Color.white;
 
-        
-        
+        Version_InputBox.GetComponent<TMP_InputField>().text = "Standard";
+        TelemetrySystem.GetComponent<TelemetrySystem>().DemographicInfo[1] = "Standard";
+
+
+
+
 
 
     }
@@ -89,7 +99,10 @@ public class ModalityController2 : MonoBehaviour  //due to the dont destroy on l
         VRSR_Button.GetComponent<Image>().color = Color.green;
         VRSRLM_Button.GetComponent<Image>().color = Color.white;
 
-        
+        Version_InputBox.GetComponent<TMP_InputField>().text = "VR";
+        TelemetrySystem.GetComponent<TelemetrySystem>().DemographicInfo[1] = "VR";
+
+
     }
 
     public void VRSRLMModality()
@@ -103,7 +116,10 @@ public class ModalityController2 : MonoBehaviour  //due to the dont destroy on l
         VRSR_Button.GetComponent<Image>().color = Color.white;
         VRSRLM_Button.GetComponent<Image>().color = Color.green;
 
-        
+        Version_InputBox.GetComponent<TMP_InputField>().text = "VR+";
+        TelemetrySystem.GetComponent<TelemetrySystem>().DemographicInfo[1] = "VR+";
+
+
 
     }
 
@@ -111,10 +127,8 @@ public class ModalityController2 : MonoBehaviour  //due to the dont destroy on l
     {
         if (Gamepad_Chosen == false && VRSR_Chosen == false && VRLMSR_Chosen == false) //check to see if the user has chosen a modality
         {
-            NoModalitySelected.SetActive(true); //show error message
-            MainMenuCanvas.SetActive(false);
-            TestingCanvas.SetActive(false);
-            LoadingCanvas.SetActive(true);
+             //show error message
+            
 
 
         }
@@ -165,34 +179,66 @@ public class ModalityController2 : MonoBehaviour  //due to the dont destroy on l
     public void BeginPlay()
     {
         Debug.Log("Begin Play Pressed");
-
-        if (TestingModeActivated == false)
+        if (Gamepad_Chosen == false && VRSR_Chosen == false && VRLMSR_Chosen == false) // check to see if the user has chosen a modality)
         {
-            TelemetrySystem.GetComponent<TelemetrySystem>().enabled = false;
-            LoadLevel();
+            NoModalitySelected.SetActive(true);
         }
-        else if (TestingModeActivated == true)
+        else
         {
-            Debug.Log("Turn Main Menu Canvas Off");
-            MainMenuCanvas.SetActive(false);
-            TestingCanvas.SetActive(true);
-            
-            
+            if (TestingModeActivated == false)
+            {
+                //TelemetrySystem.GetComponent<TelemetrySystem>().enabled = false;
+                MainMenuCanvas.SetActive(false);
+                TestingCanvas.SetActive(false);
+                LoadingCanvas.SetActive(true);
+                SceneManager.LoadSceneAsync(SceneToLoad); //keep the music playing while loading
+
+            }
+            else if (TestingModeActivated == true)
+            {
+                Debug.Log("Turn Main Menu Canvas Off");
+                MainMenuCanvas.SetActive(false);
+                TestingCanvas.SetActive(true);
 
 
-        }
+
+
+
+            }
+        } 
+        
+       
     }
 
     public void BeginTest()
     {
-        LoadLevel();
+
+        DataMissing = false;
+        Debug.Log("Load Testing Mode");
+
+        for (int i = 0; i < 1; i++)
+        {
+            Debug.Log("For Loop Going");
+            if (TelemetrySystem.GetComponent<TelemetrySystem>().DemographicInfo[i] == "")
+            {
+                DataMissing = true;
+                Debug.Log("Data is Missing");
+            }
+
+        }
+        
+        if (DataMissing == false)
+        {
+            MainMenuCanvas.SetActive(false);
+            TestingCanvas.SetActive(false);
+            LoadingCanvas.SetActive(true);
+            SceneManager.LoadSceneAsync(SceneToLoad); //keep the music playing while loading
+        }
+        //LoadLevel();
+        
     }
 
-    public void GetUserID() //gets a user ID;
-    {
-        Debug.Log("User ID Entered"); //prints to console when the value is changed
-        UserIdentifier = IdentifierInputBox.GetComponent<TMP_InputField>().text;
-    }
+    
 
     public void ReturnToMenu()
     {
@@ -200,4 +246,15 @@ public class ModalityController2 : MonoBehaviour  //due to the dont destroy on l
         MainMenuCanvas.SetActive(true);
 
     }
+
+
+
+    //methods for gathering telemetry etc
+
+    public void GetID()
+    {
+        TelemetrySystem.GetComponent<TelemetrySystem>().DemographicInfo[0] = IdentifierInputBox.GetComponent<TMP_InputField>().text;
+    }
+
+    
 }

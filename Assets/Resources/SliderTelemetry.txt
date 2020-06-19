@@ -1,2 +1,2 @@
 Identifier,Version,Artefact Name,Artefact Type,Time Stamp Entered,Time Stamp Left,Button Pressed,Speech Recogniton Used (VR/Vr+),
-,VR,EuropeMapSlider,Slider Exhibit,17:16:32,17:16:52,7,3,,,,,
+,VR,EuropeMapSlider,Slider Exhibit,18:34:38,18:34:38,0,0,

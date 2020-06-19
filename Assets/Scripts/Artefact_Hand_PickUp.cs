@@ -32,6 +32,7 @@ public class Artefact_Hand_PickUp : MonoBehaviour //
     public GameObject Parent;
 
     
+    
     //public GameObject ObjectHolding_Text;
     /*
 

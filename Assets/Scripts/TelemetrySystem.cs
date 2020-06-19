@@ -110,6 +110,31 @@ public class TelemetrySystem : MonoBehaviour
         file1.Close();
 
 
+        LogToEnter = "";
+        //add Headers for PickUpArtefact telemetry file===============================================
+        for (int h = 0; h < PUAHeaders.Length; h++)
+        {
+            string CurrentEntry = PUAHeaders[h] + ",";
+            LogToEnter = LogToEnter + CurrentEntry;
+        }
+        StreamWriter file2 = new StreamWriter(PUApath, true);
+        Debug.Log("stream writer");
+        file2.WriteLine(LogToEnter);
+        file2.Close();
+
+
+        LogToEnter = "";
+        //add headers for Diorama Telemetry=======================================
+        for (int h = 0; h < DioramaHeaders.Length; h++)
+        {
+            string CurrentEntry = DioramaHeaders[h] + ",";
+            LogToEnter = LogToEnter + CurrentEntry;
+        }
+        StreamWriter file3 = new StreamWriter(Dpath, true);
+        Debug.Log("stream writer");
+        file3.WriteLine(LogToEnter);
+        file3.Close();
+
 
     }
 

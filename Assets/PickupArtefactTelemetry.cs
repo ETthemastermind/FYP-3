@@ -114,10 +114,11 @@ public class PickupArtefactTelemetry : MonoBehaviour
         DataToPushToMasterTelemetry[6] = (Artefact.GetComponent<AssignInformation>().keywords[2] + " - " + Keyword3Said).ToString();
         DataToPushToMasterTelemetry[7] = (Artefact.GetComponent<AssignInformation>().keywords[3] + " - " + Keyword4Said).ToString();
         DataToPushToMasterTelemetry[8] = ArtefactPickedUp.ToString();
-        DataToPushToMasterTelemetry[9] = TimePickedUp;
-        DataToPushToMasterTelemetry[10] = TimePutDown;
-        DataToPushToMasterTelemetry[11] = S_ObjectScaled.ToString();
-        DataToPushToMasterTelemetry[12] = S_ObjectRotated.ToString();
+        DataToPushToMasterTelemetry[9] = S_ObjectScaled.ToString();
+        DataToPushToMasterTelemetry[10] = S_ObjectRotated.ToString();
+
+        //DataToPushToMasterTelemetry[9] = TimePickedUp;
+        //DataToPushToMasterTelemetry[10] = TimePutDown;
 
 
 

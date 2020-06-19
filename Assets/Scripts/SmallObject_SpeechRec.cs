@@ -25,7 +25,7 @@ public class SmallObject_SpeechRec : MonoBehaviour
     public TMP_Text ActiveCommand_Notebook;
     public TMP_Text ActiveInfo_Notebook;
 
-    public GameObject TelemetrySystem; //refernce to the telemetry system (the top parent object)
+    public GameObject TelemetrySystem_Found; //refernce to the telemetry system (the top parent object)
     
     // Start is called before the first frame update
     void Start()
@@ -76,7 +76,7 @@ public class SmallObject_SpeechRec : MonoBehaviour
 
                     Artefact = other.gameObject.transform.parent.GetChild(i).gameObject; //assigns the artefact object
                     GatheredInfo = Artefact.GetComponent<AssignInformation>().AudioInfo; //gets the audio clips from the assign info script on the object
-
+                    TelemetrySystem_Found = Artefact.transform.parent.gameObject;
 
                     Keywords = Artefact.GetComponent<AssignInformation>().keywords; // gets the keywords from the assing info script on the object                    
                     actions.Add(Keywords[0], PointOfInterest1); //creates the commands from the keywords
@@ -154,7 +154,20 @@ public class SmallObject_SpeechRec : MonoBehaviour
             AS.PlayOneShot(GatheredInfo[0]);
             ActiveCommand_Notebook.text = Keywords[0];
             ActiveInfo_Notebook.text = Artefact.GetComponent<AssignInformation>().RelevantInfo[0];
-            Artefact.transform.parent.GetComponent<PortraitTelemetry>().Keyword1Said += 1;
+
+
+            if (TelemetrySystem_Found.gameObject.tag == "Portrait Display")
+            {
+                Artefact.transform.parent.GetComponent<PortraitTelemetry>().Keyword1Said += 1;
+            }
+            else if (TelemetrySystem_Found.gameObject.tag == "PUA Display")
+            {
+                Artefact.transform.parent.GetComponent<PickupArtefactTelemetry>().Keyword1Said += 1;
+            }
+            else if (TelemetrySystem_Found.gameObject.tag == "DioramaDisplay")
+            {
+                Artefact.transform.parent.GetComponent<DioramaExhibitTelemetry>().Keyword1Said += 1;
+            }
 
 
         }
@@ -168,9 +181,22 @@ public class SmallObject_SpeechRec : MonoBehaviour
             AS.PlayOneShot(GatheredInfo[1]);
             ActiveCommand_Notebook.text = Keywords[1];
             ActiveInfo_Notebook.text = Artefact.GetComponent<AssignInformation>().RelevantInfo[1];
+            
+        }
+        if (TelemetrySystem_Found.gameObject.tag == "Portrait Display")
+        {
             Artefact.transform.parent.GetComponent<PortraitTelemetry>().Keyword2Said += 1;
         }
-        
+        else if (TelemetrySystem_Found.gameObject.tag == "PUA Display")
+        {
+            Artefact.transform.parent.GetComponent<PickupArtefactTelemetry>().Keyword2Said += 1;
+        }
+
+        else if (TelemetrySystem_Found.gameObject.tag == "DioramaDisplay")
+        {
+            Artefact.transform.parent.GetComponent<DioramaExhibitTelemetry>().Keyword2Said += 1;
+        }
+
 
     }
     public void PointOfInterest3()
@@ -180,10 +206,23 @@ public class SmallObject_SpeechRec : MonoBehaviour
             AS.PlayOneShot(GatheredInfo[2]);
             ActiveCommand_Notebook.text = Keywords[2];
             ActiveInfo_Notebook.text = Artefact.GetComponent<AssignInformation>().RelevantInfo[2];
-            Artefact.transform.parent.GetComponent<PortraitTelemetry>().Keyword3Said += 1;
+            
 
         }
-        
+
+        if (TelemetrySystem_Found.gameObject.tag == "Portrait Display")
+        {
+            Artefact.transform.parent.GetComponent<PortraitTelemetry>().Keyword3Said += 1;
+        }
+        else if (TelemetrySystem_Found.gameObject.tag == "PUA Display")
+        {
+            Artefact.transform.parent.GetComponent<PickupArtefactTelemetry>().Keyword3Said += 1;
+        }
+        else if (TelemetrySystem_Found.gameObject.tag == "DioramaDisplay")
+        {
+            Artefact.transform.parent.GetComponent<DioramaExhibitTelemetry>().Keyword3Said += 1;
+        }
+
 
     }
     public void PointOfInterest4()
@@ -193,10 +232,23 @@ public class SmallObject_SpeechRec : MonoBehaviour
             AS.PlayOneShot(GatheredInfo[3]);
             ActiveCommand_Notebook.text = Keywords[3];
             ActiveInfo_Notebook.text = Artefact.GetComponent<AssignInformation>().RelevantInfo[3];
-            Artefact.transform.parent.GetComponent<PortraitTelemetry>().Keyword4Said += 1;
+            
 
         }
-        
+
+        if (TelemetrySystem_Found.gameObject.tag == "Portrait Display")
+        {
+            Artefact.transform.parent.GetComponent<PortraitTelemetry>().Keyword4Said += 1;
+        }
+        else if (TelemetrySystem_Found.gameObject.tag == "PUA Display")
+        {
+            Artefact.transform.parent.GetComponent<PickupArtefactTelemetry>().Keyword4Said += 1;
+        }
+        else if (TelemetrySystem_Found.gameObject.tag == "DioramaDisplay")
+        {
+            Artefact.transform.parent.GetComponent<DioramaExhibitTelemetry>().Keyword4Said += 1;
+        }
+
 
     }
 

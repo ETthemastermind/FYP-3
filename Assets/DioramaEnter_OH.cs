@@ -192,6 +192,7 @@ public class DioramaEnter_OH : MonoBehaviour
         {
             GestureActive = false;
             LR.enabled = false;
+            
         }
         
         

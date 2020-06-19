@@ -39,7 +39,7 @@ public class TutorialController : MonoBehaviour
     public GameObject SpeechController;
     public string LastWordSaid;
     public string LastWordDefault;
-
+    
     public AudioClip TellMeAboutThis;
     
 
@@ -136,15 +136,15 @@ public class TutorialController : MonoBehaviour
             AS = Player.GetComponent<AudioSource>();
             PickUpController = GameObject.FindGameObjectWithTag("PickUpController");
             //NotebookController = GameObject.FindGameObjectWithTag("Notebook");
-            PlayersNotebook.SetActive(false);
-            NotebookController.SetActive(false);
-            //SpeechController = GameObject.FindGameObjectWithTag("SpeechController");
+            //PlayersNotebook.SetActive(false);
+            //NotebookController.SetActive(false);
+            SpeechController = GameObject.FindGameObjectWithTag("SpeechController");
             DioramaGesture = Player;
 
-            SpeechController = Player;
+            //SpeechController = Player;
             CuratorPortraitMat = CuratorPortrait.GetComponent<Renderer>().materials[1]; //finds the correct mat on the portrait 
             NotebookMat = Notebook.GetComponent<Renderer>().materials[0];
-            PortraitKeyword1.SetActive(false);
+            //PortraitKeyword1.SetActive(false);
             PortraitKeyword2.SetActive(false);
             PortraitKeyword3.SetActive(false);
             PortraitKeyword4.SetActive(false);
@@ -202,6 +202,8 @@ public class TutorialController : MonoBehaviour
         {
             Phase11();
         }
+
+      
     }
 
     public void Phase1() //Leading user to portrait, portrait glows until the user steps in the ring
@@ -231,13 +233,16 @@ public class TutorialController : MonoBehaviour
 
     public void Phase2() //introducing the "tell me about this"
     {
-        Debug.Log("Phase 2 tutorial active");
+        Debug.Log("Phase 2 tutorial active hhghhufhuf");
         if (AudioPlayed == false && AS.isPlaying == false) // if the audioclip has not been played or a current audioclip is not playing
         {
             AS.PlayOneShot(TellMeAboutThis); //play the instruction audioclip
             AudioPlayed = true; //change audio played to true so that it can only be played once
 
         }
+       
+
+
         
         string LastWordSaid = SpeechController.GetComponent<PortraitSpeechRec>().LastSaidWord; //gets the last word said from the speech controller
         TriggerPhase1 = false; //deactivates phase one
@@ -262,6 +267,13 @@ public class TutorialController : MonoBehaviour
             TriggerPhase2 = false;
 
         }
+        
+
+    }
+
+    public void Phase2B()
+    {
+
     }
 
     public void Phase3() //Send them to pick-up artefact, make the artefact glow
@@ -322,7 +334,7 @@ public class TutorialController : MonoBehaviour
     {
         
         Debug.Log("Phase 6 Enabled");
-        NotebookController.SetActive(true);
+        //NotebookController.SetActive(true);
         if (AudioPlayed == false && AS.isPlaying == false)
         {
             AS.PlayOneShot(Guidebook);
@@ -364,6 +376,7 @@ public class TutorialController : MonoBehaviour
             if (AS.isPlaying == false && AudioPlayed == false)
             {
                 AS.PlayOneShot(SliderButton);
+                AudioPlayed = true;
 
             }
             TriggerPhase7 = false;

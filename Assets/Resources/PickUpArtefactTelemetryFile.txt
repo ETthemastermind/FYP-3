@@ -1,2 +1,2 @@
-,VR,12:48:51,,Libreta,PickUp Artefacts,12:50:07,12:50:58,Notebook - 0,NoteBook - 0,Note book - 0,notebook - 0,1,12:50:10,12:50:17,0,0,,,,,,,,
-,VR,12:48:51,,The Ninteen Propositions,PickUp Artefacts,12:52:17,12:52:18,19 Prop 1 - 0,19 Prop 2 - 0,19 Prop 3 - 0,19 Prop4 - 0,0,,,0,0,,,,,,,,
+,VR,CharlesMarriageInvite,PickUp Artefacts,17:17:00,17:17:00,What - 0,Second Choice - 0,First Meeting - 0,Later Years - 0,0,,,0,0,,,,,,,,
+,VR,CharlesMarriageInvite,PickUp Artefacts,17:17:00,17:17:00,What - 0,Second Choice - 0,First Meeting - 0,Later Years - 0,0,,,0,0,,,,,,,,

@@ -23,10 +23,6 @@ public class TeleportCursor : MonoBehaviour
     
     public GameObject TeleportPointGesture; //ref for the object w/ the teleport point gesture script
 
-    
-
-    
-
 
     public float CurrentDistance; //distance from cursor to player
     public bool CursorCanMoveForwards = true; //bools that determine if the cursor can still move
@@ -34,18 +30,31 @@ public class TeleportCursor : MonoBehaviour
 
     private KeywordRecognizer keywordRecogniser; //sets up speech rec
     public Dictionary<string, System.Action> actions = new Dictionary<string, System.Action>(); //dictionairy of keywords
+
+
+    //Experimental Vars
+    public bool CursorForwards;
+    public bool CursorBackwards;
+
     // Start is called before the first frame update
     void Start()
     {
-        actions.Add("Move Cursor Forwards", MoveCursorForward);  //keywords with the cursor
-        actions.Add("Move Cursor Forwards A Little", MoveCursorForward2);
-        actions.Add("Move Cursor Forwards A Lot", MoveCursorForward3);
+        //actions.Add("Move Cursor Forwards", MoveCursorForward);  //keywords with the cursor
+        //actions.Add("Move Cursor Forwards A Little", MoveCursorForward2);
+        //actions.Add("Move Cursor Forwards A Lot", MoveCursorForward3);
 
-        actions.Add("Move Cursor Backwards", MoveCursorBackwards);
-        actions.Add("Move Cursor Backwards A Little", MoveCursorBackwards2);
-        actions.Add("Move Cursor Backwards A Lot", MoveCursorBackwards3);
-        actions.Add("Reset Cursor", ResetCursor);
+        //actions.Add("Move Cursor Backwards", MoveCursorBackwards);
+        //actions.Add("Move Cursor Backwards A Little", MoveCursorBackwards2);
+        //actions.Add("Move Cursor Backwards A Lot", MoveCursorBackwards3);
+        //actions.Add("Reset Cursor", ResetCursor);
         actions.Add("Move", Teleport);
+
+
+        actions.Add("Move Cursor Forwards", EXP_MoveCursorForwards);
+        actions.Add("Move Cursor Backwards", EXP_MoveCursorBackwards);
+        actions.Add("Stop Cursor", EXP_Stop);
+
+
         keywordRecogniser = new KeywordRecognizer(actions.Keys.ToArray()); //activates the speech rec
         keywordRecogniser.OnPhraseRecognized += RecognisedSpeech;
         keywordRecogniser.Start();
@@ -74,19 +83,28 @@ public class TeleportCursor : MonoBehaviour
 
 
         }
+
+        if (_IsPointing == true && CursorForwards == true)
+        {
+            TeleportTestCursor.transform.position += (TeleportTestCursor.transform.forward * 5f) * Time.deltaTime;
+        }
+        else if (_IsPointing == true && CursorBackwards == true)
+        {
+            TeleportTestCursor.transform.position -= (TeleportTestCursor.transform.forward * 5f) * Time.deltaTime;
+        }
+        else { }
         
         //---------------------------------------limits how far the cursor can move--------------------------------------------///
         CurrentDistance = Vector3.Distance(transform.position, TeleportTestCursor.transform.position);
         if (CurrentDistance > 1.5f)
         {
-            CursorCanMoveBackwards = true;
+            
 
         }
 
         else
         {
-            CursorCanMoveBackwards = false;
-            TeleportTestCursor.transform.position += TeleportTestCursor.transform.forward * 0.5f;
+            CursorBackwards = false;
 
         }
 
@@ -96,16 +114,15 @@ public class TeleportCursor : MonoBehaviour
 
         if (CurrentDistance < MaxDistance)
         {
-            CursorCanMoveForwards = true;
+            
 
         }
 
         else
         {
-            CursorCanMoveForwards = false;
-            TeleportTestCursor.transform.position -= TeleportTestCursor.transform.forward * 0.5f;
+            CursorForwards = false;
         }
-
+        /*
         //---------------------------------------------Stops the cursor going through walls ----------------------------------------------------// temp disabled
 
         if (TeleportTestCursor.GetComponent<InWall>().CursorInWall == true)
@@ -113,6 +130,7 @@ public class TeleportCursor : MonoBehaviour
             TeleportTestCursor.transform.position -= TeleportTestCursor.transform.forward * 0.5f;
 
         }
+        */
 
         
     }
@@ -129,12 +147,15 @@ public class TeleportCursor : MonoBehaviour
     public void IsNotPointingGesture() //player is not pointing
     {
         _IsPointing = false;
+        CursorBackwards = false;
+        CursorForwards = false;
     }
 
     public void Teleport()
     {
         
         TeleportPointGesture.GetComponent<TeleportPointGesture>().Teleport = true; //actiavte teleport bool on teleport point gesture script (on the TeleportPointGesture object under NEW Enhanced player - VR, SR, LM) used to be a thumbs up, but rerouted so that it uses SR
+        
         
     }
 
@@ -225,4 +246,19 @@ public class TeleportCursor : MonoBehaviour
 
     }
 
+
+    public void EXP_MoveCursorForwards()
+    {
+       
+        CursorForwards = true;
+    }
+    public void EXP_MoveCursorBackwards()
+    {
+        CursorBackwards = true;
+    }
+    public void EXP_Stop()
+    {
+        CursorBackwards = false;
+        CursorForwards = false;
+    }
 }

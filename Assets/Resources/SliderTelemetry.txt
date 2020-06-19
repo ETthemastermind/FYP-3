@@ -1,1 +1,2 @@
-,VR,12:48:51,,SliderObject,Slider Exhibit,12:51:01,12:51:23,1,0,,,,,
+Identifier,Version,Artefact Name,Artefact Type,Time Stamp Entered,Time Stamp Left,Button Pressed,Speech Recogniton Used (VR/Vr+),
+,VR,EuropeMapSlider,Slider Exhibit,17:16:32,17:16:52,7,3,,,,,

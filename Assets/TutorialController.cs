@@ -6,7 +6,7 @@ using TMPro;
 
 public class TutorialController : MonoBehaviour
 {
-
+    public GameObject ChoosePlayer;
     public GameObject ModalityController;
     public GameObject Player;
     public GameObject PlayersNotebook;
@@ -15,7 +15,7 @@ public class TutorialController : MonoBehaviour
     private bool AudioPlaying;
     private bool NotebookActive;
     public GameObject NotebookController;
-
+    public GameObject[] TranscriptBoards;
     
     
 
@@ -93,11 +93,20 @@ public class TutorialController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        for (int i = 1; i < TranscriptBoards.Length; i++)
+        {
+            TranscriptBoards[i].SetActive(false);
+        }
+
+        
         ModalityController = GameObject.FindGameObjectWithTag("ModalityController");
-        if (ModalityController.GetComponent<ModalityController2>().VRSR_Chosen == true || GameObject.Find("ChoosePlayer").GetComponent<ChooseCorrectPlayer>().VRSRPlayerOnDebug == true)
+        if (ModalityController.GetComponent<ModalityController2>().VRSR_Chosen == true)
         {
             TriggerPhase1 = true;
         }
+        
+
+
 
         else
 
@@ -105,6 +114,8 @@ public class TutorialController : MonoBehaviour
             this.gameObject.SetActive(false);
 
         }
+
+        
 
         
         
@@ -223,6 +234,7 @@ public class TutorialController : MonoBehaviour
         if (PortraitInteractRing.GetComponent<AreaEntered>().PlayerInTrigger == true) //if the player enters the interact ring, trigger phase 2
         {
             TriggerPhase2 = true;
+            
             TriggerPhase1 = false;
             AudioPlayed = false;
             
@@ -233,6 +245,10 @@ public class TutorialController : MonoBehaviour
 
     public void Phase2() //introducing the "tell me about this"
     {
+        if (TranscriptBoards[1].active == false)
+        {
+            TranscriptBoards[1].SetActive(true);
+        }
         Debug.Log("Phase 2 tutorial active hhghhufhuf");
         if (AudioPlayed == false && AS.isPlaying == false) // if the audioclip has not been played or a current audioclip is not playing
         {
@@ -263,6 +279,8 @@ public class TutorialController : MonoBehaviour
         else
         {
             TriggerPhase3 = true;
+            
+
             AudioPlayed = false;
             TriggerPhase2 = false;
 
@@ -278,6 +296,10 @@ public class TutorialController : MonoBehaviour
 
     public void Phase3() //Send them to pick-up artefact, make the artefact glow
     {
+        if (TranscriptBoards[2].active == false)
+        {
+            TranscriptBoards[2].SetActive(true);
+        }
         Debug.Log("Phase 3 Tutorial Active");
         //NotebookMat.EnableKeyword("_EMISSION");
         //LerpedColour = Color.Lerp(Color.black, Color.yellow, Mathf.PingPong(Time.time, 1));
@@ -294,6 +316,10 @@ public class TutorialController : MonoBehaviour
 
     public void Phase4() // encourage to pick up
     {
+        if (TranscriptBoards[3].active == false)
+        {
+            TranscriptBoards[3].SetActive(true);
+        }
         Debug.Log("Phase 4 Enabled");
         if (AudioPlayed == false && AS.isPlaying == false)
         {
@@ -305,6 +331,7 @@ public class TutorialController : MonoBehaviour
         {
             TriggerPhase4 = false;
             TriggerPhase5 = true;
+            
             AudioPlayed = false;
 
         }
@@ -314,6 +341,10 @@ public class TutorialController : MonoBehaviour
 
     public void Phase5() // encourage to put down
     {
+        if (TranscriptBoards[4].active == false)
+        {
+            TranscriptBoards[4].SetActive(true);
+        }
         Debug.Log("Phase 5 Enabled");
         if (AudioPlayed == false && AS.isPlaying == false)
         {
@@ -325,6 +356,7 @@ public class TutorialController : MonoBehaviour
         {
             TriggerPhase5 = false;
             TriggerPhase6 = true;
+            
             AudioPlayed = false;
 
         }
@@ -332,7 +364,11 @@ public class TutorialController : MonoBehaviour
 
     public void Phase6() //Show to request information 
     {
-        
+        if (TranscriptBoards[5].active == false)
+        {
+            TranscriptBoards[5].SetActive(true);
+        }
+
         Debug.Log("Phase 6 Enabled");
         //NotebookController.SetActive(true);
         if (AudioPlayed == false && AS.isPlaying == false)
@@ -362,12 +398,18 @@ public class TutorialController : MonoBehaviour
         if (AS.isPlaying == true)
         {
             TriggerPhase7 = true;
+            
+
             TriggerPhase6b = false;
         }
     }
 
     public void Phase7() //send to the slider object
     {
+        if (TranscriptBoards[6].active == false)
+        {
+            TranscriptBoards[6].SetActive(true);
+        }
         Debug.Log("Phase 7 Enabled");
         //LerpedColour = Color.Lerp(Color.black, Color.yellow, Mathf.PingPong(Time.time, 1));
         //SliderExhibitMat.SetColor("_Emission", LerpedColour);
@@ -380,6 +422,7 @@ public class TutorialController : MonoBehaviour
 
             }
             TriggerPhase7 = false;
+            
             TriggerPhase8 = true;
         }
         
@@ -387,6 +430,10 @@ public class TutorialController : MonoBehaviour
 
     public void Phase8() //Show how to use slider
     {
+        if (TranscriptBoards[7].active == false)
+        {
+            TranscriptBoards[7].SetActive(true);
+        }
         Debug.Log("Phase 8 Enabled");
         if (AudioPlayed == false && AS.isPlaying == false)
         {
@@ -398,6 +445,8 @@ public class TutorialController : MonoBehaviour
         {
             TriggerPhase8 = false;
             TriggerPhase9 = true;
+            
+
             AudioPlayed = false;
         }
 
@@ -405,6 +454,10 @@ public class TutorialController : MonoBehaviour
 
     public void Phase9() //send to the Diorama
     {
+        if (TranscriptBoards[8].active == false)
+        {
+            TranscriptBoards[8].SetActive(true);
+        }
         Debug.Log("Phase 9 Activated");
         if (AudioPlayed == false && AS.isPlaying == false)
         {
@@ -415,6 +468,7 @@ public class TutorialController : MonoBehaviour
         {
             TriggerPhase9 = false;
             TriggerPhase10 = true;
+            
             AudioPlayed = false;
         }
 
@@ -422,6 +476,10 @@ public class TutorialController : MonoBehaviour
 
     public void Phase10() //show how to use Diorama
     {
+        if (TranscriptBoards[9].active == false)
+        {
+            TranscriptBoards[9].SetActive(true);
+        }
         Debug.Log("Phase 10 Activated");
         if (AudioPlayed == false && AS.isPlaying == false)
         {
@@ -433,6 +491,7 @@ public class TutorialController : MonoBehaviour
         {
             TriggerPhase10 = false;
             TriggerPhase11 = true;
+            
             AudioPlayed = false;
         }
 
@@ -440,6 +499,10 @@ public class TutorialController : MonoBehaviour
 
     public void Phase11()
     {
+        if (TranscriptBoards[10].active == false)
+        {
+            TranscriptBoards[10].SetActive(true);
+        }
         Debug.Log("Phase 11 Activated");
         DioramaGesture.SetActive(true); //diroama gesture was deactivated so the player could not use it before the instructions are finished.
         if (DioramaGesture.GetComponent<LineRenderer>().enabled == true)
@@ -454,6 +517,7 @@ public class TutorialController : MonoBehaviour
                 Debug.Log("Tutorial Complete");
                 TriggerPhase11 = false;
                 
+
             }
         }
 

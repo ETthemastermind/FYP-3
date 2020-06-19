@@ -1,1 +1,3 @@
 Identifer,Version,Artefact Name,Artefact Type,Time Stamp Entered,Time Stamp Left,Keyword 1 Used,Keyword 2 Used,Keyword 3 Used,Keyword 4 Used,Point Gesture Used (VR),"Tell Me About This" Used (VR),
+,Standard,James I and VI of England Ireland and Scotland,Portrait Exhibit,18:36:52,18:36:55,Who? - 1,When? - 1,Life Style - 1,Attitude - 1,0,0,
+,Standard,Anne of Denmark,Portrait Exhibit,18:36:58,18:37:01,Who? - 1,When? - 1,Marriage - 1,Appearance - 1,0,0,

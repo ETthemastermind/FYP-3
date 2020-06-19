@@ -45,6 +45,7 @@ public class TeleportCursor : MonoBehaviour
         actions.Add("Move Cursor Backwards A Little", MoveCursorBackwards2);
         actions.Add("Move Cursor Backwards A Lot", MoveCursorBackwards3);
         actions.Add("Reset Cursor", ResetCursor);
+        actions.Add("Move", Teleport);
         keywordRecogniser = new KeywordRecognizer(actions.Keys.ToArray()); //activates the speech rec
         keywordRecogniser.OnPhraseRecognized += RecognisedSpeech;
         keywordRecogniser.Start();
@@ -93,7 +94,7 @@ public class TeleportCursor : MonoBehaviour
 
 
 
-        if (CurrentDistance < 6.5f)
+        if (CurrentDistance < MaxDistance)
         {
             CursorCanMoveForwards = true;
 
@@ -130,10 +131,10 @@ public class TeleportCursor : MonoBehaviour
         _IsPointing = false;
     }
 
-    public void ThumbsUp()
+    public void Teleport()
     {
         
-        TeleportPointGesture.GetComponent<TeleportPointGesture>().Teleport = true; //actiavte teleport bool on teleport point gesture script (on the TeleportPointGesture object under NEW Enhanced player - VR, SR, LM
+        TeleportPointGesture.GetComponent<TeleportPointGesture>().Teleport = true; //actiavte teleport bool on teleport point gesture script (on the TeleportPointGesture object under NEW Enhanced player - VR, SR, LM) used to be a thumbs up, but rerouted so that it uses SR
         
     }
 
@@ -169,7 +170,7 @@ public class TeleportCursor : MonoBehaviour
     {
         if (CursorCanMoveForwards == true)
         {
-            TeleportTestCursor.transform.position += TeleportTestCursor.transform.forward * 1.5f;
+            TeleportTestCursor.transform.position += TeleportTestCursor.transform.forward * 2.5f;
         }
         
 
@@ -197,7 +198,7 @@ public class TeleportCursor : MonoBehaviour
     {
         if (CursorCanMoveBackwards == true)
         {
-            TeleportTestCursor.transform.position -= TeleportTestCursor.transform.forward * 1.5f;
+            TeleportTestCursor.transform.position -= TeleportTestCursor.transform.forward * 2.5f;
         }
         
 

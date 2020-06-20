@@ -1,4 +1,1 @@
 Identifier,Version,Artefact Name,Artefact Type,Time Stamp Entered,Time Stamp Left,Keyword 1 Used,Keyword 2 Used,Keyword 3 Used,Keyword 4 Used,Artefact Picked Up,Artefact Scaled (Standard),Artefact Rotated (Standard),
-,Standard,CharlesMarriageInvite,PickUp Artefacts,18:37:05,18:37:12,What - 1,Second Choice - 1,First Meeting - 1,Later Years - 1,1,2,2,,,,,,,,,,
-,Standard,CharlesMarriageInvite,PickUp Artefacts,18:37:20,18:37:21,What - 1,Second Choice - 1,First Meeting - 1,Later Years - 1,1,2,2,,,,,,,,,,
-,Standard,Millenary Petition,PickUp Artefacts,18:37:47,18:37:49,What - 0,Purpose - 0,Backing - 0,Outcome - 0,0,0,0,,,,,,,,,,

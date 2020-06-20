@@ -6,7 +6,7 @@
 
 using UnityEngine;
 #if UNITY_EDITOR
-using UnityEditor;
+//using UnityEditor;
 #endif
 
 namespace Valve.VR.InteractionSystem
@@ -166,7 +166,7 @@ namespace Valve.VR.InteractionSystem
         
     }
 
-
+    /*
 #if UNITY_EDITOR
     //-------------------------------------------------------------------------
     [CustomEditor(typeof(TeleportArea))]
@@ -201,7 +201,10 @@ namespace Valve.VR.InteractionSystem
             }
         }
     }
+    */
 }
 
-#endif
-    
+//#endif
+
+
+

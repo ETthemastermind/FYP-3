@@ -151,6 +151,7 @@ public class TutorialController : MonoBehaviour
             //NotebookController.SetActive(false);
             SpeechController = GameObject.FindGameObjectWithTag("SpeechController");
             DioramaGesture = Player;
+            DioramaGesture.GetComponent<DioramaEnter_OH>().enabled = false;
 
             //SpeechController = Player;
             CuratorPortraitMat = CuratorPortrait.GetComponent<Renderer>().materials[1]; //finds the correct mat on the portrait 
@@ -491,7 +492,7 @@ public class TutorialController : MonoBehaviour
         {
             TriggerPhase10 = false;
             TriggerPhase11 = true;
-            
+            DioramaGesture.GetComponent<DioramaEnter_OH>().enabled = true;
             AudioPlayed = false;
         }
 
@@ -505,7 +506,7 @@ public class TutorialController : MonoBehaviour
         }
         Debug.Log("Phase 11 Activated");
         DioramaGesture.SetActive(true); //diroama gesture was deactivated so the player could not use it before the instructions are finished.
-        if (DioramaGesture.GetComponent<LineRenderer>().enabled == true)
+        if (DioramaGesture.GetComponent<DioramaEnter_OH>().LR == true)
         {
             if (AudioPlayed == false && AS.isPlaying == false)
             {

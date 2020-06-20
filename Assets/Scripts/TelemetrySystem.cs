@@ -1,38 +1,40 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System;
+
+using UnityEditor;
 public class TelemetrySystem : MonoBehaviour
 {
 
     public string[] TestArray;
     public bool TestRunAddEntry;
     public string[] GatheredData;
-    public string LogToEnter;
+    public string LogToEnter; //data string that gets written to .txt files
     
-    public StreamWriter file;
-
-    public string[] DemographicInfo;
     
 
-    public TextAsset DemographicTelemetryFile;
-    public string DTpath;
+    public string[] DemographicInfo; //array for the demographic info
+
+
+    
+    public string DTpath;  //references for the path to the files and array of headers for the files
     public string[] DemographicHeaders;
-    public TextAsset PortraitTelemetryFile; //variables for Portrait Telemetry
+    
     public string Ppath;
     public string[] PortraitHeaders;
-    public TextAsset PickUpArtefactTelemetryFile;
+    
     public string PUApath;
     public string[] PUAHeaders;
-    public TextAsset DioramaTelemetryFile;
+    
     public string Dpath;
     public string[] DioramaHeaders;
-    public TextAsset SliderTelemetryFile;
+    
     public string Spath;
     public string[] SliderHeaders;
 
@@ -40,51 +42,52 @@ public class TelemetrySystem : MonoBehaviour
 
 
 
-    // Start is called before the first frame update#
+   
     private void Awake()
     {
-        DemographicInfo[2] = System.DateTime.Now.ToLongTimeString();
+        DemographicInfo[2] = System.DateTime.Now.ToLongTimeString(); //gets the timestamp for musuem started
     }
-    public void OnApplicationQuit() //on application quit, might not need this
+    public void OnApplicationQuit() //
     {
         Debug.Log("Application Ended");
-        DemographicInfo[3] = System.DateTime.Now.ToLongTimeString();
-        AddEntry(DemographicInfo);
+        DemographicInfo[3] = System.DateTime.Now.ToLongTimeString(); //gets the timestamp for museum ended
+        AddEntry(DemographicInfo); //adds data to the relevant file
 
     }
 
     void Start()
     {
         DontDestroyOnLoad(gameObject);
-        DTpath = AssetDatabase.GetAssetPath(DemographicTelemetryFile); //get the path of the file
-        Ppath = AssetDatabase.GetAssetPath(PortraitTelemetryFile); //get the path of the file
-        PUApath = AssetDatabase.GetAssetPath(PickUpArtefactTelemetryFile); //get the path of the file
-        Dpath = AssetDatabase.GetAssetPath(DioramaTelemetryFile); //get the path of the file
-        Spath = AssetDatabase.GetAssetPath(SliderTelemetryFile); //get the path of the file
-        File.WriteAllText(DTpath, ""); //clear the file before use
+        
+
+        DTpath = Application.persistentDataPath + "/../../StreamingAssets/DemographicTelemetry.txt"; //in the streamingassets folder
+        Ppath = Application.persistentDataPath + "/../../PortraitTelemetryFile.txt";
+        PUApath = Application.persistentDataPath + "/../../PickUpArtefactTelemetryFile.txt"; ; //get the path of the file
+        Dpath = Application.persistentDataPath + "/../../DioramaTelemetry.txt" ; //get the path of the file
+        Spath = Application.persistentDataPath + "/../../SliderTelemetryFile.txt"; //get the path of the file
+
+
+        StreamWriter file = new StreamWriter(DTpath); //testing, trying to get the data to push to the file
+        file.WriteLine(DTpath, "Test"); //tried both of these didnt work
+        file.Write(DTpath, "test");
+        file.Flush();
+        file.Close();
+        Debug.Log("Data Done a Thing");
+
+        /*
+        BinaryFormatter Bf = new BinaryFormatter();
+        //string path = Application.persistentDataPath + "DemographicTelemetry.txt";
+        FileStream stream = new FileStream(path, FileMode.Append);
+        Bf.Serialize(stream, "Testing");
+        stream.Close();
+        Debug.Log("Data tried another thing");
+        */
         File.WriteAllText(Ppath, ""); //clear the file before use
         File.WriteAllText(PUApath, ""); //clear the file before use
         File.WriteAllText(Dpath, ""); //clear the file before use
         File.WriteAllText(Spath, ""); //clear the file before use
-        /*
-        for (int h = 0; h < Headers.Length; h++) //adds headers as the first line of the txt file
-        {
-            string CurrentEntry = Headers[h] + ",";
-            LogToEnter = LogToEnter + CurrentEntry;
-        }
-        StreamWriter file = new StreamWriter(path, true);
-        Debug.Log("stream writer");
+       
         
-
-        file.WriteLine(LogToEnter); //write data to a line
-        file.Close();
-
-        Debug.Log("Data Added");
-        */
-        //AddEntry(DemographicInfo);
-        
-
-
         LogToEnter = "";
         //add headers for portrait telemetry file================================================
         for (int h = 0; h < PortraitHeaders.Length; h++)
@@ -92,10 +95,10 @@ public class TelemetrySystem : MonoBehaviour
             string CurrentEntry = PortraitHeaders[h] + ",";
             LogToEnter = LogToEnter + CurrentEntry;
         }
-        StreamWriter file = new StreamWriter(Ppath, true);
+        StreamWriter PHeaders = new StreamWriter(Ppath, true);
         Debug.Log("stream writer");
-        file.WriteLine(LogToEnter);
-        file.Close();
+        PHeaders.WriteLine(LogToEnter);
+        PHeaders.Close();
 
         LogToEnter = "";
         //add headers for slider telemetry file================================================
@@ -104,11 +107,10 @@ public class TelemetrySystem : MonoBehaviour
             string CurrentEntry = SliderHeaders[h] + ",";
             LogToEnter = LogToEnter + CurrentEntry;
         }
-        StreamWriter file1 = new StreamWriter(Spath, true);
+        StreamWriter SHeaders = new StreamWriter(Spath, true);
         Debug.Log("stream writer");
-        file1.WriteLine(LogToEnter);
-        file1.Close();
-
+        SHeaders.WriteLine(LogToEnter);
+        SHeaders.Close();
 
         LogToEnter = "";
         //add Headers for PickUpArtefact telemetry file===============================================
@@ -117,10 +119,10 @@ public class TelemetrySystem : MonoBehaviour
             string CurrentEntry = PUAHeaders[h] + ",";
             LogToEnter = LogToEnter + CurrentEntry;
         }
-        StreamWriter file2 = new StreamWriter(PUApath, true);
+        StreamWriter PUA_Headers = new StreamWriter(PUApath, true);
         Debug.Log("stream writer");
-        file2.WriteLine(LogToEnter);
-        file2.Close();
+        PUA_Headers.WriteLine(LogToEnter);
+        PUA_Headers.Close();
 
 
         LogToEnter = "";
@@ -130,11 +132,11 @@ public class TelemetrySystem : MonoBehaviour
             string CurrentEntry = DioramaHeaders[h] + ",";
             LogToEnter = LogToEnter + CurrentEntry;
         }
-        StreamWriter file3 = new StreamWriter(Dpath, true);
+        StreamWriter DHeaders = new StreamWriter(Dpath, true);
         Debug.Log("stream writer");
-        file3.WriteLine(LogToEnter);
-        file3.Close();
-
+        DHeaders.WriteLine(LogToEnter);
+        DHeaders.Close();
+        
 
     }
 
@@ -154,7 +156,7 @@ public class TelemetrySystem : MonoBehaviour
     {
         LogToEnter = "";
         Debug.Log("Add Entry"); //debug to make sure the method passes
-
+        Debug.Log(DataLog[2]);
         for (int d = 0; d < 2; d++) //adds the demographic data to be entered to the line
         {
             string CurrentEntry = DemographicInfo[d] + ",";
@@ -168,7 +170,7 @@ public class TelemetrySystem : MonoBehaviour
         }
 
 
-        if (DataLog[1] == "Portrait Exhibit")
+        if (DataLog[1] == "Portrait Exhibit") //changes file based on where 
         {
             Debug.Log("Pushing to Portrait File");
             StreamWriter file = new StreamWriter(Ppath, true);
@@ -205,6 +207,9 @@ public class TelemetrySystem : MonoBehaviour
             file.WriteLine(LogToEnter); //write data to a line
             file.Close();
         }
+
+
+        Debug.Log("Data Added");
     }
 
     /*

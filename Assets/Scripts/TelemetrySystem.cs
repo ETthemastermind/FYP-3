@@ -60,7 +60,7 @@ public class TelemetrySystem : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         
 
-        DTpath = Application.persistentDataPath + "/../../StreamingAssets/DemographicTelemetry.txt"; //in the streamingassets folder
+        DTpath = Application.persistentDataPath + "/../../DemographicTelemetry.txt"; //in the streamingassets folder
         Ppath = Application.persistentDataPath + "/../../PortraitTelemetryFile.txt";
         PUApath = Application.persistentDataPath + "/../../PickUpArtefactTelemetryFile.txt"; ; //get the path of the file
         Dpath = Application.persistentDataPath + "/../../DioramaTelemetry.txt" ; //get the path of the file

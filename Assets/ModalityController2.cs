@@ -25,6 +25,7 @@ public class ModalityController2 : MonoBehaviour  //due to the dont destroy on l
     public GameObject MainMenuCanvas;
     public GameObject TestingCanvas;
     public GameObject LoadingCanvas;
+    public GameObject FileAddessText;
 
     //refs for buttons to change colors
 
@@ -59,6 +60,8 @@ public class ModalityController2 : MonoBehaviour  //due to the dont destroy on l
         TelemetrySystem = GameObject.FindGameObjectWithTag("TelemetrySystem");
 
         //Version_InputBox.GetComponent<Text>().text = "Set Version";
+
+        FileAddessText.GetComponent<TextMeshProUGUI>().text = Application.persistentDataPath + "/Telemetry.csv";
     }
 
     // Update is called once per frame

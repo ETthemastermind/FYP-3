@@ -58,15 +58,19 @@ public class TelemetrySystem : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(gameObject);
-        
+        SaveData();
 
+        Debug.Log(Application.persistentDataPath);
+        //LoadData();
+
+        /*
         DTpath = Application.persistentDataPath + "/../../DemographicTelemetry.txt"; //in the streamingassets folder
         Ppath = Application.persistentDataPath + "/../../PortraitTelemetryFile.txt";
         PUApath = Application.persistentDataPath + "/../../PickUpArtefactTelemetryFile.txt"; ; //get the path of the file
         Dpath = Application.persistentDataPath + "/../../DioramaTelemetry.txt" ; //get the path of the file
         Spath = Application.persistentDataPath + "/../../SliderTelemetryFile.txt"; //get the path of the file
-
-
+        
+        
         StreamWriter file = new StreamWriter(DTpath); //testing, trying to get the data to push to the file
         file.WriteLine(DTpath, "Test"); //tried both of these didnt work
         file.Write(DTpath, "test");
@@ -90,17 +94,33 @@ public class TelemetrySystem : MonoBehaviour
         
         LogToEnter = "";
         //add headers for portrait telemetry file================================================
+
+        BinaryFormatter bf = new BinaryFormatter();
         for (int h = 0; h < PortraitHeaders.Length; h++)
         {
             string CurrentEntry = PortraitHeaders[h] + ",";
             LogToEnter = LogToEnter + CurrentEntry;
         }
+        if (File.Exists(Application.persistentDataPath + "/PortraitTelemetry.txt"))
+        {
+            File.Delete(Application.persistentDataPath + "/PortraitTelemetry.txt");
+        }
+        else
+        {
+            File.Create(Application.persistentDataPath + "/PortraitTelemetry.txt");
+        }
+
+        //bf.Serialize()
+
+       
+        /*
         StreamWriter PHeaders = new StreamWriter(Ppath, true);
         Debug.Log("stream writer");
         PHeaders.WriteLine(LogToEnter);
         PHeaders.Close();
 
         LogToEnter = "";
+        */
         //add headers for slider telemetry file================================================
         for (int h = 0; h < SliderHeaders.Length; h++)
         {
@@ -212,6 +232,26 @@ public class TelemetrySystem : MonoBehaviour
         Debug.Log("Data Added");
     }
 
+
+    public void SaveData()
+    {
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream fs = File.Create(Application.persistentDataPath + "/TestText.txt");
+        Debug.Log("File Created");
+        bf.Serialize(fs, "Test Text");
+        fs.Close();
+        Debug.Log("Data Saved");
+    }
+
+    public void LoadData()
+    {
+        if (File.Exists((Application.persistentDataPath + "/TestText.txt")))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream fs = File.Open((Application.persistentDataPath + "/TestText.txt"), FileMode.Open);
+            Debug.Log(fs.ToString());
+        }
+    }
     /*
 
     public void TestAddEntry() //array gets passed in from the subtelemetry systems //https://www.youtube.com/watch?v=vDpww7HsdnM 

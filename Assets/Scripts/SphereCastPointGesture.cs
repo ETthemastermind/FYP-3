@@ -55,8 +55,8 @@ public class SphereCastPointGesture : MonoBehaviour
         {
             
             RaycastHit ObjectHit;
-            
-            
+
+            LastHitObject = CurrentHitObject;
 
             if (Physics.SphereCast(FingerTip.transform.position, sphereRadius, FingerTip.transform.forward, out ObjectHit, maxDistance, layerMask, QueryTriggerInteraction.Ignore))
             {
@@ -78,24 +78,29 @@ public class SphereCastPointGesture : MonoBehaviour
 
 
 
-                    
+                    KeywordObject = CurrentHitObject.transform.gameObject;
+                    KeywordObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.red;
+
                     if (KeywordObject != null)
                     {
                         KeywordObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.white;
                     }
                     
-                    KeywordObject = CurrentHitObject.transform.gameObject;
-                    KeywordObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.red;
+                    //KeywordObject = CurrentHitObject.transform.gameObject;
+                    //KeywordObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.red;
                     
 
                     if (CurrentHitObject != LastHitObject)
                     {
+                        PortraitTelemetrySystem.GetComponent<PortraitTelemetrySystemV2>().PushData("Point Gesture activated", "N/A", "N/A");
                         AS.PlayOneShot(SelectSound);
-                        PortraitTelemetrySystem.GetComponent<PortraitTelemetry>().PointGestureUsed += 1;
                         
+                        //PortraitTelemetrySystem.GetComponent<PortraitTelemetry>().PointGestureUsed += 1;
 
 
-                        
+
+
+
                     }
 
 

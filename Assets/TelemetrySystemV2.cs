@@ -11,6 +11,9 @@ public class TelemetrySystemV2 : MonoBehaviour
     public string[] TestDataLog;
     public bool TestSaveData;
     public string[] DemographicInfo;
+    public string[] Headings;
+
+    public string LogToEnter;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,8 +21,18 @@ public class TelemetrySystemV2 : MonoBehaviour
         FilePath = Application.persistentDataPath + "/Telemetry.csv";
         StreamWriter writer = new StreamWriter(FilePath, false);
         //writer.WriteLine("Spin my nipple nuts and send me to alaska"); debug to test 
+
+        LogToEnter = "";
+        Debug.Log("Creating Telemetry Headings");
+        for (int H = 0; H < Headings.Length; H++)
+        {
+            
+            LogToEnter += Headings[H] + ",";
+        }
+
+        writer.WriteLine(LogToEnter);
         writer.Close();
-        
+
     }
 
     // Update is called once per frame
@@ -33,8 +46,9 @@ public class TelemetrySystemV2 : MonoBehaviour
 
     public void AddEntry(string[] DataLog)
     {
-        string LogToEnter = ""; //clears the entry log
+        LogToEnter = ""; //clears the entry log
         Debug.Log("Add Entry");
+        
         for (int d = 0; d < 2; d++) //for the first two entries in demographic info (identifier and version)
         {
             Debug.Log("Adding relevant demographic info");
@@ -46,7 +60,7 @@ public class TelemetrySystemV2 : MonoBehaviour
             LogToEnter += DataLog[i] + ",";
         }
 
-
+        Debug.Log(LogToEnter);
         StreamWriter writer = new StreamWriter(FilePath, true);
         writer.WriteLine(LogToEnter);
         writer.Close();

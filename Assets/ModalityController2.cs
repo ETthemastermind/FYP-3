@@ -82,7 +82,7 @@ public class ModalityController2 : MonoBehaviour  //due to the dont destroy on l
         VRSRLM_Button.GetComponent<Image>().color = Color.white;
 
         Version_InputBox.GetComponent<TMP_InputField>().text = "Standard";
-        TelemetrySystem.GetComponent<TelemetrySystem>().DemographicInfo[1] = "Standard";
+        TelemetrySystem.GetComponent<TelemetrySystemV2>().DemographicInfo[1] = "Standard";
 
 
 
@@ -103,7 +103,7 @@ public class ModalityController2 : MonoBehaviour  //due to the dont destroy on l
         VRSRLM_Button.GetComponent<Image>().color = Color.white;
 
         Version_InputBox.GetComponent<TMP_InputField>().text = "VR";
-        TelemetrySystem.GetComponent<TelemetrySystem>().DemographicInfo[1] = "VR";
+        TelemetrySystem.GetComponent<TelemetrySystemV2>().DemographicInfo[1] = "VR";
 
 
     }
@@ -120,7 +120,7 @@ public class ModalityController2 : MonoBehaviour  //due to the dont destroy on l
         VRSRLM_Button.GetComponent<Image>().color = Color.green;
 
         Version_InputBox.GetComponent<TMP_InputField>().text = "VR+";
-        TelemetrySystem.GetComponent<TelemetrySystem>().DemographicInfo[1] = "VR+";
+        TelemetrySystem.GetComponent<TelemetrySystemV2>().DemographicInfo[1] = "VR+";
 
 
 
@@ -222,7 +222,7 @@ public class ModalityController2 : MonoBehaviour  //due to the dont destroy on l
         for (int i = 0; i < 1; i++)
         {
             Debug.Log("For Loop Going");
-            if (TelemetrySystem.GetComponent<TelemetrySystem>().DemographicInfo[i] == "")
+            if (TelemetrySystem.GetComponent<TelemetrySystemV2>().DemographicInfo[i] == "")
             {
                 DataMissing = true;
                 Debug.Log("Data is Missing");
@@ -256,7 +256,7 @@ public class ModalityController2 : MonoBehaviour  //due to the dont destroy on l
 
     public void GetID()
     {
-        TelemetrySystem.GetComponent<TelemetrySystem>().DemographicInfo[0] = IdentifierInputBox.GetComponent<TMP_InputField>().text;
+        TelemetrySystem.GetComponent<TelemetrySystemV2>().DemographicInfo[0] = IdentifierInputBox.GetComponent<TMP_InputField>().text;
     }
 
     

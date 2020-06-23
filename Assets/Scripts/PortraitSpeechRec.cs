@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Windows.Speech;
 using System.Linq;
+using TMPro;
 
 public class PortraitSpeechRec : MonoBehaviour
 {
@@ -61,7 +62,10 @@ public class PortraitSpeechRec : MonoBehaviour
 
                 GameObject Artefact;
                 Artefact = PointingGesture.GetComponent<SphereCastPointGesture>().PortraitTelemetrySystem;
-                Artefact.GetComponent<PortraitTelemetry>().TellMeAboutThisSaid += 1;
+                string KeywordName;
+                KeywordName = KeywordAskedAbout.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text;
+                //Artefact.GetComponent<PortraitTelemetry>().TellMeAboutThisSaid += 1;
+                Artefact.GetComponent<PortraitTelemetrySystemV2>().PushData(("Tell Me About This said - " + KeywordName), "N/A", "N/A");
             }
             
         }

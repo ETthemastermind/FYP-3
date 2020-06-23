@@ -89,7 +89,8 @@ public class Portrait_Interaction : MonoBehaviour
             Infomation_GUI.SetActive(true);
             Dpad_Active_V = true;
             DisplayedInformation.GetComponent<Text>().text = Info1;
-            TelemetrySystem.GetComponent<PortraitTelemetry>().Keyword1Said += 1;
+            //TelemetrySystem.GetComponent<PortraitTelemetry>().Keyword1Said += 1;  //old system
+            TelemetrySystem.GetComponent<PortraitTelemetrySystemV2>().PushData(("SR keyword used - " + Keyword1.text), "N/A", "N/A");  //new tel system
             //Debug.Log("Who Active");
 
         }
@@ -100,7 +101,8 @@ public class Portrait_Interaction : MonoBehaviour
             Dpad_Active_H = true;
             DisplayedInformation.GetComponent<Text>().text = Info2;
 
-            TelemetrySystem.GetComponent<PortraitTelemetry>().Keyword2Said += 1;
+            //TelemetrySystem.GetComponent<PortraitTelemetry>().Keyword2Said += 1;
+            TelemetrySystem.GetComponent<PortraitTelemetrySystemV2>().PushData(("SR keyword used - " + Keyword2.text), "N/A", "N/A");  //new tel system
             //Debug.Log("When Active");
 
         }
@@ -110,7 +112,8 @@ public class Portrait_Interaction : MonoBehaviour
             Infomation_GUI.SetActive(true);
             Dpad_Active_H = true;
             DisplayedInformation.GetComponent<Text>().text = Info4;
-            TelemetrySystem.GetComponent<PortraitTelemetry>().Keyword4Said += 1;
+            //TelemetrySystem.GetComponent<PortraitTelemetry>().Keyword4Said += 1;
+            TelemetrySystem.GetComponent<PortraitTelemetrySystemV2>().PushData(("SR keyword used - " + Keyword4.text), "N/A", "N/A");  //new tel system
             //Debug.Log("When Active");
 
         }
@@ -120,7 +123,8 @@ public class Portrait_Interaction : MonoBehaviour
             Infomation_GUI.SetActive(true);
             Dpad_Active_V = true;
             DisplayedInformation.GetComponent<Text>().text = Info3;
-            TelemetrySystem.GetComponent<PortraitTelemetry>().Keyword3Said += 1;
+            //TelemetrySystem.GetComponent<PortraitTelemetry>().Keyword3Said += 1;
+            TelemetrySystem.GetComponent<PortraitTelemetrySystemV2>().PushData(("SR keyword used - " + Keyword3.text), "N/A", "N/A");  //new tel system
             //Debug.Log("When Active");
 
         }

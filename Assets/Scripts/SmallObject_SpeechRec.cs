@@ -158,7 +158,7 @@ public class SmallObject_SpeechRec : MonoBehaviour
 
             if (TelemetrySystem_Found.gameObject.tag == "Portrait Display")
             {
-                Artefact.transform.parent.GetComponent<PortraitTelemetry>().Keyword1Said += 1;
+                Artefact.transform.parent.GetComponent<PortraitTelemetrySystemV2>().PushData(("Dpad keyword used - " + Keywords[0]), "N/A", "N/A");
             }
             else if (TelemetrySystem_Found.gameObject.tag == "PUA Display")
             {
@@ -185,7 +185,7 @@ public class SmallObject_SpeechRec : MonoBehaviour
         }
         if (TelemetrySystem_Found.gameObject.tag == "Portrait Display")
         {
-            Artefact.transform.parent.GetComponent<PortraitTelemetry>().Keyword2Said += 1;
+            Artefact.transform.parent.GetComponent<PortraitTelemetrySystemV2>().PushData(("Dpad keyword used - " + Keywords[1]), "N/A", "N/A");
         }
         else if (TelemetrySystem_Found.gameObject.tag == "PUA Display")
         {
@@ -212,7 +212,7 @@ public class SmallObject_SpeechRec : MonoBehaviour
 
         if (TelemetrySystem_Found.gameObject.tag == "Portrait Display")
         {
-            Artefact.transform.parent.GetComponent<PortraitTelemetry>().Keyword3Said += 1;
+            Artefact.transform.parent.GetComponent<PortraitTelemetrySystemV2>().PushData(("Dpad keyword used - " + Keywords[2]), "N/A", "N/A");
         }
         else if (TelemetrySystem_Found.gameObject.tag == "PUA Display")
         {
@@ -238,7 +238,7 @@ public class SmallObject_SpeechRec : MonoBehaviour
 
         if (TelemetrySystem_Found.gameObject.tag == "Portrait Display")
         {
-            Artefact.transform.parent.GetComponent<PortraitTelemetry>().Keyword4Said += 1;
+            Artefact.transform.parent.GetComponent<PortraitTelemetrySystemV2>().PushData(("Dpad keyword used - " + Keywords[3]), "N/A", "N/A");
         }
         else if (TelemetrySystem_Found.gameObject.tag == "PUA Display")
         {

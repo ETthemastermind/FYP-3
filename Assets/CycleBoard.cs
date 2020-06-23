@@ -89,7 +89,7 @@ public class CycleBoard : MonoBehaviour
                 IncrementTutDisplay();
             }
 
-            if (CycleLeft == true)
+            else if (CycleLeft == true)
             {
                 DecrementTutDisplay();
             }

@@ -16,7 +16,8 @@ public class TutorialController : MonoBehaviour
     private bool NotebookActive;
     public GameObject NotebookController;
     public GameObject[] TranscriptBoards;
-    
+
+    public int CurrentPhase = 0;
     
 
     //Phase 1 variables of the tutorial//
@@ -168,51 +169,63 @@ public class TutorialController : MonoBehaviour
         if (TriggerPhase1 == true) //for now, using booleans to trigger
         {
             Phase1(); //run phase 1
+            CurrentPhase = 1;
         }
 
         else if (TriggerPhase2 == true)
         {
             Phase2();
+            CurrentPhase = 2;
         }
         else if (TriggerPhase3 == true)
         {
             Phase3();
+            CurrentPhase = 3;
         }
         else if (TriggerPhase4 == true)
         {
             Phase4();
+            CurrentPhase = 4;
         }
         else if (TriggerPhase5 == true)
         {
             Phase5();
+            CurrentPhase = 5;
         }
         else if (TriggerPhase6 == true)
         {
             Phase6();
+            CurrentPhase = 6;
         }
         else if (TriggerPhase6b == true)
         {
             Phase6B();
+            
         }
         else if (TriggerPhase7 == true)
         {
             Phase7();
+            CurrentPhase = 7;
         }
         else if (TriggerPhase8 == true)
         {
             Phase8();
+            CurrentPhase = 8;
         }
         else if (TriggerPhase9 == true)
         {
             Phase9();
+            CurrentPhase = 9;
         }
         else if (TriggerPhase10 == true)
         {
             Phase10();
+            CurrentPhase = 10;
         }
         else if (TriggerPhase11 == true)
         {
             Phase11();
+            CurrentPhase = 11;
         }
 
       

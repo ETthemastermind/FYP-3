@@ -3,9 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
+using UnityEngine.Windows.Speech;
+using System.Linq;
 
 public class TutorialController : MonoBehaviour
 {
+
+    //====================
+    private KeywordRecognizer keywordRecogniser; //sets up speech rec
+    public Dictionary<string, System.Action> actions = new Dictionary<string, System.Action>(); //dictionairy of keywords
+    //======================
+
     public GameObject ChoosePlayer;
     public GameObject ModalityController;
     public GameObject Player;
@@ -15,7 +23,7 @@ public class TutorialController : MonoBehaviour
     private bool AudioPlaying;
     private bool NotebookActive;
     public GameObject NotebookController;
-    public GameObject[] TranscriptBoards;
+   
 
     public int CurrentPhase = 0;
     
@@ -91,13 +99,10 @@ public class TutorialController : MonoBehaviour
     public GameObject LastRope;
 
 
-    // Start is called before the first frame update
+    
     void Start()
     {
-        for (int i = 1; i < TranscriptBoards.Length; i++)
-        {
-            TranscriptBoards[i].SetActive(false);
-        }
+        
 
         
         ModalityController = GameObject.FindGameObjectWithTag("ModalityController");
@@ -116,12 +121,14 @@ public class TutorialController : MonoBehaviour
 
         }
 
-        
+        actions.Add("Start Tutorial", TutStartDebug);
 
-        
-        
 
-        
+
+
+
+
+
         LastWordDefault = SpeechController.GetComponent<PortraitSpeechRec>().LastSaidWord;
         //SliderExhibitMat = SliderExhibit.GetComponent<Renderer>().materials[0];
 
@@ -138,6 +145,11 @@ public class TutorialController : MonoBehaviour
     }
 
     // Update is called once per frame
+
+    public void TutStartDebug()
+    {
+        TriggerPhase1 = true;
+    }
     void Update()
 
     {
@@ -259,10 +271,7 @@ public class TutorialController : MonoBehaviour
 
     public void Phase2() //introducing the "tell me about this"
     {
-        if (TranscriptBoards[1].active == false)
-        {
-            TranscriptBoards[1].SetActive(true);
-        }
+        
         Debug.Log("Phase 2 tutorial active hhghhufhuf");
         if (AudioPlayed == false && AS.isPlaying == false) // if the audioclip has not been played or a current audioclip is not playing
         {
@@ -310,10 +319,6 @@ public class TutorialController : MonoBehaviour
 
     public void Phase3() //Send them to pick-up artefact, make the artefact glow
     {
-        if (TranscriptBoards[2].active == false)
-        {
-            TranscriptBoards[2].SetActive(true);
-        }
         Debug.Log("Phase 3 Tutorial Active");
         //NotebookMat.EnableKeyword("_EMISSION");
         //LerpedColour = Color.Lerp(Color.black, Color.yellow, Mathf.PingPong(Time.time, 1));
@@ -330,10 +335,7 @@ public class TutorialController : MonoBehaviour
 
     public void Phase4() // encourage to pick up
     {
-        if (TranscriptBoards[3].active == false)
-        {
-            TranscriptBoards[3].SetActive(true);
-        }
+        
         Debug.Log("Phase 4 Enabled");
         if (AudioPlayed == false && AS.isPlaying == false)
         {
@@ -355,10 +357,7 @@ public class TutorialController : MonoBehaviour
 
     public void Phase5() // encourage to put down
     {
-        if (TranscriptBoards[4].active == false)
-        {
-            TranscriptBoards[4].SetActive(true);
-        }
+        
         Debug.Log("Phase 5 Enabled");
         if (AudioPlayed == false && AS.isPlaying == false)
         {
@@ -378,10 +377,7 @@ public class TutorialController : MonoBehaviour
 
     public void Phase6() //Show to request information 
     {
-        if (TranscriptBoards[5].active == false)
-        {
-            TranscriptBoards[5].SetActive(true);
-        }
+       
 
         Debug.Log("Phase 6 Enabled");
         //NotebookController.SetActive(true);
@@ -420,10 +416,7 @@ public class TutorialController : MonoBehaviour
 
     public void Phase7() //send to the slider object
     {
-        if (TranscriptBoards[6].active == false)
-        {
-            TranscriptBoards[6].SetActive(true);
-        }
+        
         Debug.Log("Phase 7 Enabled");
         //LerpedColour = Color.Lerp(Color.black, Color.yellow, Mathf.PingPong(Time.time, 1));
         //SliderExhibitMat.SetColor("_Emission", LerpedColour);
@@ -444,10 +437,7 @@ public class TutorialController : MonoBehaviour
 
     public void Phase8() //Show how to use slider
     {
-        if (TranscriptBoards[7].active == false)
-        {
-            TranscriptBoards[7].SetActive(true);
-        }
+        
         Debug.Log("Phase 8 Enabled");
         if (AudioPlayed == false && AS.isPlaying == false)
         {
@@ -468,10 +458,6 @@ public class TutorialController : MonoBehaviour
 
     public void Phase9() //send to the Diorama
     {
-        if (TranscriptBoards[8].active == false)
-        {
-            TranscriptBoards[8].SetActive(true);
-        }
         Debug.Log("Phase 9 Activated");
         if (AudioPlayed == false && AS.isPlaying == false)
         {
@@ -490,10 +476,7 @@ public class TutorialController : MonoBehaviour
 
     public void Phase10() //show how to use Diorama
     {
-        if (TranscriptBoards[9].active == false)
-        {
-            TranscriptBoards[9].SetActive(true);
-        }
+        
         Debug.Log("Phase 10 Activated");
         if (AudioPlayed == false && AS.isPlaying == false)
         {
@@ -513,10 +496,7 @@ public class TutorialController : MonoBehaviour
 
     public void Phase11()
     {
-        if (TranscriptBoards[10].active == false)
-        {
-            TranscriptBoards[10].SetActive(true);
-        }
+        
         Debug.Log("Phase 11 Activated");
         DioramaGesture.SetActive(true); //diroama gesture was deactivated so the player could not use it before the instructions are finished.
         if (DioramaGesture.GetComponent<DioramaEnter_OH>().LR == true)
@@ -550,7 +530,20 @@ public class TutorialController : MonoBehaviour
 
     }
 
-    
+
+
+    // Start is called before the first frame update
+
+    //=========================
+    private void RecognisedSpeech(PhraseRecognizedEventArgs speech)
+    {
+        Debug.Log(speech.text);
+        actions[speech.text].Invoke();
+
+    }
+    //=======================================
+
+
 
 
 }

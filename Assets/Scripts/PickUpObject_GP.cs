@@ -74,7 +74,8 @@ public class PickUpObject_GP : MonoBehaviour
 
         Inspect_Pos = GameObject.FindGameObjectWithTag("Inspect_Pos");  //finds the inspect postion from the player 
         Artifact_Home = gameObject.transform.parent.gameObject; //finds the home pedestal of the artefact
-        TriggerArea = Artifact_Home.gameObject.transform.Find("Glowing Ring").gameObject; //finds the trigger area of the object
+
+        TriggerArea = Artifact_Home.gameObject.transform.parent.Find("Glowing Ring").gameObject; //finds the trigger area of the object
 
         PressB.SetActive(false); //turns the gui off
         PressA.SetActive(false);

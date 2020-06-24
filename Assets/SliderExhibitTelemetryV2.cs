@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PortraitTelemetrySystemV2 : MonoBehaviour
+public class SliderExhibitTelemetryV2 : MonoBehaviour
 {
+
     public GameObject InteractRing;
     public bool PlayerInInteractRing;
     public string TimeStamp;
@@ -18,31 +19,24 @@ public class PortraitTelemetrySystemV2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         MasterTelemetrySystem = GameObject.FindGameObjectWithTag("TelemetrySystem");
+        ArtefactName = gameObject.name;
 
-        for (int i = 0; i < gameObject.transform.childCount; i++)
+        string Comma = ",";
+        int j = ArtefactName.IndexOf(Comma);
+        if (j >= 0)
         {
-            if (gameObject.transform.GetChild(i).gameObject.tag == "Artefact")
-            {
-                Artefact = gameObject.transform.GetChild(i).gameObject;
-                ArtefactName = Artefact.name;
-
-            }
-
-            string Comma = ",";
-            int j = ArtefactName.IndexOf(Comma);
-            if (j >= 0)
-            {
-                ArtefactName = ArtefactName.Remove(j, Comma.Length);
-            }
-
-
+            ArtefactName = ArtefactName.Remove(j, Comma.Length);
         }
+       
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+
         //Getting time stamps for entering and leaving//==============================================================
         PlayerInInteractRing = InteractRing.GetComponent<AreaEntered>().PlayerInTrigger;
         if (PlayerInInteractRing == true && TimeEntered_Found == false)
@@ -59,15 +53,10 @@ public class PortraitTelemetrySystemV2 : MonoBehaviour
             string TypeOfInteractionUsed = "Exhibit Vistied";
             string InteractionCompleted = "True";
             PushData(TypeOfInteractionUsed, TimeStamp, InteractionCompleted, TimeStamp2);
-            
-
-            
-
         }
-
     }
 
-    public void PushData(string TypeOfInteractionUsed, string TimeStamp_Started, string InteractionCompleted,string TimeStamp2)
+    public void PushData(string TypeOfInteractionUsed, string TimeStamp_Started, string InteractionCompleted, string TimeStamp2)
     {
         DataLog[0] = ArtefactName;
         DataLog[1] = TypeOfArtefact;
@@ -77,7 +66,5 @@ public class PortraitTelemetrySystemV2 : MonoBehaviour
         DataLog[5] = TimeStamp2;
 
         MasterTelemetrySystem.GetComponent<TelemetrySystemV2>().AddEntry(DataLog);
-
-        
     }
 }

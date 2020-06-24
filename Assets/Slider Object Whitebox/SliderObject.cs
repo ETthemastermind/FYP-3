@@ -102,7 +102,8 @@ public class SliderObject : MonoBehaviour
                 //Debug.Log("Right Pressed");
                 Dpad_Active = true;
                 IncrementDisplay();
-                gameObject.GetComponent<SliderExhibitTelemetry>().ButtonPressed += 1;
+                //gameObject.GetComponent<SliderExhibitTelemetry>().ButtonPressed += 1;
+                gameObject.GetComponent<SliderExhibitTelemetryV2>().PushData("Dpad Increment Button Used", System.DateTime.Now.ToLongTimeString(),"N/A","N/A");
             }
 
             else if (Dpad_Horizontal == -1 & Dpad_Active == false)
@@ -110,7 +111,8 @@ public class SliderObject : MonoBehaviour
                 //Debug.Log("Left Pressed");
                 Dpad_Active = true;
                 DecrementDisplay();
-                gameObject.GetComponent<SliderExhibitTelemetry>().ButtonPressed += 1;
+                //gameObject.GetComponent<SliderExhibitTelemetry>().ButtonPressed += 1;
+                gameObject.GetComponent<SliderExhibitTelemetryV2>().PushData("Dpad Decrement Button Used", System.DateTime.Now.ToLongTimeString(), "N/A", "N/A");
             }
 
             else if (Dpad_Horizontal == 0)

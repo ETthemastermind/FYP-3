@@ -9,6 +9,7 @@ public class SliderObjectSpeech : MonoBehaviour
     public bool ActiveSlider = false;
     public GameObject SliderObject;
     //public GameObject RightCycle_Object;
+    public GameObject SliderTelemetrySystem;
     
     private KeywordRecognizer keywordRecogniser; //sets up speech rec
     public Dictionary<string, System.Action> actions = new Dictionary<string, System.Action>(); //dictionairy of keywords
@@ -17,6 +18,8 @@ public class SliderObjectSpeech : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        SliderTelemetrySystem = gameObject.transform.parent.gameObject;
         actions.Add("Cycle Right", CycleRight);
         actions.Add("Cycle Left", CycleLeft);
 
@@ -67,7 +70,8 @@ public class SliderObjectSpeech : MonoBehaviour
         {
             Debug.Log("Cycling Right");
             SliderObject.GetComponent<SliderObject>().IncrementDisplay();
-            SliderObject.GetComponent<SliderExhibitTelemetry>().SRUsed += 1;
+            //SliderObject.GetComponent<SliderExhibitTelemetry>().SRUsed += 1;
+            SliderObject.GetComponent<SliderExhibitTelemetryV2>().PushData("Cycle Right said", System.DateTime.Now.ToLongTimeString(), "N/A", "N/A");
         }
         
 
@@ -79,7 +83,8 @@ public class SliderObjectSpeech : MonoBehaviour
         {
             Debug.Log("Cycling Left");
             SliderObject.GetComponent<SliderObject>().DecrementDisplay();
-            SliderObject.GetComponent<SliderExhibitTelemetry>().SRUsed += 1;
+            //SliderObject.GetComponent<SliderExhibitTelemetry>().SRUsed += 1;
+            SliderObject.GetComponent<SliderExhibitTelemetryV2>().PushData("Cycle Left Said", System.DateTime.Now.ToLongTimeString(), "N/A", "N/A");
         }
         
     }

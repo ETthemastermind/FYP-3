@@ -92,7 +92,7 @@ public class SphereCastPointGesture : MonoBehaviour
 
                     if (CurrentHitObject != LastHitObject)
                     {
-                        PortraitTelemetrySystem.GetComponent<PortraitTelemetrySystemV2>().PushData("Point Gesture activated", "N/A", "N/A");
+                        PortraitTelemetrySystem.GetComponent<PortraitTelemetrySystemV2>().PushData("Point Gesture activated", System.DateTime.Now.ToLongTimeString(), "N/A", "N/A");
                         AS.PlayOneShot(SelectSound);
                         
                         //PortraitTelemetrySystem.GetComponent<PortraitTelemetry>().PointGestureUsed += 1;

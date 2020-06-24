@@ -93,6 +93,10 @@ namespace Valve.VR.InteractionSystem
         public bool wasHovering { get; protected set; }
 
 
+        
+    
+
+
         private void Awake()
         {
             skeletonPoser = GetComponent<SteamVR_Skeleton_Poser>();
@@ -113,6 +117,8 @@ namespace Valve.VR.InteractionSystem
                     useHandObjectAttachmentPoint = false;
                 }
             }
+
+            
         }
 
         protected virtual bool ShouldIgnoreHighlight(Component component)
@@ -241,7 +247,7 @@ namespace Valve.VR.InteractionSystem
         /// <summary>
         /// Called when a Hand starts hovering over this object
         /// </summary>
-        protected virtual void OnHandHoverBegin(Hand hand)
+        protected virtual void OnHandHoverBegin(Hand hand)  //was protected
         {
             wasHovering = isHovering;
             isHovering = true;
@@ -250,9 +256,12 @@ namespace Valve.VR.InteractionSystem
 
             if (highlightOnHover == true && wasHovering == false)
             {
+                
                 CreateHighlightRenderers();
                 UpdateHighlightRenderers();
             }
+
+            
         }
 
 
@@ -261,6 +270,7 @@ namespace Valve.VR.InteractionSystem
         /// </summary>
         protected virtual void OnHandHoverEnd(Hand hand)
         {
+            
             wasHovering = isHovering;
 
             hoveringHands.Remove(hand);
@@ -271,6 +281,7 @@ namespace Valve.VR.InteractionSystem
 
                 if (highlightOnHover && highlightHolder != null)
                     Destroy(highlightHolder);
+
             }
         }
 
@@ -362,5 +373,10 @@ namespace Valve.VR.InteractionSystem
             if (highlightHolder != null)
                 Destroy(highlightHolder);
         }
+
+       
     }
+
+
+   
 }

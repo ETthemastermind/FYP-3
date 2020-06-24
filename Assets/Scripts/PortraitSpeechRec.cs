@@ -65,7 +65,7 @@ public class PortraitSpeechRec : MonoBehaviour
                 string KeywordName;
                 KeywordName = KeywordAskedAbout.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text;
                 //Artefact.GetComponent<PortraitTelemetry>().TellMeAboutThisSaid += 1;
-                Artefact.GetComponent<PortraitTelemetrySystemV2>().PushData(("Tell Me About This said - " + KeywordName), "N/A", "N/A");
+                Artefact.GetComponent<PortraitTelemetrySystemV2>().PushData(("Tell Me About This said - " + KeywordName), System.DateTime.Now.ToLongTimeString() ,"N/A", "N/A");
             }
             
         }

@@ -95,6 +95,9 @@ public class PickupArtefactTelemetry : MonoBehaviour
 
     }
 
+
+  
+
     public void ResetTelemetry()
     {
         Debug.Log("Resetting Telemetry");
@@ -127,6 +130,8 @@ public class PickupArtefactTelemetry : MonoBehaviour
         ResetTelemetry();
 
     }
+
+
 
 }
 

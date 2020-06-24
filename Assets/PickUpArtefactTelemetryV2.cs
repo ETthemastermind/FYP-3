@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PortraitTelemetrySystemV2 : MonoBehaviour
+public class PickUpArtefactTelemetryV2 : MonoBehaviour
 {
     public GameObject InteractRing;
     public bool PlayerInInteractRing;
@@ -25,7 +25,7 @@ public class PortraitTelemetrySystemV2 : MonoBehaviour
             if (gameObject.transform.GetChild(i).gameObject.tag == "Artefact")
             {
                 Artefact = gameObject.transform.GetChild(i).gameObject;
-                ArtefactName = Artefact.name;
+                ArtefactName = Artefact.transform.GetChild(0).name;
 
             }
 
@@ -38,6 +38,7 @@ public class PortraitTelemetrySystemV2 : MonoBehaviour
 
 
         }
+
     }
 
     // Update is called once per frame
@@ -59,15 +60,22 @@ public class PortraitTelemetrySystemV2 : MonoBehaviour
             string TypeOfInteractionUsed = "Exhibit Vistied";
             string InteractionCompleted = "True";
             PushData(TypeOfInteractionUsed, TimeStamp, InteractionCompleted, TimeStamp2);
-            
-
-            
-
         }
-
     }
 
-    public void PushData(string TypeOfInteractionUsed, string TimeStamp_Started, string InteractionCompleted,string TimeStamp2)
+    public void HandHoverTelemetry()
+    {
+        Debug.Log("Hand Hovering");
+        PushData("Artefact Highlighted", System.DateTime.Now.ToLongTimeString(), "N/A", "N/A");
+    }
+
+    public void HandNotHoverTelemetry()
+    {
+        Debug.Log("Hand Not Hovering");
+        PushData("Artefact Unhighlighted", System.DateTime.Now.ToLongTimeString(), "N/A", "N/A");
+    }
+
+    public void PushData(string TypeOfInteractionUsed, string TimeStamp_Started, string InteractionCompleted, string TimeStamp2)
     {
         DataLog[0] = ArtefactName;
         DataLog[1] = TypeOfArtefact;
@@ -77,7 +85,5 @@ public class PortraitTelemetrySystemV2 : MonoBehaviour
         DataLog[5] = TimeStamp2;
 
         MasterTelemetrySystem.GetComponent<TelemetrySystemV2>().AddEntry(DataLog);
-
-        
     }
 }

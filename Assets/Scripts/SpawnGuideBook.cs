@@ -34,12 +34,14 @@ public class SpawnGuideBook : MonoBehaviour
             if (SteamVR_Actions._default.X_Button.GetState(SteamVR_Input_Sources.LeftHand) == true)
             {
                 Active();
+                
 
             }
 
             else if (SteamVR_Actions._default.X_Button.GetState(SteamVR_Input_Sources.LeftHand) == false)
             {
                 Inactive();
+                
             }
             /*
             if (VR_LeftHand.transform.rotation.z > 0.5f && VR_LeftHand.transform.rotation.z < 0.8f)
@@ -63,9 +65,14 @@ public class SpawnGuideBook : MonoBehaviour
 
     public void Active()
     {
-        ActiveGesture = true;
-        Debug.Log("Active Gesture: Spawn Guidebook");
-        GuideBook.SetActive(true);
+        if (ActiveGesture == false)
+        {
+            GuideBook.GetComponent<NotebookTelemetrySystem>().PushData("Guidebook Opened", System.DateTime.Now.ToLongTimeString(), "N/A", "N/A");
+            Debug.Log("Active Gesture: Spawn Guidebook");
+            GuideBook.SetActive(true);
+            ActiveGesture = true;
+        }
+        
         
 
 
@@ -73,9 +80,15 @@ public class SpawnGuideBook : MonoBehaviour
 
     public void Inactive()
     {
-        ActiveGesture = false;
-        Debug.Log("Inactive Gesture: Spawn Guidebook");
-        GuideBook.SetActive(false);
+
+        if (ActiveGesture == true)
+        {
+            GuideBook.GetComponent<NotebookTelemetrySystem>().PushData("Guidebook Closed", System.DateTime.Now.ToLongTimeString(), "N/A", "N/A");
+            ActiveGesture = false;
+            Debug.Log("Inactive Gesture: Spawn Guidebook");
+            GuideBook.SetActive(false);
+        }
+        
         
 
 

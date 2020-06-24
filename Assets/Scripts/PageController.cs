@@ -75,6 +75,7 @@ public class PageController : MonoBehaviour
         }
 
         Pages[ActivePage].SetActive(true); //turns the new current page on
+        gameObject.GetComponent<NotebookTelemetrySystem>().PushData("Page turned using SR (Increment)",System.DateTime.Now.ToLongTimeString(),"N/A","N/A");
 
 
     }
@@ -99,8 +100,9 @@ public class PageController : MonoBehaviour
 
         }
         Pages[ActivePage].SetActive(true);
+        gameObject.GetComponent<NotebookTelemetrySystem>().PushData("Page turned using SR (Decrement)", System.DateTime.Now.ToLongTimeString(), "N/A", "N/A");
 
-        
+
 
     }
 
@@ -119,6 +121,7 @@ public class PageController : MonoBehaviour
             }
 
         }
+        gameObject.GetComponent<NotebookTelemetrySystem>().PushData("SR - Go To Commands Page", System.DateTime.Now.ToLongTimeString(), "N/A", "N/A");
     }
 
     public void GoToPortrait()
@@ -134,6 +137,7 @@ public class PageController : MonoBehaviour
             }
 
         }
+        gameObject.GetComponent<NotebookTelemetrySystem>().PushData("SR - Go To Portraits Page", System.DateTime.Now.ToLongTimeString(), "N/A", "N/A");
 
     }
 
@@ -150,6 +154,7 @@ public class PageController : MonoBehaviour
             }
 
         }
+        gameObject.GetComponent<NotebookTelemetrySystem>().PushData("SR - Go To Artefact Page", System.DateTime.Now.ToLongTimeString(), "N/A", "N/A");
 
     }
 
@@ -166,6 +171,7 @@ public class PageController : MonoBehaviour
             }
 
         }
+        gameObject.GetComponent<NotebookTelemetrySystem>().PushData("SR - Go To Slider Page", System.DateTime.Now.ToLongTimeString(), "N/A", "N/A");
 
     }
 
@@ -182,6 +188,7 @@ public class PageController : MonoBehaviour
             }
 
         }
+        gameObject.GetComponent<NotebookTelemetrySystem>().PushData("SR - Go To Diorama Page", System.DateTime.Now.ToLongTimeString(), "N/A", "N/A");
 
 
     }

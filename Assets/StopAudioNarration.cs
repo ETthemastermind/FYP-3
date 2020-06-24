@@ -11,6 +11,7 @@ public class StopAudioNarration : MonoBehaviour
 
     public GameObject Player; //reference to the player character
     public AudioSource AS;
+    public GameObject Notebook;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,9 +44,12 @@ public class StopAudioNarration : MonoBehaviour
 
     public void StopAudio()
     {
+        
         if (AS.isPlaying == true)
         {
+            Notebook.GetComponent<NotebookTelemetrySystem>().PushData("Stop Audio Used", System.DateTime.Now.ToLongTimeString(), "N/A", "N/A");
             AS.Stop();
+            
         }
 
     }

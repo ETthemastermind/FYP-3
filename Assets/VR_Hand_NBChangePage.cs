@@ -27,11 +27,13 @@ public class VR_Hand_NBChangePage : MonoBehaviour
             if (NextPage == true)
             {
                 PageController.GetComponent<PageController>().IncrementPage();
+                gameObject.transform.parent.GetComponent<NotebookTelemetrySystem>().PushData("Page turned using gesture (Increment)",System.DateTime.Now.ToLongTimeString(),"N/A","N/A");
             }
 
             else if (LastPage == true)
             {
                 PageController.GetComponent<PageController>().DecrementPage();
+                gameObject.transform.parent.GetComponent<NotebookTelemetrySystem>().PushData("Page turned using gesture (Decrement)", System.DateTime.Now.ToLongTimeString(), "N/A", "N/A");
             }
         }
 

@@ -115,7 +115,7 @@ public class DioramaEnter_OH : MonoBehaviour
 
         }
         //---------------------------------------------------------------------------------------------------------//
-        //---------------------------if both hands are in position activate the teleport ------------------------------// <---- not working, hands dont need to fancy anyway in particular
+        //---------------------------if both hands are in position activate the teleport ------------------------------// <---- not working, hands dont need to face anyway in particular
         */
         if (InArea == true)
         {
@@ -171,9 +171,11 @@ public class DioramaEnter_OH : MonoBehaviour
                     {
                         AS.PlayOneShot(TeleportSoundEffect);
                         AudioPlayed = true;
+                        DioramaStand.transform.parent.GetComponentInChildren<DioramaExhibitTelemetryV2>().PushData("VR Diorama Enter");
+                        DioramaStand.GetComponent<LoadLevel>().OpenScene();
                     }
                     
-                    DioramaStand.GetComponent<LoadLevel>().OpenScene();
+                    
 
                 }
 
@@ -192,7 +194,8 @@ public class DioramaEnter_OH : MonoBehaviour
         {
             GestureActive = false;
             LR.enabled = false;
-            
+            DioramaStand.transform.parent.GetComponentInChildren<DioramaExhibitTelemetryV2>().PushData("VR Diorama Gesture Cancelled");
+
         }
         
         

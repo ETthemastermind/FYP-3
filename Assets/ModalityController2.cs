@@ -82,7 +82,7 @@ public class ModalityController2 : MonoBehaviour  //due to the dont destroy on l
         VRSRLM_Button.GetComponent<Image>().color = Color.white;
 
         Version_InputBox.GetComponent<TMP_InputField>().text = "Standard";
-        TelemetrySystem.GetComponent<TelemetrySystemV2>().DemographicInfo[1] = "Standard";
+        
 
 
 
@@ -103,7 +103,7 @@ public class ModalityController2 : MonoBehaviour  //due to the dont destroy on l
         VRSRLM_Button.GetComponent<Image>().color = Color.white;
 
         Version_InputBox.GetComponent<TMP_InputField>().text = "VR";
-        TelemetrySystem.GetComponent<TelemetrySystemV2>().DemographicInfo[1] = "VR";
+        
 
 
     }
@@ -120,7 +120,7 @@ public class ModalityController2 : MonoBehaviour  //due to the dont destroy on l
         VRSRLM_Button.GetComponent<Image>().color = Color.green;
 
         Version_InputBox.GetComponent<TMP_InputField>().text = "VR+";
-        TelemetrySystem.GetComponent<TelemetrySystemV2>().DemographicInfo[1] = "VR+";
+        
 
 
 
@@ -176,6 +176,7 @@ public class ModalityController2 : MonoBehaviour  //due to the dont destroy on l
         else if (TestingModeActivated == false)
         {
             TestingModeActivated = true;
+            
         }
     }
 
@@ -202,6 +203,8 @@ public class ModalityController2 : MonoBehaviour  //due to the dont destroy on l
                 Debug.Log("Turn Main Menu Canvas Off");
                 MainMenuCanvas.SetActive(false);
                 TestingCanvas.SetActive(true);
+                TelemetrySystem.GetComponent<TelemetrySystemV2>().TelemetryActive = true;
+            TelemetrySystem.GetComponent<TelemetrySystemV2>().CreateFiles();
 
 
 
@@ -219,19 +222,28 @@ public class ModalityController2 : MonoBehaviour  //due to the dont destroy on l
         DataMissing = false;
         Debug.Log("Load Testing Mode");
 
-        for (int i = 0; i < 1; i++)
+        for (int i = 0; i < TelemetrySystem.GetComponent<TelemetrySystemV2>().UserEntryBoxes.Length; i++)
         {
+            if (TelemetrySystem.GetComponent<TelemetrySystemV2>().UserEntryBoxes[i].GetComponent<TMP_InputField>().text == "")
+            {
+                DataMissing = true;
+                Debug.Log(TelemetrySystem.GetComponent<TelemetrySystemV2>().UserEntryBoxes[i] + " Data Missing");
+
+            }
+            /*
             Debug.Log("For Loop Going");
             if (TelemetrySystem.GetComponent<TelemetrySystemV2>().DemographicInfo[i] == "")
             {
                 DataMissing = true;
                 Debug.Log("Data is Missing");
             }
+            */
 
         }
         
         if (DataMissing == false)
         {
+            TelemetrySystem.GetComponent<TelemetrySystemV2>().AddEntry_Demographic();
             MainMenuCanvas.SetActive(false);
             TestingCanvas.SetActive(false);
             LoadingCanvas.SetActive(true);
@@ -256,7 +268,7 @@ public class ModalityController2 : MonoBehaviour  //due to the dont destroy on l
 
     public void GetID()
     {
-        TelemetrySystem.GetComponent<TelemetrySystemV2>().DemographicInfo[0] = IdentifierInputBox.GetComponent<TMP_InputField>().text;
+        //TelemetrySystem.GetComponent<TelemetrySystemV2>().DemographicInfo[0] = IdentifierInputBox.GetComponent<TMP_InputField>().text;
     }
 
     

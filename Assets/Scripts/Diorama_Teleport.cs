@@ -96,7 +96,7 @@ public class Diorama_Teleport : MonoBehaviour   //Gamepad teleporting
                 ModalityController.GetComponent<ModalityController2>().GamepadPlayer_Return = GameObject.FindGameObjectWithTag("Player").transform.position;
                 //gameObject.transform.parent.GetComponent<DioramaExhibitTelemetry>().DioramaEntered += 1;
                 //gameObject.transform.parent.GetComponent<DioramaExhibitTelemetry>().DioramaEnteredTel();
-                gameObject.transform.parent.GetComponent<DioramaExhibitTelemetryV2>().PushData("Diorama Entered",System.DateTime.Now.ToLongTimeString(),"N/A","N/A");
+                gameObject.transform.parent.GetComponent<DioramaExhibitTelemetryV2>().PushData("Diorama Entered");
                 SceneManager.LoadSceneAsync(TargetSceneIndex); //teleport area to the diorama
 
             }
@@ -108,7 +108,7 @@ public class Diorama_Teleport : MonoBehaviour   //Gamepad teleporting
                 Debug.Log("Dpad Up");
                 DisplayedInformation.GetComponent<Text>().text = gameObject.GetComponent<AssignInformation>().RelevantInfo[0]; //show the first line of information
                 //gameObject.transform.parent.GetComponent<DioramaExhibitTelemetry>().Keyword1Said += 1;
-                gameObject.transform.parent.GetComponent<DioramaExhibitTelemetryV2>().PushData("Dpad Keyword Used - " + Keyword1.GetComponent<Text>().text, System.DateTime.Now.ToLongTimeString(), "N/A", "N/A");
+                gameObject.transform.parent.GetComponent<DioramaExhibitTelemetryV2>().PushData("Dpad Keyword Used - " + Keyword1.GetComponent<Text>().text);
                 Dpad_Active_V = true;
 
             }
@@ -118,7 +118,7 @@ public class Diorama_Teleport : MonoBehaviour   //Gamepad teleporting
                 DisplayedInformation.GetComponent<Text>().text = gameObject.GetComponent<AssignInformation>().RelevantInfo[2]; //show the third line of information
                 Debug.Log("Dpad Down");
                 //gameObject.transform.parent.GetComponent<DioramaExhibitTelemetry>().Keyword2Said += 1;
-                gameObject.transform.parent.GetComponent<DioramaExhibitTelemetryV2>().PushData("Dpad Keyword Used - " + Keyword2.GetComponent<Text>().text, System.DateTime.Now.ToLongTimeString(), "N/A", "N/A");
+                gameObject.transform.parent.GetComponent<DioramaExhibitTelemetryV2>().PushData("Dpad Keyword Used - " + Keyword2.GetComponent<Text>().text);
                 Dpad_Active_V = true;
 
             }
@@ -128,7 +128,7 @@ public class Diorama_Teleport : MonoBehaviour   //Gamepad teleporting
                 DisplayedInformation.GetComponent<Text>().text = gameObject.GetComponent<AssignInformation>().RelevantInfo[1]; //show the second line of information
                 Debug.Log("Dpad Right");
                 //gameObject.transform.parent.GetComponent<DioramaExhibitTelemetry>().Keyword3Said += 1;
-                gameObject.transform.parent.GetComponent<DioramaExhibitTelemetryV2>().PushData("Dpad Keyword Used - " + Keyword3.GetComponent<Text>().text, System.DateTime.Now.ToLongTimeString(), "N/A", "N/A");
+                gameObject.transform.parent.GetComponent<DioramaExhibitTelemetryV2>().PushData("Dpad Keyword Used - " + Keyword3.GetComponent<Text>().text);
                 Dpad_Active_H = true;
             }
             else if (Input.GetAxis("Dpad_Horizontal") == -1 && Dpad_Active_H == false) //if left on the dpad is pressed
@@ -137,7 +137,7 @@ public class Diorama_Teleport : MonoBehaviour   //Gamepad teleporting
                 DisplayedInformation.GetComponent<Text>().text = gameObject.GetComponent<AssignInformation>().RelevantInfo[3]; //show the fourth line of information
                 Debug.Log("Dpad Left");
                 //gameObject.transform.parent.GetComponent<DioramaExhibitTelemetry>().Keyword4Said += 1;
-                gameObject.transform.parent.GetComponent<DioramaExhibitTelemetryV2>().PushData("Dpad Keyword Used - " + Keyword4.GetComponent<Text>().text, System.DateTime.Now.ToLongTimeString(), "N/A", "N/A");
+                gameObject.transform.parent.GetComponent<DioramaExhibitTelemetryV2>().PushData("Dpad Keyword Used - " + Keyword4.GetComponent<Text>().text);
                 Dpad_Active_H = true;
 
             }

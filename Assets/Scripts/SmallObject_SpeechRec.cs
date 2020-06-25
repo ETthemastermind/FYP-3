@@ -158,15 +158,15 @@ public class SmallObject_SpeechRec : MonoBehaviour
 
             if (TelemetrySystem_Found.gameObject.tag == "Portrait Display")
             {
-                Artefact.transform.parent.GetComponent<PortraitTelemetrySystemV2>().PushData(("Dpad keyword used - " + Keywords[0]), System.DateTime.Now.ToLongTimeString(), "N/A", "N/A");
+                Artefact.transform.parent.GetComponent<PortraitTelemetrySystemV2>().PushData(("SR keyword used - " + Keywords[0]));
             }
             else if (TelemetrySystem_Found.gameObject.tag == "PUA Display")
             {
-                Artefact.transform.parent.GetComponent<PickUpArtefactTelemetryV2>().PushData(("Dpad keyword used - " + Keywords[0]), System.DateTime.Now.ToLongTimeString(), "N/A", "N/A");
+                Artefact.transform.parent.GetComponent<PickUpArtefactTelemetryV2>().PushData(("SR keyword used - " + Keywords[0]));
             }
             else if (TelemetrySystem_Found.gameObject.tag == "DioramaDisplay")
             {
-                Artefact.transform.parent.GetComponent<DioramaExhibitTelemetry>().Keyword1Said += 1;
+                Artefact.transform.parent.GetComponent<DioramaExhibitTelemetryV2>().PushData(("SR keyword used - " + Keywords[0]));
             }
 
 
@@ -181,21 +181,23 @@ public class SmallObject_SpeechRec : MonoBehaviour
             AS.PlayOneShot(GatheredInfo[1]);
             ActiveCommand_Notebook.text = Keywords[1];
             ActiveInfo_Notebook.text = Artefact.GetComponent<AssignInformation>().RelevantInfo[1];
-            
-        }
-        if (TelemetrySystem_Found.gameObject.tag == "Portrait Display")
-        {
-            Artefact.transform.parent.GetComponent<PortraitTelemetrySystemV2>().PushData(("SR keyword used - " + Keywords[1]), System.DateTime.Now.ToLongTimeString() ,"N/A", "N/A");
-        }
-        else if (TelemetrySystem_Found.gameObject.tag == "PUA Display")
-        {
-            Artefact.transform.parent.GetComponent<PickUpArtefactTelemetryV2>().PushData(("SR keyword used - " + Keywords[1]), System.DateTime.Now.ToLongTimeString(), "N/A", "N/A");
-        }
 
-        else if (TelemetrySystem_Found.gameObject.tag == "DioramaDisplay")
-        {
-            Artefact.transform.parent.GetComponent<DioramaExhibitTelemetry>().Keyword2Said += 1;
+
+            if (TelemetrySystem_Found.gameObject.tag == "Portrait Display")
+            {
+                Artefact.transform.parent.GetComponent<PortraitTelemetrySystemV2>().PushData(("SR keyword used - " + Keywords[1]));
+            }
+            else if (TelemetrySystem_Found.gameObject.tag == "PUA Display")
+            {
+                Artefact.transform.parent.GetComponent<PickUpArtefactTelemetryV2>().PushData(("SR keyword used - " + Keywords[1]));
+            }
+
+            else if (TelemetrySystem_Found.gameObject.tag == "DioramaDisplay")
+            {
+                Artefact.transform.parent.GetComponent<DioramaExhibitTelemetryV2>().PushData(("SR keyword used - " + Keywords[1]));
+            }
         }
+        
 
 
     }
@@ -206,22 +208,23 @@ public class SmallObject_SpeechRec : MonoBehaviour
             AS.PlayOneShot(GatheredInfo[2]);
             ActiveCommand_Notebook.text = Keywords[2];
             ActiveInfo_Notebook.text = Artefact.GetComponent<AssignInformation>().RelevantInfo[2];
-            
+
+            if (TelemetrySystem_Found.gameObject.tag == "Portrait Display")
+            {
+                Artefact.transform.parent.GetComponent<PortraitTelemetrySystemV2>().PushData(("SR keyword used - " + Keywords[2]));
+            }
+            else if (TelemetrySystem_Found.gameObject.tag == "PUA Display")
+            {
+                Artefact.transform.parent.GetComponent<PickUpArtefactTelemetryV2>().PushData(("SR keyword used - " + Keywords[2]));
+            }
+            else if (TelemetrySystem_Found.gameObject.tag == "DioramaDisplay")
+            {
+                Artefact.transform.parent.GetComponent<DioramaExhibitTelemetryV2>().PushData(("SR keyword used - " + Keywords[2]));
+            }
 
         }
 
-        if (TelemetrySystem_Found.gameObject.tag == "Portrait Display")
-        {
-            Artefact.transform.parent.GetComponent<PortraitTelemetrySystemV2>().PushData(("SR keyword used - " + Keywords[2]), System.DateTime.Now.ToLongTimeString(), "N/A", "N/A");
-        }
-        else if (TelemetrySystem_Found.gameObject.tag == "PUA Display")
-        {
-            Artefact.transform.parent.GetComponent<PickUpArtefactTelemetryV2>().PushData(("SR keyword used - " + Keywords[2]), System.DateTime.Now.ToLongTimeString(), "N/A", "N/A");
-        }
-        else if (TelemetrySystem_Found.gameObject.tag == "DioramaDisplay")
-        {
-            Artefact.transform.parent.GetComponent<DioramaExhibitTelemetry>().Keyword3Said += 1;
-        }
+       
 
 
     }
@@ -232,22 +235,24 @@ public class SmallObject_SpeechRec : MonoBehaviour
             AS.PlayOneShot(GatheredInfo[3]);
             ActiveCommand_Notebook.text = Keywords[3];
             ActiveInfo_Notebook.text = Artefact.GetComponent<AssignInformation>().RelevantInfo[3];
-            
+
+
+            if (TelemetrySystem_Found.gameObject.tag == "Portrait Display")
+            {
+                Artefact.transform.parent.GetComponent<PortraitTelemetrySystemV2>().PushData(("SR keyword used - " + Keywords[3]));
+            }
+            else if (TelemetrySystem_Found.gameObject.tag == "PUA Display")
+            {
+                Artefact.transform.parent.GetComponent<PickUpArtefactTelemetryV2>().PushData(("SR keyword used - " + Keywords[3]));
+            }
+            else if (TelemetrySystem_Found.gameObject.tag == "DioramaDisplay")
+            {
+                Artefact.transform.parent.GetComponent<DioramaExhibitTelemetryV2>().PushData(("SR keyword used - " + Keywords[3]));
+            }
 
         }
 
-        if (TelemetrySystem_Found.gameObject.tag == "Portrait Display")
-        {
-            Artefact.transform.parent.GetComponent<PortraitTelemetrySystemV2>().PushData(("SR keyword used - " + Keywords[3]), System.DateTime.Now.ToLongTimeString(), "N/A", "N/A");
-        }
-        else if (TelemetrySystem_Found.gameObject.tag == "PUA Display")
-        {
-            Artefact.transform.parent.GetComponent<PickUpArtefactTelemetryV2>().PushData(("SR keyword used - " + Keywords[3]), System.DateTime.Now.ToLongTimeString(), "N/A", "N/A");
-        }
-        else if (TelemetrySystem_Found.gameObject.tag == "DioramaDisplay")
-        {
-            Artefact.transform.parent.GetComponent<DioramaExhibitTelemetry>().Keyword4Said += 1;
-        }
+       
 
 
     }

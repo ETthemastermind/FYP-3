@@ -129,7 +129,7 @@ public class PickUpObject_Hand : MonoBehaviour
     public void OnPickedUp()
     {
         AS.PlayOneShot(PickUpNoise);
-        PickUpTelemetrySystem.GetComponent<PickUpArtefactTelemetryV2>().PushData("Artefact Picked Up", System.DateTime.Now.ToLongTimeString(), "N/A", "N/A");
+        PickUpTelemetrySystem.GetComponent<PickUpArtefactTelemetryV2>().PushData("Artefact Picked Up");
         
     }
 
@@ -138,7 +138,7 @@ public class PickUpObject_Hand : MonoBehaviour
         gameObject.transform.position = Start_Location;
         gameObject.transform.localEulerAngles = Start_Rotation;
         AS.PlayOneShot(PutDownNoise);
-        PickUpTelemetrySystem.GetComponent<PickUpArtefactTelemetryV2>().PushData("Artefact Put Down", System.DateTime.Now.ToLongTimeString(), "N/A", "N/A");
+        PickUpTelemetrySystem.GetComponent<PickUpArtefactTelemetryV2>().PushData("Artefact Put Down");
     }
 
    

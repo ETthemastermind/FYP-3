@@ -71,7 +71,7 @@ public class SliderObjectSpeech : MonoBehaviour
             Debug.Log("Cycling Right");
             SliderObject.GetComponent<SliderObject>().IncrementDisplay();
             //SliderObject.GetComponent<SliderExhibitTelemetry>().SRUsed += 1;
-            SliderObject.GetComponent<SliderExhibitTelemetryV2>().PushData("Cycle Right said", System.DateTime.Now.ToLongTimeString(), "N/A", "N/A");
+            SliderObject.GetComponent<SliderExhibitTelemetryV2>().PushData("Cycle Right said");
         }
         
 
@@ -84,7 +84,7 @@ public class SliderObjectSpeech : MonoBehaviour
             Debug.Log("Cycling Left");
             SliderObject.GetComponent<SliderObject>().DecrementDisplay();
             //SliderObject.GetComponent<SliderExhibitTelemetry>().SRUsed += 1;
-            SliderObject.GetComponent<SliderExhibitTelemetryV2>().PushData("Cycle Left Said", System.DateTime.Now.ToLongTimeString(), "N/A", "N/A");
+            SliderObject.GetComponent<SliderExhibitTelemetryV2>().PushData("Cycle Left Said");
         }
         
     }

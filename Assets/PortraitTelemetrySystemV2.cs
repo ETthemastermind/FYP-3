@@ -7,7 +7,7 @@ public class PortraitTelemetrySystemV2 : MonoBehaviour
     public GameObject InteractRing;
     public bool PlayerInInteractRing;
     public string TimeStamp;
-    public bool TimeEntered_Found;
+    public bool Entered;
 
     public string[] DataLog;
     public GameObject MasterTelemetrySystem;
@@ -45,20 +45,21 @@ public class PortraitTelemetrySystemV2 : MonoBehaviour
     {
         //Getting time stamps for entering and leaving//==============================================================
         PlayerInInteractRing = InteractRing.GetComponent<AreaEntered>().PlayerInTrigger;
-        if (PlayerInInteractRing == true && TimeEntered_Found == false)
+        if (PlayerInInteractRing == true && Entered == false)
         {
-            TimeStamp = System.DateTime.Now.ToLongTimeString();
-            TimeEntered_Found = true;
+            
+            Entered = true;
+            string TypeOfInteractionUsed = "Exhibit Visited";
+            PushData(TypeOfInteractionUsed);
         }
 
 
-        else if (PlayerInInteractRing == false && TimeEntered_Found == true)
+        else if (PlayerInInteractRing == false && Entered == true)
         {
-            string TimeStamp2 = System.DateTime.Now.ToLongTimeString();
-            TimeEntered_Found = false;
-            string TypeOfInteractionUsed = "Exhibit Vistied";
-            string InteractionCompleted = "True";
-            PushData(TypeOfInteractionUsed, TimeStamp, InteractionCompleted, TimeStamp2);
+            
+            Entered = false;
+            string TypeOfInteractionUsed = "Exhibit Left";
+            PushData(TypeOfInteractionUsed);
             
 
             
@@ -67,16 +68,20 @@ public class PortraitTelemetrySystemV2 : MonoBehaviour
 
     }
 
-    public void PushData(string TypeOfInteractionUsed, string TimeStamp_Started, string InteractionCompleted,string TimeStamp2)
+    public void PushData(string TypeOfInteractionUsed)
     {
         DataLog[0] = ArtefactName;
         DataLog[1] = TypeOfArtefact;
         DataLog[2] = TypeOfInteractionUsed;
-        DataLog[3] = TimeStamp_Started;
-        DataLog[4] = InteractionCompleted;
-        DataLog[5] = TimeStamp2;
+        DataLog[3] = System.DateTime.Now.ToString("hh.mm.ss.ffffff");
 
-        MasterTelemetrySystem.GetComponent<TelemetrySystemV2>().AddEntry(DataLog);
+        if (MasterTelemetrySystem.GetComponent<TelemetrySystemV2>().TelemetryActive == true)
+        {
+            MasterTelemetrySystem.GetComponent<TelemetrySystemV2>().AddEntry(DataLog);
+            Debug.Log("Portrait Data Pushed");
+        }
+
+        
 
         
     }

@@ -127,7 +127,7 @@ public class PickUpObject_GP : MonoBehaviour
 
             //PickUpTelemetrySystem.GetComponent<PickupArtefactTelemetry>().ArtefactPickedUp += 1; //incremst the pickup counter in the telemetry system
             //PickUpTelemetrySystem.GetComponent<PickupArtefactTelemetry>().TimePickedUp = System.DateTime.Now.ToLongTimeString(); //gives the telemetry a timestamp for when the artefact gets picked up
-            PickUpTelemetrySystem.GetComponent<PickUpArtefactTelemetryV2>().PushData("Artefact Picked Up", System.DateTime.Now.ToLongTimeString(),"N/A","N/A");
+            PickUpTelemetrySystem.GetComponent<PickUpArtefactTelemetryV2>().PushData("Artefact Picked Up");
             
 
 
@@ -155,7 +155,7 @@ public class PickUpObject_GP : MonoBehaviour
             gameObject.transform.parent = Artifact_Home.transform;
 
             //PickUpTelemetrySystem.GetComponent<PickupArtefactTelemetry>().TimePutDown = System.DateTime.Now.ToLongTimeString(); //gives the telemetry a timestamp for when the artefact gets put down;
-            PickUpTelemetrySystem.GetComponent<PickUpArtefactTelemetryV2>().PushData("Artefact Put Down", System.DateTime.Now.ToLongTimeString(), "N/A", "N/A");
+            PickUpTelemetrySystem.GetComponent<PickUpArtefactTelemetryV2>().PushData("Artefact Put Down");
             PressB.SetActive(false);
             InfoBackDrop.SetActive(false);
 
@@ -185,7 +185,7 @@ public class PickUpObject_GP : MonoBehaviour
                 {
                     Manip_Active_R = true;
                     //PickUpTelemetrySystem.GetComponent<PickupArtefactTelemetry>().S_ObjectRotated += 1;
-                    PickUpTelemetrySystem.GetComponent<PickUpArtefactTelemetryV2>().PushData("Artefact Rotated", System.DateTime.Now.ToLongTimeString(), "N/A", "N/A");
+                    PickUpTelemetrySystem.GetComponent<PickUpArtefactTelemetryV2>().PushData("Artefact Rotated");
                 }
             }
 
@@ -197,7 +197,7 @@ public class PickUpObject_GP : MonoBehaviour
                 {
                     Manip_Active_R = true;
                     //PickUpTelemetrySystem.GetComponent<PickupArtefactTelemetry>().S_ObjectRotated += 1;
-                    PickUpTelemetrySystem.GetComponent<PickUpArtefactTelemetryV2>().PushData("Artefact Rotated", System.DateTime.Now.ToLongTimeString(), "N/A", "N/A");
+                    PickUpTelemetrySystem.GetComponent<PickUpArtefactTelemetryV2>().PushData("Artefact Rotated");
                 }
             }
 
@@ -209,7 +209,7 @@ public class PickUpObject_GP : MonoBehaviour
                 {
                     Manip_Active_R = true;
                     //PickUpTelemetrySystem.GetComponent<PickupArtefactTelemetry>().S_ObjectRotated += 1;
-                    PickUpTelemetrySystem.GetComponent<PickUpArtefactTelemetryV2>().PushData("Artefact Rotated", System.DateTime.Now.ToLongTimeString(), "N/A", "N/A");
+                    PickUpTelemetrySystem.GetComponent<PickUpArtefactTelemetryV2>().PushData("Artefact Rotated");
                 }
 
             }
@@ -222,7 +222,7 @@ public class PickUpObject_GP : MonoBehaviour
                 {
                     Manip_Active_R = true;
                     //PickUpTelemetrySystem.GetComponent<PickupArtefactTelemetry>().S_ObjectRotated += 1;
-                    PickUpTelemetrySystem.GetComponent<PickUpArtefactTelemetryV2>().PushData("Artefact Rotated", System.DateTime.Now.ToLongTimeString(), "N/A", "N/A");
+                    PickUpTelemetrySystem.GetComponent<PickUpArtefactTelemetryV2>().PushData("Artefact Rotated");
                 }
 
             }
@@ -242,7 +242,7 @@ public class PickUpObject_GP : MonoBehaviour
                 InfoBackDrop.SetActive(true);
                 DisplayedInformation.GetComponent<Text>().text = gameObject.GetComponent<AssignInformation>().RelevantInfo[1];
                 //PickUpTelemetrySystem.GetComponent<PickupArtefactTelemetry>().Keyword2Said += 1;
-                PickUpTelemetrySystem.GetComponent<PickUpArtefactTelemetryV2>().PushData("Dpad Keyword Used - " + Keyword2.text, System.DateTime.Now.ToLongTimeString(), "N/A", "N/A");
+                PickUpTelemetrySystem.GetComponent<PickUpArtefactTelemetryV2>().PushData("Dpad Keyword Used - " + Keyword2.text);
                 Dpad_Active_H = true;
             }
             else if (Dpad_Horizontal == -1 && Dpad_Active_H == false)
@@ -250,7 +250,7 @@ public class PickUpObject_GP : MonoBehaviour
                 InfoBackDrop.SetActive(true);
                 DisplayedInformation.GetComponent<Text>().text = gameObject.GetComponent<AssignInformation>().RelevantInfo[3];
                 //PickUpTelemetrySystem.GetComponent<PickupArtefactTelemetry>().Keyword4Said += 1;
-                PickUpTelemetrySystem.GetComponent<PickUpArtefactTelemetryV2>().PushData("Dpad Keyword Used - " + Keyword4.text, System.DateTime.Now.ToLongTimeString(), "N/A", "N/A");
+                PickUpTelemetrySystem.GetComponent<PickUpArtefactTelemetryV2>().PushData("Dpad Keyword Used - " + Keyword4.text);
                 Dpad_Active_H = true;
             }
             else if (Dpad_Horizontal == 0 && Dpad_Active_H == true)
@@ -263,7 +263,7 @@ public class PickUpObject_GP : MonoBehaviour
                 InfoBackDrop.SetActive(true);
                 DisplayedInformation.GetComponent<Text>().text = gameObject.GetComponent<AssignInformation>().RelevantInfo[0];
                 //PickUpTelemetrySystem.GetComponent<PickupArtefactTelemetry>().Keyword1Said += 1;
-                PickUpTelemetrySystem.GetComponent<PickUpArtefactTelemetryV2>().PushData("Dpad Keyword Used - " + Keyword1.text, System.DateTime.Now.ToLongTimeString(), "N/A", "N/A");
+                PickUpTelemetrySystem.GetComponent<PickUpArtefactTelemetryV2>().PushData("Dpad Keyword Used - " + Keyword1.text);
                 Dpad_Active_V = true;
             }
 
@@ -272,7 +272,7 @@ public class PickUpObject_GP : MonoBehaviour
                 InfoBackDrop.SetActive(true);
                 DisplayedInformation.GetComponent<Text>().text = gameObject.GetComponent<AssignInformation>().RelevantInfo[2];
                 //PickUpTelemetrySystem.GetComponent<PickupArtefactTelemetry>().Keyword3Said += 1;
-                PickUpTelemetrySystem.GetComponent<PickUpArtefactTelemetryV2>().PushData("Dpad Keyword Used - " + Keyword3.text, System.DateTime.Now.ToLongTimeString(), "N/A", "N/A");
+                PickUpTelemetrySystem.GetComponent<PickUpArtefactTelemetryV2>().PushData("Dpad Keyword Used - " + Keyword3.text);
                 Dpad_Active_V = true;
 
             }
@@ -296,7 +296,7 @@ public class PickUpObject_GP : MonoBehaviour
                     {
                         Manip_Active_S = true;
                         //PickUpTelemetrySystem.GetComponent<PickupArtefactTelemetry>().S_ObjectScaled += 1;
-                        PickUpTelemetrySystem.GetComponent<PickUpArtefactTelemetryV2>().PushData("Artefact Scaled", System.DateTime.Now.ToLongTimeString(), "N/A", "N/A");
+                        PickUpTelemetrySystem.GetComponent<PickUpArtefactTelemetryV2>().PushData("Artefact Scaled");
                     }
                 }
                 
@@ -316,7 +316,7 @@ public class PickUpObject_GP : MonoBehaviour
                     {
                         Manip_Active_S = true;
                         //PickUpTelemetrySystem.GetComponent<PickupArtefactTelemetry>().S_ObjectScaled += 1;
-                        PickUpTelemetrySystem.GetComponent<PickUpArtefactTelemetryV2>().PushData("Artefact Scaled", System.DateTime.Now.ToLongTimeString(), "N/A", "N/A");
+                        PickUpTelemetrySystem.GetComponent<PickUpArtefactTelemetryV2>().PushData("Artefact Scaled");
                     }
 
 

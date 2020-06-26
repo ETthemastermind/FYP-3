@@ -164,7 +164,7 @@ public class TutorialController : MonoBehaviour
             //NotebookController.SetActive(false);
             SpeechController = GameObject.FindGameObjectWithTag("SpeechController");
             DioramaGesture = Player;
-            DioramaGesture.GetComponent<DioramaEnter_OH>().enabled = false;
+            //DioramaGesture.GetComponent<DioramaEnter_OH>().enabled = false;
 
             //SpeechController = Player;
             CuratorPortraitMat = CuratorPortrait.GetComponent<Renderer>().materials[1]; //finds the correct mat on the portrait 

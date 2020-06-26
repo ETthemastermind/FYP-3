@@ -50,6 +50,12 @@ public class DioramaEnter_OH : MonoBehaviour
     public int LevelToLoad;
 
 
+
+
+    public bool TelemetryPush1;      //set of variables to stop the data being pushed per frame;
+    public bool TelemetryPush2;
+    public bool TelemetryPush3;
+    public bool TelemetryPush4;
     // Start is called before the first frame update
     void Start()
     {
@@ -126,12 +132,24 @@ public class DioramaEnter_OH : MonoBehaviour
             {
                 GestureActive = true;
                 LR.enabled = true;
+
             }
 
             if (GestureActive == true)
             {
                 LR.SetPosition(0, VR_LeftHand_Palm.transform.position);  //draws a line between the user's palm
                 LR.SetPosition(1, VR_RightHand_Palm.transform.position);
+
+                if (TelemetryPush1 == false)
+                {
+                    DioramaStand.transform.parent.GetComponentInChildren<DioramaExhibitTelemetryV2>().PushData("VR Diorama Gesture Active");
+                    TelemetryPush1 = true;
+
+                    TelemetryPush2 = false;
+                    TelemetryPush3 = false;
+                    TelemetryPush4 = false;
+                }
+
 
             }
             
@@ -143,6 +161,15 @@ public class DioramaEnter_OH : MonoBehaviour
                 LR.material = Red; //When hands get put together, should be red. acts as a sort of loading bar.
                 ElapsedTime = 0f;
                 //DebugSphere.GetComponent<Renderer>().material.color = Color.white;
+                
+                if (TelemetryPush2 == false)
+                {
+                    DioramaStand.transform.parent.GetComponentInChildren<DioramaExhibitTelemetryV2>().PushData("VR Diorama Gesture - Red Line Renderer");
+                    TelemetryPush2 = true;
+                    TelemetryPush3 = false;
+                    TelemetryPush4 = false;
+                }
+                
 
             }
             else if (PalmDistance >= (MaxHandDistance / 3) && (PalmDistance <= (MaxHandDistance / 3) * 2) && GestureActive == true)
@@ -151,6 +178,16 @@ public class DioramaEnter_OH : MonoBehaviour
                 LR.material = Orange;
                 ElapsedTime = 0f;
                 //DebugSphere.GetComponent<Renderer>().material.color = Color.white;
+                
+                if (TelemetryPush3 == false)
+                {
+                    DioramaStand.transform.parent.GetComponentInChildren<DioramaExhibitTelemetryV2>().PushData("VR Diorama Gesture - Orange Line Renderer");
+                    TelemetryPush3 = true;
+                    
+                    TelemetryPush2 = false;
+                    TelemetryPush4 = false;
+                }
+                
 
             }
             else if (PalmDistance >= (MaxHandDistance / 3) * 2 && GestureActive == true)
@@ -158,6 +195,16 @@ public class DioramaEnter_OH : MonoBehaviour
                 Debug.Log("Max Distance Reached");
                 LR.material = Green;
 
+                
+                if (TelemetryPush4 == false)
+                {
+                    DioramaStand.transform.parent.GetComponentInChildren<DioramaExhibitTelemetryV2>().PushData("VR Diorama Gesture - Green Line Renderer");
+                    TelemetryPush4 = true;
+                    TelemetryPush2 = false;
+                    TelemetryPush3 = false;
+                    
+                }
+                
                 if (ElapsedTime <= Timer) //hold the green position for a few seconds
                 {
                     ElapsedTime += Time.deltaTime;
@@ -169,10 +216,18 @@ public class DioramaEnter_OH : MonoBehaviour
                     //FadeToLevel(2);
                     if (AudioPlayed == false)
                     {
+                        GestureActive = false;
                         AS.PlayOneShot(TeleportSoundEffect);
                         AudioPlayed = true;
                         DioramaStand.transform.parent.GetComponentInChildren<DioramaExhibitTelemetryV2>().PushData("VR Diorama Enter");
+                        TelemetryPush1 = false;
+                        TelemetryPush2 = false;
+                        TelemetryPush3 = false;
+                        TelemetryPush4 = false;
+                        
                         DioramaStand.GetComponent<LoadLevel>().OpenScene();
+
+                        
                     }
                     
                     
@@ -190,11 +245,21 @@ public class DioramaEnter_OH : MonoBehaviour
         }
 
         
-        if (SteamVR_Actions._default.GrabGrip.GetState(SteamVR_Input_Sources.RightHand) == true && SteamVR_Actions._default.GrabPinch.GetState(SteamVR_Input_Sources.RightHand) == true && SteamVR_Actions._default.A_Button.GetState(SteamVR_Input_Sources.RightHand) == true && SteamVR_Actions._default.GrabGrip.GetState(SteamVR_Input_Sources.LeftHand) == true && SteamVR_Actions._default.GrabPinch.GetState(SteamVR_Input_Sources.LeftHand) == true && SteamVR_Actions._default.X_Button.GetState(SteamVR_Input_Sources.LeftHand) == true) //need a way for the user to cancel, cancel by closing their hands, this is going to be one hell of an if statement
+        if (SteamVR_Actions._default.GrabGrip.GetState(SteamVR_Input_Sources.RightHand) == true && SteamVR_Actions._default.GrabPinch.GetState(SteamVR_Input_Sources.RightHand) == true && SteamVR_Actions._default.A_Button.GetState(SteamVR_Input_Sources.RightHand) == true && SteamVR_Actions._default.GrabGrip.GetState(SteamVR_Input_Sources.LeftHand) == true && SteamVR_Actions._default.GrabPinch.GetState(SteamVR_Input_Sources.LeftHand) == true && SteamVR_Actions._default.X_Button.GetState(SteamVR_Input_Sources.LeftHand) == true && GestureActive == true) //need a way for the user to cancel, cancel by closing their hands, this is going to be one hell of an if statement
         {
+
+            DioramaStand.transform.parent.GetComponentInChildren<DioramaExhibitTelemetryV2>().PushData("VR Diorama Gesture Cancelled");
+            TelemetryPush1 = false;
+            TelemetryPush2 = false;
+            TelemetryPush3 = false;
+            TelemetryPush4 = false;
+
             GestureActive = false;
             LR.enabled = false;
-            DioramaStand.transform.parent.GetComponentInChildren<DioramaExhibitTelemetryV2>().PushData("VR Diorama Gesture Cancelled");
+            
+
+            
+
 
         }
         

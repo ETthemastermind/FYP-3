@@ -31,14 +31,14 @@ public class SpawnGuideBook : MonoBehaviour
     {
         if (UsingVR_Hands == true)
         {
-            if (SteamVR_Actions._default.X_Button.GetState(SteamVR_Input_Sources.LeftHand) == true)
+            if (SteamVR_Actions._default.Y_Button.GetState(SteamVR_Input_Sources.LeftHand) == true)
             {
                 Active();
                 
 
             }
 
-            else if (SteamVR_Actions._default.X_Button.GetState(SteamVR_Input_Sources.LeftHand) == false)
+            else if (SteamVR_Actions._default.Y_Button.GetState(SteamVR_Input_Sources.LeftHand) == false)
             {
                 Inactive();
                 

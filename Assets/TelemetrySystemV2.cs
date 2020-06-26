@@ -187,7 +187,7 @@ public class TelemetrySystemV2 : MonoBehaviour
             LogToEnter += LocomotionInformation[i] + ",";
         }
 
-        Debug.Log(LogToEnter);
+        //Debug.Log(LogToEnter);
         StreamWriter writer = new StreamWriter(L_FilePath, true);
         writer.WriteLine(LogToEnter);
         writer.Close();

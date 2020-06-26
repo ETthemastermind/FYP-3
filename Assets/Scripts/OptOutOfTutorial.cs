@@ -26,7 +26,7 @@ public class OptOutOfTutorial : MonoBehaviour
     public void OnTriggerEnter(Collider other)
     {
         PlayerInTrigger = true;
-        Tutorial_VR.GetComponent<TutorialController>().OptedOutOfTutorial();
+        //Tutorial_VR.GetComponent<TutorialController>().OptedOutOfTutorial();
         Destroy(this);
     }
 }

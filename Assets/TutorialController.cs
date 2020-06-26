@@ -23,6 +23,7 @@ public class TutorialController : MonoBehaviour
     private bool AudioPlaying;
     private bool NotebookActive;
     public GameObject NotebookController;
+    public GameObject TelemetrySystem;
    
 
     public int CurrentPhase = 0;
@@ -102,9 +103,9 @@ public class TutorialController : MonoBehaviour
     
     void Start()
     {
-        
 
-        
+
+        TelemetrySystem = GameObject.FindGameObjectWithTag("TelemetrySystem");
         ModalityController = GameObject.FindGameObjectWithTag("ModalityController");
         if (ModalityController.GetComponent<ModalityController2>().VRSR_Chosen == true)
         {
@@ -139,7 +140,7 @@ public class TutorialController : MonoBehaviour
         }
         else
         {
-            OptedOutOfTutorial(); //run the opt of of tutorial function
+            //OptedOutOfTutorial(); //run the opt of of tutorial function
         }
 
     }
@@ -509,14 +510,17 @@ public class TutorialController : MonoBehaviour
                 AudioPlayed = false;
                 ModalityController.GetComponent<ModalityController2>().TutorialCompleted = true;
                 Debug.Log("Tutorial Complete");
+
+                
                 TriggerPhase11 = false;
+                
                 
 
             }
         }
 
     }
-
+    /*
     public void OptedOutOfTutorial() //makes sure all the objects turned off by the tutorial are turned back on.
     {
         NotebookController.SetActive(true);
@@ -525,6 +529,7 @@ public class TutorialController : MonoBehaviour
         ModalityController.GetComponent<ModalityController2>().TutorialCompleted = true;
         
     }
+    */
     public void TutorialFinished()
     {
 

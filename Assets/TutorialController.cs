@@ -476,7 +476,7 @@ public class TutorialController : MonoBehaviour
 
     public void Phase10() //show how to use Diorama
     {
-        
+        DioramaGesture.GetComponent<DioramaEnter_OH>().enabled = false;
         Debug.Log("Phase 10 Activated");
         if (AudioPlayed == false && AS.isPlaying == false)
         {
@@ -498,8 +498,8 @@ public class TutorialController : MonoBehaviour
     {
         
         Debug.Log("Phase 11 Activated");
-        DioramaGesture.SetActive(true); //diroama gesture was deactivated so the player could not use it before the instructions are finished.
-        if (DioramaGesture.GetComponent<DioramaEnter_OH>().LR == true)
+        //DioramaGesture.SetActive(true); //diroama gesture was deactivated so the player could not use it before the instructions are finished.
+        if (DioramaGesture.GetComponent<DioramaEnter_OH>().LR.enabled == true)
         {
             if (AudioPlayed == false && AS.isPlaying == false)
             {

@@ -129,6 +129,7 @@ public class PickUpObject_Hand : MonoBehaviour
     public void OnPickedUp()
     {
         AS.PlayOneShot(PickUpNoise);
+        PickUpController.GetComponent<Artefact_Hand_PickUp>().VR_HoldingObject = true;
         PickUpTelemetrySystem.GetComponent<PickUpArtefactTelemetryV2>().PushData("Artefact Picked Up");
         
     }
@@ -138,6 +139,7 @@ public class PickUpObject_Hand : MonoBehaviour
         gameObject.transform.position = Start_Location;
         gameObject.transform.localEulerAngles = Start_Rotation;
         AS.PlayOneShot(PutDownNoise);
+        PickUpController.GetComponent<Artefact_Hand_PickUp>().VR_HoldingObject = false;
         PickUpTelemetrySystem.GetComponent<PickUpArtefactTelemetryV2>().PushData("Artefact Put Down");
     }
 

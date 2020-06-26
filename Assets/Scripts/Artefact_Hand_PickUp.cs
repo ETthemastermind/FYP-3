@@ -57,6 +57,7 @@ public class Artefact_Hand_PickUp : MonoBehaviour //
     // Update is called once per frame
     void Update()
     {
+        /*
         Debug.Log(ObjectToPickUp);
 
         if (UsingVRHands == true)
@@ -126,9 +127,9 @@ public class Artefact_Hand_PickUp : MonoBehaviour //
         }
         
 
-        
+        */
     }
-
+    /*
     public void GrippingObject() //function to pick up the object
     {
         if (Gripping == false)
@@ -189,7 +190,7 @@ public class Artefact_Hand_PickUp : MonoBehaviour //
             
 
         }
-        */
+        
     }
 
 
@@ -216,7 +217,7 @@ public class Artefact_Hand_PickUp : MonoBehaviour //
             ArtefactObject.transform.parent = null;
             ArtefactObject = null;
             ObjectsInRadius = new Collider[0];
-            */
+            
 
         }
 
@@ -233,6 +234,10 @@ public class Artefact_Hand_PickUp : MonoBehaviour //
         ObjectToPickUp = ArtefactInProx;
 
     }
+
+    */
+
+
 
 
 }

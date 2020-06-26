@@ -10,6 +10,7 @@ public class TeleportPointGesture : MonoBehaviour
     //public GameObject FingerTip;
 
     public GameObject TeleportCursor;
+    public GameObject TeleportCursorScript;
     public GameObject Camera;
     public GameObject Player;
     public float WaitBeforeTP = 5f;
@@ -78,7 +79,7 @@ public class TeleportPointGesture : MonoBehaviour
 
                 TeleportFadeOut(); //fades back out
                 Teleport = false; //sets teleport bool to false
-
+                //TeleportCursorScript.GetComponent<TeleportCursor>().ResetCursor();
 
                 ElapsedTime = 0f; // resets elapsed time
             }

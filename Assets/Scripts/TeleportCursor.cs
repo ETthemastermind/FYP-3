@@ -59,7 +59,7 @@ public class TeleportCursor : MonoBehaviour
         keywordRecogniser.OnPhraseRecognized += RecognisedSpeech;
         keywordRecogniser.Start();
 
-        Cursor2_LocationStart = TeleportTestCursor.transform.position; //gets start location of the cursor
+        Cursor2_LocationStart = TeleportTestCursor.transform.localPosition; //gets start location of the cursor
 
     }
     private void RecognisedSpeech(PhraseRecognizedEventArgs speech)
@@ -122,17 +122,20 @@ public class TeleportCursor : MonoBehaviour
         {
             CursorForwards = false;
         }
-        /*
-        //---------------------------------------------Stops the cursor going through walls ----------------------------------------------------// temp disabled
 
-        if (TeleportTestCursor.GetComponent<InWall>().CursorInWall == true)
-        {
-            TeleportTestCursor.transform.position -= TeleportTestCursor.transform.forward * 0.5f;
+        
+        //---------------------------------------------Stops the cursor going through walls ----------------------------------------------------// temp disabled
+        /*
+        if (Cursor2.GetComponent<InWall>().CursorInWall == true)
+            EXP_Stop();
 
         }
         */
+        
 
         
+        
+       
     }
 
 
@@ -155,6 +158,7 @@ public class TeleportCursor : MonoBehaviour
     {
         
         TeleportPointGesture.GetComponent<TeleportPointGesture>().Teleport = true; //actiavte teleport bool on teleport point gesture script (on the TeleportPointGesture object under NEW Enhanced player - VR, SR, LM) used to be a thumbs up, but rerouted so that it uses SR
+        //ResetCursor();
         
         
     }

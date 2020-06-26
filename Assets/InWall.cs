@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InWall : MonoBehaviour
 {
-    public bool CursorInWall;
+    public bool CursorInMap;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,19 +17,48 @@ public class InWall : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Wall")
+        
+        if (CursorInMap == false && other.gameObject.tag == "MapArea")
         {
-            CursorInWall = true;
+            CursorInMap = true;
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    public void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Wall")
+        if (CursorInMap == true && other.gameObject.tag == "MapArea")
         {
-            CursorInWall = false;
+            CursorInMap = false;
         }
     }
+
+    /*
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Wall")
+        {
+            CursorInWall = true;
+
+            Debug.Log("Cursor Thru Wall");
+        }
+        
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "Wall")
+        {
+            CursorInWall = false;
+
+            Debug.Log("Cursor Thru Wall");
+        }
+
+    }
+    */
+
+
+
+
 }

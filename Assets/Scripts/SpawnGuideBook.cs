@@ -21,8 +21,8 @@ public class SpawnGuideBook : MonoBehaviour
     void Start()
     {
         
-        GuideBook.transform.parent = Palm.transform;
-        GuideBook.transform.localPosition = new Vector3(0.2f, -0.05f, 0f);
+        //GuideBook.transform.parent = Palm.transform;
+        //GuideBook.transform.localPosition = new Vector3(0.2f, -0.05f, 0f);
         GuideBook.SetActive(false);
     }
 
@@ -69,7 +69,7 @@ public class SpawnGuideBook : MonoBehaviour
     {
         if (ActiveGesture == false)
         {
-            GuideBook.GetComponent<NotebookTelemetrySystem>().PushData("Guidebook Opened", System.DateTime.Now.ToLongTimeString(), "N/A", "N/A");
+            //GuideBook.GetComponent<NotebookTelemetrySystem>().PushData("Guidebook Opened", System.DateTime.Now.ToLongTimeString(), "N/A", "N/A");
             Debug.Log("Active Gesture: Spawn Guidebook");
             GuideBook.SetActive(true);
             ActiveGesture = true;
@@ -85,7 +85,7 @@ public class SpawnGuideBook : MonoBehaviour
 
         if (ActiveGesture == true)
         {
-            GuideBook.GetComponent<NotebookTelemetrySystem>().PushData("Guidebook Closed", System.DateTime.Now.ToLongTimeString(), "N/A", "N/A");
+            //GuideBook.GetComponent<NotebookTelemetrySystem>().PushData("Guidebook Closed", System.DateTime.Now.ToLongTimeString(), "N/A", "N/A");
             ActiveGesture = false;
             Debug.Log("Inactive Gesture: Spawn Guidebook");
             GuideBook.SetActive(false);

@@ -10,6 +10,7 @@ public class NotebookTelemetrySystem : MonoBehaviour
     public GameObject Artefact;
     public string ArtefactName;
     public string TypeOfArtefact;
+    
     // Start is called before the first frame update
     
     void Start()

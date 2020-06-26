@@ -47,7 +47,7 @@ public class StopAudioNarration : MonoBehaviour
         
         if (AS.isPlaying == true)
         {
-            Notebook.GetComponent<NotebookTelemetrySystem>().PushData("Stop Audio Used", System.DateTime.Now.ToLongTimeString(), "N/A", "N/A");
+            Notebook.GetComponent<NotebookTelemetrySystem>().PushData("Stop Audio Used");
             AS.Stop();
             
         }

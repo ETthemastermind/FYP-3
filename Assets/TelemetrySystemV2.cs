@@ -67,25 +67,30 @@ public class TelemetrySystemV2 : MonoBehaviour
 
     public void AddEntry(string[] DataLog) //adds entry for interactio information
     {
-        LogToEnter = ""; //clears the entry log
-        Debug.Log("Add Entry");
+        if (TelemetryActive == true)
+        {
+            LogToEnter = ""; //clears the entry log
+            Debug.Log("Add Entry");
+
+            for (int d = 0; d < 2; d++) //for the first two entries in demographic info (identifier and version)
+            {
+                Debug.Log("Adding relevant demographic info");
+                LogToEnter += DemographicInfo[d] + ",";
+            }
+
+            for (int i = 0; i < DataLog.Length; i++)
+            {
+                LogToEnter += DataLog[i] + ",";
+            }
+
+            Debug.Log(LogToEnter);
+            StreamWriter writer = new StreamWriter(I_FilePath, true);
+            writer.WriteLine(LogToEnter);
+            writer.Close();
+            TestSaveData = false;
+
+        }
         
-        for (int d = 0; d < 2; d++) //for the first two entries in demographic info (identifier and version)
-        {
-            Debug.Log("Adding relevant demographic info");
-            LogToEnter += DemographicInfo[d] + ",";
-        }
-
-        for (int i = 0; i < DataLog.Length; i++)
-        {
-            LogToEnter += DataLog[i] + ",";
-        }
-
-        Debug.Log(LogToEnter);
-        StreamWriter writer = new StreamWriter(I_FilePath, true);
-        writer.WriteLine(LogToEnter);
-        writer.Close();
-        TestSaveData = false;
     }
 
     public void CreateFiles()

@@ -13,7 +13,7 @@ public class NotebookTelemetrySystem : MonoBehaviour
     
     // Start is called before the first frame update
     
-    void Start()
+    void Awake()
     {
         MasterTelemetrySystem = GameObject.FindGameObjectWithTag("TelemetrySystem");
     }
@@ -28,14 +28,12 @@ public class NotebookTelemetrySystem : MonoBehaviour
         
     }
     
-    public void PushData(string TypeOfInteractionUsed, string TimeStamp_Started, string InteractionCompleted, string TimeStamp2)
+    public void PushData(string TypeOfInteractionUsed)
     {
         DataLog[0] = ArtefactName;
         DataLog[1] = TypeOfArtefact;
         DataLog[2] = TypeOfInteractionUsed;
-        DataLog[3] = TimeStamp_Started;
-        DataLog[4] = InteractionCompleted;
-        DataLog[5] = TimeStamp2;
+        
 
         MasterTelemetrySystem.GetComponent<TelemetrySystemV2>().AddEntry(DataLog);
     }

@@ -163,6 +163,7 @@ public class PickUpObject_Hand : MonoBehaviour
         PickUpTelemetrySystem.GetComponent<PickUpArtefactTelemetryV2>().PushData("Artefact Put Down");
     }
 
+    /*
 
     public void LM_PickUp()
     {
@@ -198,11 +199,14 @@ public class PickUpObject_Hand : MonoBehaviour
             gameObject.transform.localEulerAngles = Start_Rotation;
             AS.PlayOneShot(PutDownNoise);
         }
-        */
+        
         
         
 
     }
+
+*/
+
 
  
         

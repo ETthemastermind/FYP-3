@@ -9,7 +9,7 @@ public class Diorama_Teleport : MonoBehaviour   //Gamepad teleporting
     public string DisplayName;
     public GameObject PressA; //gets the press A GUI text as a game object
     public int TargetSceneIndex; //lets me input the scene index in editor
-
+    public GameObject Player;
 
     public GameObject TriggerArea;
     public bool PlayerInArea = false; 
@@ -49,6 +49,7 @@ public class Diorama_Teleport : MonoBehaviour   //Gamepad teleporting
     }
     void Start()
     {
+        Player = GameObject.FindGameObjectWithTag("Player");
         Debug.Log("Diorma Start Function");
         PressA.SetActive(false); //sets the GUI to false
         InfoGUI.SetActive(false); //sets the GUI to false
@@ -93,10 +94,17 @@ public class Diorama_Teleport : MonoBehaviour   //Gamepad teleporting
                 Debug.Log("Player entering diorama");
                 PressA.SetActive(false);
                 LoadingScreen.SetActive(true);
-                ModalityController.GetComponent<ModalityController2>().GamepadPlayer_Return = GameObject.FindGameObjectWithTag("Player").transform.position;
+                //ModalityController.GetComponent<ModalityController2>().ReturningGamepad = true;
                 //gameObject.transform.parent.GetComponent<DioramaExhibitTelemetry>().DioramaEntered += 1;
                 //gameObject.transform.parent.GetComponent<DioramaExhibitTelemetry>().DioramaEnteredTel();
                 gameObject.transform.parent.GetComponent<DioramaExhibitTelemetryV2>().PushData("Diorama Entered");
+
+                if (SceneManager.GetActiveScene().buildIndex == 1)
+                {
+                    ModalityController.GetComponent<ModalityController2>().GamepadPlayer_Return = Player.transform.position;
+                }
+
+
                 SceneManager.LoadSceneAsync(TargetSceneIndex); //teleport area to the diorama
 
             }

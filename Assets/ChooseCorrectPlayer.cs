@@ -15,7 +15,7 @@ public class ChooseCorrectPlayer : MonoBehaviour
     public bool VRSRLMPlayerOnDebug;
 
     //variables controlling Gamepad player returning from Diorama
-    
+
     
 
     
@@ -33,6 +33,7 @@ public class ChooseCorrectPlayer : MonoBehaviour
 
             XRSettings.enabled = false;
 
+            
             if (SceneManager.GetActiveScene().buildIndex == 1)
             {
                 if (ModalityController.GetComponent<ModalityController2>().FirstMusSpawn == false)
@@ -50,6 +51,7 @@ public class ChooseCorrectPlayer : MonoBehaviour
                 }
 
             }
+            
 
 
         }

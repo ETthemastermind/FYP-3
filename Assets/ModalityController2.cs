@@ -44,7 +44,9 @@ public class ModalityController2 : MonoBehaviour  //due to the dont destroy on l
 
     public Vector3 GamepadPlayer_Return; // vector 3 coords, assinged by the diorama artifacts when the player changes scenes
     public bool FirstMusSpawn;
-    
+
+    public bool ReturningGamepad;
+    public GameObject Player;
 
 
 
@@ -58,6 +60,7 @@ public class ModalityController2 : MonoBehaviour  //due to the dont destroy on l
         DontDestroyOnLoad(gameObject); //keeps the modality controller persistent between scenes
         XRSettings.enabled = false;
         TelemetrySystem = GameObject.FindGameObjectWithTag("TelemetrySystem");
+        Player = GameObject.FindGameObjectWithTag("Player");
 
         //Version_InputBox.GetComponent<Text>().text = "Set Version";
 
@@ -271,5 +274,8 @@ public class ModalityController2 : MonoBehaviour  //due to the dont destroy on l
         //TelemetrySystem.GetComponent<TelemetrySystemV2>().DemographicInfo[0] = IdentifierInputBox.GetComponent<TMP_InputField>().text;
     }
 
-    
+    public void GamepadPlayerReturn()
+    {
+        GamepadPlayer_Return = Player.transform.position;
+    }
 }

@@ -11,6 +11,7 @@ public class NotebookTelemetrySystem : MonoBehaviour
     public string ArtefactName;
     public string TypeOfArtefact;
     // Start is called before the first frame update
+    
     void Start()
     {
         MasterTelemetrySystem = GameObject.FindGameObjectWithTag("TelemetrySystem");
@@ -19,6 +20,10 @@ public class NotebookTelemetrySystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (MasterTelemetrySystem == null)
+        {
+            MasterTelemetrySystem = GameObject.FindGameObjectWithTag("TelemetrySystem");
+        }
         
     }
     

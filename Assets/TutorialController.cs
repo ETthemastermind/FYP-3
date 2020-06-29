@@ -107,7 +107,7 @@ public class TutorialController : MonoBehaviour
 
         TelemetrySystem = GameObject.FindGameObjectWithTag("TelemetrySystem");
         ModalityController = GameObject.FindGameObjectWithTag("ModalityController");
-        if (ModalityController.GetComponent<ModalityController2>().VRSR_Chosen == true)
+        if (ModalityController.GetComponent<ModalityController2>().VRSR_Chosen == true || ModalityController.GetComponent<ModalityController2>().VRLMSR_Chosen == true)
         {
             TriggerPhase1 = true;
         }

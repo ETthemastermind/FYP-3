@@ -61,6 +61,10 @@ public class CycleBoard : MonoBehaviour
             CurrentPedestal = RangeOfDisplays[1];
         }
 
+        if (TutText[CurrentPedestal].GetComponent<TutorialAssociatedPhase>().PhaseNumber > ActivePhase)
+        {
+            CurrentPedestal -= 1;
+        }
         TutText[CurrentPedestal].SetActive(true);
        
 

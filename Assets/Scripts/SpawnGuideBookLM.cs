@@ -19,11 +19,16 @@ public class SpawnGuideBookLM : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        /*
+        if (Palm.transform.rotation.x > 0.5 && Palm.transform.rotation.x < 0.6)
+        {
+            GuideBook.SetActive(true);
+        }
+        */
     }
     public void Active()
     {
-        if (ActiveGesture == false)
+        if (ActiveGesture == false )
         {
             GuideBook.GetComponent<NotebookTelemetrySystem>().PushData("Guidebook Opened");
             Debug.Log("Active Gesture: Spawn Guidebook");

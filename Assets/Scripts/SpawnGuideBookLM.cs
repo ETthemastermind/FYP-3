@@ -52,4 +52,16 @@ public class SpawnGuideBookLM : MonoBehaviour
 
 
     }
+
+
+    public void PalmUpTrue()
+    {
+        Debug.Log("Palm Facing Up");
+    }
+
+    public void PalmUpFalse()
+    {
+        Debug.Log("Palm Not Facing Up");
+    }
+
 }

@@ -187,7 +187,7 @@ public class SphereCastPointGesture : MonoBehaviour
         Debug.Log("Player stopped pointing");
         _IsPointing = false;
         LR.enabled = false;
-        KeywordObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.red;
+        //KeywordObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = Color.red;
     }
 
     private void OnDrawGizmosSelected()

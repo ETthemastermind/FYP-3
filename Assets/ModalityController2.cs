@@ -274,8 +274,5 @@ public class ModalityController2 : MonoBehaviour  //due to the dont destroy on l
         //TelemetrySystem.GetComponent<TelemetrySystemV2>().DemographicInfo[0] = IdentifierInputBox.GetComponent<TMP_InputField>().text;
     }
 
-    public void GamepadPlayerReturn()
-    {
-        GamepadPlayer_Return = Player.transform.position;
-    }
+    
 }

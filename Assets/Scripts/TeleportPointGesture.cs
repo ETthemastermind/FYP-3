@@ -82,6 +82,7 @@ public class TeleportPointGesture : MonoBehaviour
                 //TeleportCursorScript.GetComponent<TeleportCursor>().ResetCursor();
 
                 ElapsedTime = 0f; // resets elapsed time
+                
             }
 
             

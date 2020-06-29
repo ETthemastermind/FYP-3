@@ -156,8 +156,9 @@ public class TeleportCursor : MonoBehaviour
 
     public void Teleport()
     {
-        
+        //Cursor2_LocationStart = TeleportTestCursor.transform.position;
         TeleportPointGesture.GetComponent<TeleportPointGesture>().Teleport = true; //actiavte teleport bool on teleport point gesture script (on the TeleportPointGesture object under NEW Enhanced player - VR, SR, LM) used to be a thumbs up, but rerouted so that it uses SR
+        CursorBackwards = true;
         //ResetCursor();
         
         

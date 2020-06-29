@@ -33,9 +33,10 @@ public class NotebookTelemetrySystem : MonoBehaviour
         DataLog[0] = ArtefactName;
         DataLog[1] = TypeOfArtefact;
         DataLog[2] = TypeOfInteractionUsed;
+        DataLog[3] = DataLog[3] = System.DateTime.Now.ToString("hh.mm.ss.ffffff"); ;
         
 
-        MasterTelemetrySystem.GetComponent<TelemetrySystemV2>().AddEntry(DataLog);
+        //MasterTelemetrySystem.GetComponent<TelemetrySystemV2>().AddEntry(DataLog);
     }
     
 }

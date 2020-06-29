@@ -52,7 +52,7 @@ public class CycleBoard : MonoBehaviour
     public void IncrementTutDisplay()
     {
 
-        
+        Debug.Log("Increment Tut Board");
         TutText[CurrentPedestal].SetActive(false);
         CurrentPedestal += 1;
 
@@ -68,6 +68,7 @@ public class CycleBoard : MonoBehaviour
 
     public void DecrementTutDisplay()
     {
+        Debug.Log("Decrement Tut Board");
         TutText[CurrentPedestal].SetActive(false);
         CurrentPedestal -= 1;
         
@@ -80,21 +81,5 @@ public class CycleBoard : MonoBehaviour
 
     }
 
-    public void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.name == "Vr_LeftIndex_Track" || other.gameObject.name == "Vr_RightIndex_Track")
-        {
-            if (CycleRight == true)
-            {
-                IncrementTutDisplay();
-            }
-
-            else if (CycleLeft == true)
-            {
-                DecrementTutDisplay();
-            }
-
-        }
-       
-    }
+    
 }

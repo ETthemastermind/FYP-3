@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Windows.Speech;
 using System.Linq;
 using Valve.VR;
+using Leap.Unity.Attributes;
 
 
 public class DioramaEnterGesture : MonoBehaviour
@@ -74,6 +75,7 @@ public class DioramaEnterGesture : MonoBehaviour
                 LR.SetPosition(0, RightPalm.transform.position); //set positions 1 and 2 of the line renderer to the palms.
                 LR.SetPosition(1, LeftPalm.transform.position);
 
+                /*
                 if (TelemetryPush1 == false)
                 {
                     DioramaStand.transform.parent.GetComponentInChildren<DioramaExhibitTelemetryV2>().PushData("VR+ Diorama Gesture Active");
@@ -83,6 +85,7 @@ public class DioramaEnterGesture : MonoBehaviour
                     TelemetryPush3 = false;
                     TelemetryPush4 = false;
                 }
+                */
 
             }
             if (PalmDistance >= 0 && PalmDistance <= (MaxHandDistance / 3) && GestureActive == true)
@@ -91,6 +94,8 @@ public class DioramaEnterGesture : MonoBehaviour
                 LR.material = Red; //When hands get put together, should be red. acts as a sort of loading bar.
                 ElapsedTime = 0f;
                 //DebugSphere.GetComponent<Renderer>().material.color = Color.white;
+
+                /*
                 if (TelemetryPush2 == false)
                 {
                     DioramaStand.transform.parent.GetComponentInChildren<DioramaExhibitTelemetryV2>().PushData("VR+ Diorama Gesture - Red Line Renderer");
@@ -98,6 +103,7 @@ public class DioramaEnterGesture : MonoBehaviour
                     TelemetryPush3 = false;
                     TelemetryPush4 = false;
                 }
+                */
 
             }
             else if (PalmDistance >= (MaxHandDistance / 3) && (PalmDistance <= (MaxHandDistance / 3) * 2) && GestureActive == true)
@@ -106,6 +112,7 @@ public class DioramaEnterGesture : MonoBehaviour
                 LR.material = Orange;
                 ElapsedTime = 0f;
                 //DebugSphere.GetComponent<Renderer>().material.color = Color.white;
+                /*
                 if (TelemetryPush3 == false)
                 {
                     DioramaStand.transform.parent.GetComponentInChildren<DioramaExhibitTelemetryV2>().PushData("VR+ Diorama Gesture - Orange Line Renderer");
@@ -114,12 +121,15 @@ public class DioramaEnterGesture : MonoBehaviour
                     TelemetryPush2 = false;
                     TelemetryPush4 = false;
                 }
+                */
 
             }
             else if (PalmDistance >= (MaxHandDistance / 3) * 2 && GestureActive == true)
             {
                 Debug.Log("Max Distance Reached");
                 LR.material = Green;
+
+                /*
                 if (TelemetryPush4 == false)
                 {
                     DioramaStand.transform.parent.GetComponentInChildren<DioramaExhibitTelemetryV2>().PushData("VR+ Diorama Gesture - Green Line Renderer");
@@ -128,6 +138,7 @@ public class DioramaEnterGesture : MonoBehaviour
                     TelemetryPush3 = false;
 
                 }
+                */
                 if (ElapsedTime <= Timer) //hold the green position for a few seconds
                 {
                     ElapsedTime += Time.deltaTime;
@@ -137,7 +148,7 @@ public class DioramaEnterGesture : MonoBehaviour
                 {
                     //DebugSphere.GetComponent<Renderer>().material.color = Color.red;
                     //FadeToLevel(2);
-                    DioramaStand.transform.parent.GetComponentInChildren<DioramaExhibitTelemetryV2>().PushData("VR Diorama Enter");
+                    //DioramaStand.transform.parent.GetComponentInChildren<DioramaExhibitTelemetryV2>().PushData("VR Diorama Enter");
                     TelemetryPush1 = false;
                     TelemetryPush2 = false;
                     TelemetryPush3 = false;

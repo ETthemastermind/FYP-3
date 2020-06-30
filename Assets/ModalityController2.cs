@@ -64,7 +64,7 @@ public class ModalityController2 : MonoBehaviour  //due to the dont destroy on l
 
         //Version_InputBox.GetComponent<Text>().text = "Set Version";
 
-        FileAddessText.GetComponent<TextMeshProUGUI>().text = Application.persistentDataPath + "/Telemetry.csv";
+        FileAddessText.GetComponent<TextMeshProUGUI>().text = "The relevant telemetry files can be found at: " + Application.persistentDataPath;
     }
 
     // Update is called once per frame
@@ -225,22 +225,23 @@ public class ModalityController2 : MonoBehaviour  //due to the dont destroy on l
         DataMissing = false;
         Debug.Log("Load Testing Mode");
 
-        for (int i = 0; i < TelemetrySystem.GetComponent<TelemetrySystemV2>().UserEntryBoxes.Length; i++)
+        for (int i = 0; i < TelemetrySystem.GetComponent<TelemetrySystemV2>().DemographicInfo.Length; i++)
         {
-            if (TelemetrySystem.GetComponent<TelemetrySystemV2>().UserEntryBoxes[i].GetComponent<TMP_InputField>().text == "")
+            
+            if (TelemetrySystem.GetComponent<TelemetrySystemV2>().DemographicInfo[i] == "")
             {
                 DataMissing = true;
                 Debug.Log(TelemetrySystem.GetComponent<TelemetrySystemV2>().UserEntryBoxes[i] + " Data Missing");
 
             }
-            /*
+            
             Debug.Log("For Loop Going");
             if (TelemetrySystem.GetComponent<TelemetrySystemV2>().DemographicInfo[i] == "")
             {
                 DataMissing = true;
                 Debug.Log("Data is Missing");
             }
-            */
+            
 
         }
         

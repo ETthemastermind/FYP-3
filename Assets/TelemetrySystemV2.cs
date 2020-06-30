@@ -49,8 +49,9 @@ public class TelemetrySystemV2 : MonoBehaviour
         //CreateFiles();
         //string FileName = "/Test.csv";
         //InvokeRepeating("LocomotionInfo",0f,0.5f);
-
-        
+        GetSexualOrientation();
+        GetPrevExperience();
+        GetMuseumVisits();
 
 
 
@@ -211,7 +212,7 @@ public class TelemetrySystemV2 : MonoBehaviour
 
         for (int i = 0; i < UserEntryBoxes.Length; i++)
         {
-            LogToEnter += UserEntryBoxes[i].GetComponent<TMP_InputField>().text + ",";
+            LogToEnter += DemographicInfo[i] + ",";
         }
         DemographicInfo[1] = UserEntryBoxes[1].GetComponent<TMP_InputField>().text;
         Debug.Log("LogToEnter is: " + LogToEnter);
@@ -223,4 +224,37 @@ public class TelemetrySystemV2 : MonoBehaviour
     }
 
 
+
+
+
+    public void GetID()
+    {
+        DemographicInfo[0] = UserEntryBoxes[0].GetComponent<TMP_InputField>().text;
+    }
+
+    public void GetVersion()
+    {
+        DemographicInfo[1] = UserEntryBoxes[1].GetComponent<TMP_InputField>().text;
+
+    }
+
+    public void GetAge()
+    {
+        DemographicInfo[2] = UserEntryBoxes[2].GetComponent<TMP_InputField>().text;
+    }
+
+    public void GetSexualOrientation()
+    {
+        DemographicInfo[3] = UserEntryBoxes[3].GetComponent<Text>().text;
+    }
+
+    public void GetPrevExperience()
+    {
+        DemographicInfo[4] = UserEntryBoxes[4].GetComponent<Text>().text;
+    }
+
+    public void GetMuseumVisits()
+    {
+        DemographicInfo[5] = UserEntryBoxes[5].GetComponent<Text>().text;
+    }
 }

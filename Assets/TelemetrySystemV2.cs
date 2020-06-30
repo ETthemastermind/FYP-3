@@ -181,8 +181,11 @@ public class TelemetrySystemV2 : MonoBehaviour
         LocomotionInformation[3] = Player.transform.rotation.eulerAngles.ToString();
         LocomotionInformation[4] = System.DateTime.Now.ToString("hh.mm.ss.ffffff");
 
-        LocomotionInformation[2] = LocomotionInformation[2].Replace(",", "|");
-        LocomotionInformation[3] = LocomotionInformation[2].Replace(",", "|");
+        //LocomotionInformation[2] = LocomotionInformation[2].Replace(",", "|");
+        //LocomotionInformation[3] = LocomotionInformation[3].Replace(",", "|");
+
+        LocomotionInformation[2] = ("\"" + LocomotionInformation[2] + "\"");
+        LocomotionInformation[3] = ("\"" + LocomotionInformation[3] + "\"");
 
         LogToEnter = ""; //clears the entry log
         Debug.Log("Add Entry");

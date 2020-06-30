@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Windows.Speech;
 using System.Linq;
+using Valve.VR;
 
 public class TeleportV2 : MonoBehaviour
 {
@@ -24,7 +25,9 @@ public class TeleportV2 : MonoBehaviour
 
     public AudioSource AS;
     public AudioClip TeleportNoise;
-    
+
+    public float WaitBeforeTP;
+    public float ElapsedTime;
 
     public GameObject Cursor;
     private KeywordRecognizer keywordRecogniser; //sets up speech rec
@@ -84,9 +87,24 @@ public class TeleportV2 : MonoBehaviour
 
                 if (Teleport == true)
                 {
-                    Vector3 NewPlayerLocation = new Vector3(Cursor.transform.position.x, Player.transform.parent.transform.position.y, Cursor.transform.position.z);
-                    Player.transform.parent.position = NewPlayerLocation;
-                    Teleport = false;
+                    SteamVR_Fade.Start(Color.black, 0.2f);
+                    Debug.Log("Fade In");
+
+                    
+                    if (ElapsedTime < WaitBeforeTP) //waits for time to elapse
+                    {
+                        ElapsedTime += Time.deltaTime;
+                    }
+                    else if (ElapsedTime > WaitBeforeTP) //if time has elapsed
+                    {
+                        Vector3 NewPlayerLocation = new Vector3(Cursor.transform.position.x, Player.transform.parent.transform.position.y, Cursor.transform.position.z);
+                        Player.transform.parent.position = NewPlayerLocation;
+                        SteamVR_Fade.Start(Color.clear, 0.2f);
+                        Debug.Log("Fade Out");
+                        ElapsedTime = 0f;
+                        Teleport = false;
+                    }
+                        
                 }
 
             }

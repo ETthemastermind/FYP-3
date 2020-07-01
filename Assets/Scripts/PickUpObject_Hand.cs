@@ -126,21 +126,23 @@ public class PickUpObject_Hand : MonoBehaviour
     */
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Right Hand") //if a hand has left the objects trigger area
+        if (other.gameObject.tag == "Right Hand" || other.gameObject.tag == "Left Hand") //if a hand has left the objects trigger area
         {
             HaloGlow.SetActive(true); //turns the halo off
             Debug.Log("Can Pick Up " + gameObject.name);
             PickUp = true;
+            PickUpTelemetrySystem.GetComponent<PickUpArtefactTelemetryV2>().PushData("Artefact Glow Activated");
         }
     }
 
     public void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Right Hand") //if a hand has left the objects trigger area
+        if (other.gameObject.tag == "Right Hand" || other.gameObject.tag == "Left Hand") //if a hand has left the objects trigger area
         {
             HaloGlow.SetActive(false); //turns the halo off
             Debug.Log("Can Put Down " + gameObject.name);
             PickUp = false;
+            PickUpTelemetrySystem.GetComponent<PickUpArtefactTelemetryV2>().PushData("Artefact Glow Deactivated");
         }
     }
 

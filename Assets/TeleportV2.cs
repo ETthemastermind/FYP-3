@@ -57,57 +57,65 @@ public class TeleportV2 : MonoBehaviour
         Debug.Log("Test");
 
         RaycastHit ObjectHit;
+        if (_IsPointing == true)
 
-        if (Physics.SphereCast(FingerTip.transform.position, sphereRadius, FingerTip.transform.forward, out ObjectHit, maxDistance, layerMask, QueryTriggerInteraction.Ignore))
         {
-
-            Debug.Log("Left Hand SC_Hit:" + ObjectHit.transform.name);
-            if (ObjectHit.transform.tag == "LM_TP_Area")
+            
+            if (Physics.SphereCast(FingerTip.transform.position, sphereRadius, FingerTip.transform.forward, out ObjectHit, maxDistance, layerMask, QueryTriggerInteraction.Ignore))
             {
-                LR.enabled = true;
-                ArcPos[0] = FingerTip.transform.position;
-                ArcPos[2] = ObjectHit.point ;
-                Vector3 Midpoint = (ArcPos[0] + ArcPos[2]) / 2;
-                float Midpoint_Y = (ArcPos[0].y + Midpoint.y) / 2;
-                Midpoint = new Vector3(Midpoint.x, Midpoint_Y, Midpoint.z);
 
-
-
-
-                LR.SetPosition(0, ArcPos[0]);
-                LR.SetPosition(1, Midpoint);
-                LR.SetPosition(2, ArcPos[2]);
-
-
-
-
-
-                Cursor.transform.position = ObjectHit.point;
-
-
-                if (Teleport == true)
+                Debug.Log("Left Hand SC_Hit:" + ObjectHit.transform.name);
+                if (ObjectHit.transform.tag == "LM_TP_Area")
                 {
-                    SteamVR_Fade.Start(Color.black, 0.2f);
-                    Debug.Log("Fade In");
+                    LR.enabled = true;
+                    ArcPos[0] = FingerTip.transform.position;
+                    ArcPos[2] = ObjectHit.point;
+                    Vector3 Midpoint = (ArcPos[0] + ArcPos[2]) / 2;
+                    float Midpoint_Y = (ArcPos[0].y + Midpoint.y) / 2;
+                    Midpoint = new Vector3(Midpoint.x, Midpoint_Y, Midpoint.z);
 
-                    
-                    if (ElapsedTime < WaitBeforeTP) //waits for time to elapse
+
+
+
+                    LR.SetPosition(0, ArcPos[0]);
+                    LR.SetPosition(1, Midpoint);
+                    LR.SetPosition(2, ArcPos[2]);
+
+
+
+
+
+                    Cursor.transform.position = ObjectHit.point;
+
+
+                    if (Teleport == true)
                     {
-                        ElapsedTime += Time.deltaTime;
+                        SteamVR_Fade.Start(Color.black, 0.2f);
+                        Debug.Log("Fade In");
+
+
+                        if (ElapsedTime < WaitBeforeTP) //waits for time to elapse
+                        {
+                            ElapsedTime += Time.deltaTime;
+                        }
+                        else if (ElapsedTime > WaitBeforeTP) //if time has elapsed
+                        {
+                            Vector3 NewPlayerLocation = new Vector3(Cursor.transform.position.x, Player.transform.parent.transform.position.y, Cursor.transform.position.z);
+                            Player.transform.parent.position = NewPlayerLocation;
+                            SteamVR_Fade.Start(Color.clear, 0.2f);
+                            Debug.Log("Fade Out");
+                            ElapsedTime = 0f;
+                            Teleport = false;
+                            gameObject.GetComponent<TeleportTelemetry>().PushData("Player Teleported");
+                        }
+
                     }
-                    else if (ElapsedTime > WaitBeforeTP) //if time has elapsed
-                    {
-                        Vector3 NewPlayerLocation = new Vector3(Cursor.transform.position.x, Player.transform.parent.transform.position.y, Cursor.transform.position.z);
-                        Player.transform.parent.position = NewPlayerLocation;
-                        SteamVR_Fade.Start(Color.clear, 0.2f);
-                        Debug.Log("Fade Out");
-                        ElapsedTime = 0f;
-                        Teleport = false;
-                    }
-                        
+
                 }
 
+
             }
+        
 
 
 
@@ -133,6 +141,7 @@ public class TeleportV2 : MonoBehaviour
         Debug.Log("Player started pointing _LMTP");
         _IsPointing = true;
         Cursor.SetActive(true);
+        gameObject.GetComponent<TeleportTelemetry>().PushData("Player is Pointing");
         
 
 
@@ -144,6 +153,7 @@ public class TeleportV2 : MonoBehaviour
         _IsPointing = false;
         LR.enabled = false;
         Cursor.SetActive(false);
+        gameObject.GetComponent<TeleportTelemetry>().PushData("Player is Not Pointing");
 
     }
 

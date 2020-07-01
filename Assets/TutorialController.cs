@@ -24,6 +24,7 @@ public class TutorialController : MonoBehaviour
     private bool NotebookActive;
     public GameObject NotebookController;
     public GameObject TelemetrySystem;
+    
    
 
     public int CurrentPhase = 0;
@@ -109,7 +110,13 @@ public class TutorialController : MonoBehaviour
         ModalityController = GameObject.FindGameObjectWithTag("ModalityController");
         if (ModalityController.GetComponent<ModalityController2>().VRSR_Chosen == true || ModalityController.GetComponent<ModalityController2>().VRLMSR_Chosen == true)
         {
-            TriggerPhase1 = true;
+            if (ModalityController.GetComponent<ModalityController2>().TutorialCompleted == false)
+            {
+                TriggerPhase1 = true;
+                ModalityController.GetComponent<ModalityController2>().TutorialCompleted = true;
+
+            }
+            
         }
         
 

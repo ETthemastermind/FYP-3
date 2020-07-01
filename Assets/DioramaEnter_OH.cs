@@ -219,6 +219,7 @@ public class DioramaEnter_OH : MonoBehaviour
                         GestureActive = false;
                         AS.PlayOneShot(TeleportSoundEffect);
                         AudioPlayed = true;
+                        DioramaStand.transform.parent.GetComponentInChildren<DioramaExhibitTelemetryV2>().PushData("Exhibit Left");
                         DioramaStand.transform.parent.GetComponentInChildren<DioramaExhibitTelemetryV2>().PushData("VR Diorama Enter");
                         TelemetryPush1 = false;
                         TelemetryPush2 = false;

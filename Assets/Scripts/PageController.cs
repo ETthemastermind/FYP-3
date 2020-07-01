@@ -27,8 +27,8 @@ public class PageController : MonoBehaviour
         RightPageText.text = RightPageNum.ToString();
 
 
-        actions.Add("Next Page", IncrementPage); // adds voice commands to control page turning etc
-        actions.Add("Last Page", DecrementPage);
+        actions.Add("Next Page", IncrementPageSR); // adds voice commands to control page turning etc
+        actions.Add("Last Page", DecrementPageSR);
 
         actions.Add("Go to Commands Page", GoToCommands);
         actions.Add("Go to Portrait Page", GoToPortrait);
@@ -75,7 +75,7 @@ public class PageController : MonoBehaviour
         }
 
         Pages[ActivePage].SetActive(true); //turns the new current page on
-        gameObject.GetComponent<NotebookTelemetrySystem>().PushData("Page turned using SR (Increment)");
+        
 
 
     }
@@ -190,6 +190,19 @@ public class PageController : MonoBehaviour
         }
         gameObject.GetComponent<NotebookTelemetrySystem>().PushData("SR - Go To Diorama Page");
 
+
+    }
+
+    public void IncrementPageSR()
+    {
+        gameObject.GetComponent<NotebookTelemetrySystem>().PushData("Page turned using SR (Increment)");
+        IncrementPage();
+    }
+
+    public void DecrementPageSR()
+    {
+        gameObject.GetComponent<NotebookTelemetrySystem>().PushData("Page turned using SR (Decrement)");
+        DecrementPage();
 
     }
 

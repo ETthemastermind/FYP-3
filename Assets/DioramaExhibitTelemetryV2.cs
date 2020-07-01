@@ -82,9 +82,5 @@ public class DioramaExhibitTelemetryV2 : MonoBehaviour
         
     }
 
-    public void OnDestroy()
-    {
-        string TypeOfInteractionUsed = "Exhibit Left";
-        PushData(TypeOfInteractionUsed);
-    }
+    
 }

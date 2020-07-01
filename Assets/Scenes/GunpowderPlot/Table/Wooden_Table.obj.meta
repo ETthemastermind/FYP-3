@@ -17,6 +17,8 @@ ModelImporter:
     3300002: Table_Top
     4300000: Table_bot
     4300002: Table_Top
+    6400000: Table_bot
+    6400002: Table_Top
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -60,7 +62,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 0.03
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     useSRGBMaterialColor: 1
     importVisibility: 1
     importBlendShapes: 1

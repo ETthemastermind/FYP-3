@@ -47,6 +47,13 @@ ModelImporter:
     4300008: Box001
     4300010: Box003
     4300012: Box011
+    6400000: Box001
+    6400002: Box003
+    6400004: Box011
+    6400006: Box017
+    6400008: Box034
+    6400010: Box043
+    6400012: Circle001
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -80,7 +87,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     useSRGBMaterialColor: 1
     importVisibility: 1
     importBlendShapes: 1

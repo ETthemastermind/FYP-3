@@ -13,6 +13,7 @@ ModelImporter:
     2300000: g barrelAnimatic
     3300000: g barrelAnimatic
     4300000: g barrelAnimatic
+    6400000: g barrelAnimatic
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -51,7 +52,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     useSRGBMaterialColor: 1
     importVisibility: 1
     importBlendShapes: 1

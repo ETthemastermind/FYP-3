@@ -73,7 +73,7 @@ public class TelemetrySystemV2 : MonoBehaviour
             LogToEnter = ""; //clears the entry log
             Debug.Log("Add Entry");
 
-            for (int d = 0; d < 2; d++) //for the first two entries in demographic info (identifier and version)
+            for (int d = 1; d < 2; d++) //for the second entry in demographic info (version)
             {
                 Debug.Log("Adding relevant demographic info");
                 LogToEnter += DemographicInfo[d] + ",";

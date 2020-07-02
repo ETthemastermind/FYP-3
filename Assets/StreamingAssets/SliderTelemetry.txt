@@ -1,1 +1,0 @@
-Identifier,Version,Artefact Name,Artefact Type,Time Stamp Entered,Time Stamp Left,Button Pressed,Speech Recogniton Used (VR/Vr+),

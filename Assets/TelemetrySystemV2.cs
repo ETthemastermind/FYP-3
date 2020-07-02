@@ -118,7 +118,7 @@ public class TelemetrySystemV2 : MonoBehaviour
         CurrentTime = CurrentTime.Replace(":", "-");
         //creaing interaction telemetry
         I_FileName = "/" + Identifier + "Interaction_"+ CurrentDate + "_" + CurrentTime+"_" + ".csv";
-        I_FilePath = Application.streamingAssetsPath + I_FileName;
+        I_FilePath = Application.streamingAssetsPath + "/Logs" + I_FileName;
         StreamWriter I_writer = new StreamWriter(I_FilePath, false);
         //writer.WriteLine("Spin my nipple nuts and send me to alaska"); debug to test 
 
@@ -136,7 +136,7 @@ public class TelemetrySystemV2 : MonoBehaviour
         //Creating Demographic telemetry
 
         D_FileName = "/" + Identifier + "Demographic_" + CurrentDate + "_" + CurrentTime + "_" + ".csv";
-        D_FilePath = Application.streamingAssetsPath + D_FileName;
+        D_FilePath = Application.streamingAssetsPath + "/Logs" + D_FileName;
         StreamWriter D_writer = new StreamWriter(D_FilePath, false);
         //writer.WriteLine("Spin my nipple nuts and send me to alaska"); debug to test 
 
@@ -154,7 +154,7 @@ public class TelemetrySystemV2 : MonoBehaviour
         //Creating Locomotion Telemetry
 
         L_FileName = "/" + Identifier + "Locomotion_" + CurrentDate + "_" + CurrentTime + "_" + ".csv";
-        L_FilePath = Application.streamingAssetsPath + L_FileName;
+        L_FilePath = Application.streamingAssetsPath + "/Logs" + L_FileName;
         StreamWriter L_writer = new StreamWriter(L_FilePath, false);
         //writer.WriteLine("Spin my nipple nuts and send me to alaska"); debug to test 
 

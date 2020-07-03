@@ -64,7 +64,7 @@ public class ModalityController2 : MonoBehaviour  //due to the dont destroy on l
 
         //Version_InputBox.GetComponent<Text>().text = "Set Version";
 
-        FileAddessText.GetComponent<TextMeshProUGUI>().text = "The relevant telemetry files can be found at: " + Application.persistentDataPath;
+        FileAddessText.GetComponent<TextMeshProUGUI>().text = "The relevant telemetry files can be found at: " + Application.streamingAssetsPath;
     }
 
     // Update is called once per frame

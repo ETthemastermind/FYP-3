@@ -5,6 +5,7 @@ using UnityEngine;
 public class TutorialControllerStandard : MonoBehaviour
 {
     public GameObject ModalityController;
+    public GameObject LastRope;
     //phase 1 variables//
 
     
@@ -14,7 +15,7 @@ public class TutorialControllerStandard : MonoBehaviour
         ModalityController = GameObject.FindGameObjectWithTag("ModalityController");
         if (ModalityController.GetComponent<ModalityController2>().Gamepad_Chosen == true)
         {
-
+            LastRope.SetActive(false);
         }
 
         else

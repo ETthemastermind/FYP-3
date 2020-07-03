@@ -15,11 +15,15 @@ public class CycleBoard : MonoBehaviour
 
     public bool TestRight;
     public bool TestLeft;
+
+    public GameObject ModalityController;
      
     // Start is called before the first frame update
     void Start()
     {
-        TutorialController = GameObject.FindGameObjectWithTag("TutorialController");
+        //TutorialController = GameObject.FindGameObjectWithTag("TutorialController");
+        TutorialController = gameObject.transform.parent.gameObject;
+        ModalityController = GameObject.FindGameObjectWithTag("ModalityController");
         for (int i = 0; i < TutText.Length; i++)
         {
             if (i != RangeOfDisplays[0])
@@ -35,7 +39,15 @@ public class CycleBoard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ActivePhase = TutorialController.GetComponent<TutorialController>().CurrentPhase;
+        if (ModalityController.GetComponent<ModalityController2>().VRSR_Chosen == true)
+        {
+            ActivePhase = TutorialController.GetComponent<TutorialController>().CurrentPhase;
+        }
+        else if (ModalityController.GetComponent<ModalityController2>().VRLMSR_Chosen == true)
+        {
+            ActivePhase = TutorialController.GetComponent<TutorialControllerVRPlus>().CurrentPhase;
+        }
+        
         if (TestRight == true)
         {
             IncrementTutDisplay();

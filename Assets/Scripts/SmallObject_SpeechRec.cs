@@ -125,24 +125,29 @@ public class SmallObject_SpeechRec : MonoBehaviour
     {
         if (other.gameObject.tag == "InteractRing")
         {
-
+            
             InArtefactArea = false;
             SliderObject = false;
             Artefact = null;
             GatheredInfo = null;
+            
             actions.Remove(Keywords[0]);
             actions.Remove(Keywords[1]);
             actions.Remove(Keywords[2]);
             actions.Remove(Keywords[3]);
-
             Keywords = null;
+
+
             keywordRecogniser.Dispose();
             keywordRecogniser.Stop();
+
             
             
-            
-            
-            
+
+
+
+
+
         }
 
     }

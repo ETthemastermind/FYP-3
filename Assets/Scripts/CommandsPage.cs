@@ -43,7 +43,21 @@ public class CommandsPage : MonoBehaviour
             CommandThree.text = FoundInfo[3];
             CommandFour.text = FoundInfo[4];
         }
-        else if (SpeechController.GetComponent<SmallObject_SpeechRec>().Artefact = null) { }
+        else
+        {
+            FoundInfo[0] = "<Artefact>";
+            FoundInfo[1] = "<Command One>";
+            FoundInfo[2] = "<Command Two>";
+            FoundInfo[3] = "<Command Three>";
+            FoundInfo[4] = "<Command Four>";
+
+            ArtefactName_CMD.text = FoundInfo[0]; //assigns the found information
+            ArtefactName_INFO.text = FoundInfo[0];
+            CommandOne.text = FoundInfo[1];
+            CommandTwo.text = FoundInfo[2];
+            CommandThree.text = FoundInfo[3];
+            CommandFour.text = FoundInfo[4];
+        }
 
 
 
